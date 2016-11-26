@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BCED1241-BE36-4371-94C7-4BFA366539B2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KabalistusTransformationTracker</RootNamespace>
+    <AssemblyName>KabalistusTransformationTracker</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\Desktop\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>7A761D06BBCF5AEF494E5ADB354FEE0340A44311</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>IsaacTest_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>guppy.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Utils\ArrayUtils.cs" />
+    <Compile Include="Images\BaseImage.cs" />
+    <Compile Include="Images\ImageHelper.cs" />
+    <Compile Include="Images\ItemCluster.cs" />
+    <Compile Include="Images\ItemImage.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\MemoryQuery.cs" />
+    <Compile Include="Utils\MemoryReader.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Trans\Transformations.cs" />
+    <Compile Include="Trans\TransformationInfo.cs" />
+    <Compile Include="Utils\TransformationInfoProvider.cs" />
+    <Compile Include="Trans\Item.cs" />
+    <Compile Include="Trans\Transformation.cs" />
+    <Compile Include="Trans\TransformationViewHelper.cs" />
+    <Compile Include="Trans\TransformationViewInfo.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ecoli.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\poop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ring.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bobbrain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bobcurse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bobhead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ipecac.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bob.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ohcrap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bumfriend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\darkbum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\keybum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\superbum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deadcat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guppy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\experimentaltreatment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\growthhormones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roidrage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\speedball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\synthoil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\virus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brotherbobby.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\conjoined.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\harlequinbaby.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\headlessbaby.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\littlesteven.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mongobaby.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rottenbaby.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sistermaggy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bluecap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\funguy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\godsflesh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magicmush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oodmushthick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oodmushthin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oneup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brimstone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leviathan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mawofthevoid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pact.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pentagram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spiritofthenight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\abaddon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bible.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deaddove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guardianangel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\halo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\holygrail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\holymantle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mitre.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rosary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\seraphim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\swornprotector.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guppyscollar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guppyshairball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guppyshead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guppyspaw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guppystail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bobsbrain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bobscurse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bobshead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momsbottleofpills.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momsbra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momscoinpurse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momscontacts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momseye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momseyshadow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momsheels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momskey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momsknife.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momslipstick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momspad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momspearls.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momsperfume.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momspurse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momsunderwear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\momswig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bbf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bbonlyfriend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\beelzebub.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bestbud.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bigfan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\distantadmiration.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\foreveralone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\friendzone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\haloofflies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hivemind.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\infestation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jarofflies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lostfly.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mulligan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\obsessedfan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\papafly.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skatole.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smartfly.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="guppy.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
