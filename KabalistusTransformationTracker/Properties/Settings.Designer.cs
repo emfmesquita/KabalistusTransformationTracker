@@ -205,13 +205,25 @@ namespace KabalistusTransformationTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("375")]
+        [global::System.Configuration.DefaultSettingValueAttribute("400")]
         public int AppHeight {
             get {
                 return ((int)(this["AppHeight"]));
             }
             set {
                 this["AppHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowBlacklistedItems {
+            get {
+                return ((bool)(this["ShowBlacklistedItems"]));
+            }
+            set {
+                this["ShowBlacklistedItems"] = value;
             }
         }
     }

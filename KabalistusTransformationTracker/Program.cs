@@ -37,7 +37,7 @@ namespace KabalistusTransformationTracker {
         }
 
         private static void CheckIsaacRunningEvent(object source, ElapsedEventArgs e) {
-            MemoryReader.Init();
+            MemoryReader.Init(_mainForm);
         }
     }
 }

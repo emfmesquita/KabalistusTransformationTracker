@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="IsaacTest.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="KabalistusTransformationTracker.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="BackgroundColor" Type="System.Drawing.Color" Scope="User">
@@ -48,7 +48,10 @@
       <Value Profile="(Default)">850</Value>
     </Setting>
     <Setting Name="AppHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">375</Value>
+      <Value Profile="(Default)">400</Value>
+    </Setting>
+    <Setting Name="ShowBlacklistedItems" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

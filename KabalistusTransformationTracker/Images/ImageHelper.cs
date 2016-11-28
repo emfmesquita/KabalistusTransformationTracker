@@ -1,10 +1,16 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
+using KabalistusTransformationTracker.Utils;
 
 namespace KabalistusTransformationTracker.Images {
     public class ImageHelper {
         public static Bitmap AdjustBrightnessContrast(Image image, float contrast, float brightness) {
             // Make the ColorMatrix.
+            contrast += CreationMode.ContrastBuff;
+            brightness += CreationMode.BrigtnessBuff;
+
             var cm = new ColorMatrix(new float[][]
                 {
                     new float[] {contrast, 0, 0, 0, 0}, // scale red
@@ -34,6 +40,34 @@ namespace KabalistusTransformationTracker.Images {
 
             // Return the result.
             return bm;
+        }
+
+        public static ItemImage ClosestImage(Point mouse, List<ItemImage> imagesOver) {
+            var closestImage = (ItemImage)null;
+            var currentDistance = double.MaxValue;
+            imagesOver.ForEach(image => {
+                if (closestImage == null) {
+                    closestImage = image;
+                    return;
+                }
+                var distance = GetDistanceBetweenPoints(mouse, image.Center);
+                if (!(distance < currentDistance)) return;
+                closestImage = image;
+                currentDistance = distance;
+            });
+            return closestImage;
+        }
+
+        public static double GetDistanceBetweenPoints(Point p, Point q) {
+            double a = p.X - q.X;
+            double b = p.Y - q.Y;
+            return Math.Sqrt(a * a + b * b);
+        }
+
+        public static bool IsOverImage(Point mouse, BaseImage image) {
+            var withinWidth = mouse.X >= image.X && (mouse.X - image.X) <= image.ScaledWidth;
+            var withinHeight = mouse.Y >= image.Y && (mouse.Y - image.Y) <= image.ScaledHeight;
+            return withinWidth && withinHeight;
         }
     }
 }

@@ -23,8 +23,9 @@ namespace KabalistusTransformationTracker.Trans {
         }
 
         public void UpdateTransformationsInfo(bool showTransformationImage) {
+            var updatedTransformationInfo = TransformationInfoProvider.GetTransformationsInfo();
             Transformations.AllTransformations.Values.ToList().ForEach(transformation => {
-                UpdateTransformationInfo(transformation, showTransformationImage);
+                UpdateTransformationInfo(transformation, showTransformationImage, updatedTransformationInfo);
             });
         }
 
@@ -41,8 +42,8 @@ namespace KabalistusTransformationTracker.Trans {
             Properties.Settings.Default.Save();
         }
 
-        private void UpdateTransformationInfo(Transformation transformation, bool showTransformationImage) {
-            var info = TransformationInfoProvider.GetTransformationInfo(transformation);
+        private void UpdateTransformationInfo(Transformation transformation, bool showTransformationImage, Dictionary<string, TransformationInfo> updatedTransformationInfo) {
+            var info = updatedTransformationInfo[transformation.Name];
             var name = transformation.Name;
             if (_transformationInfos.ContainsKey(name) && _transformationInfos[name].Equals(info)) {
                 return;
@@ -61,7 +62,8 @@ namespace KabalistusTransformationTracker.Trans {
             }
 
             foreach (var itemImage in viewInfo.Cluster.Images) {
-                itemImage.HasItem = info.ItemsGot.Contains(itemImage.Name);
+                itemImage.ItemTouched = info.TouchedItems.Contains(itemImage.Name);
+                itemImage.ItemBlacklisted = info.BlacklistedItems.Contains(itemImage.Name);
             }
             viewInfo.Cluster.BaseBox.Refresh();
         }

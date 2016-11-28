@@ -88,6 +88,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\CreationMode.cs" />
     <Compile Include="Utils\MemoryQuery.cs" />
     <Compile Include="Utils\MemoryReader.cs" />
     <Compile Include="Program.cs" />
@@ -99,6 +100,7 @@
     </Compile>
     <Compile Include="Trans\Transformations.cs" />
     <Compile Include="Trans\TransformationInfo.cs" />
+    <Compile Include="Utils\Status.cs" />
     <Compile Include="Utils\TransformationInfoProvider.cs" />
     <Compile Include="Trans\Item.cs" />
     <Compile Include="Trans\Transformation.cs" />
@@ -442,6 +444,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="guppy.ico" />
+    <None Include="Resources\block.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

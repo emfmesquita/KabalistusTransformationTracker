@@ -1,17 +1,15 @@
-﻿using System.Drawing;
+﻿using System;
 using System.Windows.Forms;
-using KabalistusTransformationTracker.Images;
 using KabalistusTransformationTracker.Trans;
+using KabalistusTransformationTracker.Utils;
 using static KabalistusTransformationTracker.Trans.Transformations;
 
 namespace KabalistusTransformationTracker {
     public partial class MainForm : Form {
         private static readonly TransformationViewHelper TransViewHelper = new TransformationViewHelper();
-
-        public static readonly bool CreationMode = false;
-        public static ItemCluster CurrentCluster;
-
+        
         public static bool ShowTransformationImage;
+        public static bool ShowBlacklistedItems;
 
         public MainForm() {
             InitializeComponent();
@@ -31,11 +29,29 @@ namespace KabalistusTransformationTracker {
             SetInitialValuesFromConfig();
         }
 
+        public void UpdateTransformationsView() {
+            if (CreationMode.On) {
+                return;
+            }
+            Invoke((MethodInvoker)(() => {
+                TransViewHelper.UpdateTransformationsInfo(ShowTransformationImage);
+            }));
+        }
+
+        public void SetStatus(Status status) {
+            Invoke((MethodInvoker)(() => {
+                statusLabel.Text = status.Message;
+            }));
+        }
+
         private void SetInitialValuesFromConfig() {
             BackColor = Properties.Settings.Default.BackgroundColor;
 
             ShowTransformationImage = Properties.Settings.Default.ShowTransformationImages;
             showHideTransformationsToolStripMenuItem.Checked = ShowTransformationImage;
+
+            ShowBlacklistedItems = Properties.Settings.Default.ShowBlacklistedItems;
+            showBlacklistedItemsToolStripMenuItem.Checked = ShowBlacklistedItems;
 
             TransViewHelper.SetInitialValuesFromConfig();
 
@@ -43,15 +59,6 @@ namespace KabalistusTransformationTracker {
             Width = Properties.Settings.Default.AppWidth;
             Resize += this.MainForm_Resize;
             Height = Properties.Settings.Default.AppHeight;
-        }
-
-        public void UpdateTransformationsView() {
-            if (CreationMode) {
-                return;
-            }
-            Invoke((MethodInvoker)(() => {
-                TransViewHelper.UpdateTransformationsInfo(ShowTransformationImage);
-            }));
         }
 
         private void changeTextColorToolStripMenuItem_Click(object sender, System.EventArgs e) {
@@ -119,6 +126,13 @@ namespace KabalistusTransformationTracker {
             TransViewHelper.ShowHideTransformation(SuperBum, ((ToolStripMenuItem)sender).Checked);
         }
 
+        private void showBlacklistedItemsToolStripMenuItem_Click(object sender, EventArgs e) {
+            ShowBlacklistedItems = ((ToolStripMenuItem)sender).Checked;
+            Properties.Settings.Default.ShowBlacklistedItems = ShowBlacklistedItems;
+            Properties.Settings.Default.Save();
+            Refresh();
+        }
+
         private void MainForm_Resize(object sender, System.EventArgs e) {
             Properties.Settings.Default.AppHeight = Height;
             Properties.Settings.Default.AppWidth = Width;
@@ -135,40 +149,7 @@ namespace KabalistusTransformationTracker {
         }
 
         private void MainForm_KeyPress(object sender, KeyPressEventArgs e) {
-            if (CurrentCluster == null || !CreationMode) {
-                return;
-            }
-
-            if (e.KeyChar == 'r') {
-                CurrentCluster.PreviousImage();
-                return;
-            }
-
-            if (e.KeyChar == 'f') {
-                CurrentCluster.NextImage();
-                return;
-            }
-
-            if (e.KeyChar == ' ') {
-                CurrentCluster.Transformed = !CurrentCluster.Transformed;
-                CurrentCluster.BaseBox.Refresh();
-                return;
-            }
-
-            if (e.KeyChar == 'w') {
-                CurrentCluster.CurrentImage.Y--;
-            } else if (e.KeyChar == 'a') {
-                CurrentCluster.CurrentImage.X--;
-            } else if (e.KeyChar == 's') {
-                CurrentCluster.CurrentImage.Y++;
-            } else if (e.KeyChar == 'd') {
-                CurrentCluster.CurrentImage.X++;
-            } else if (e.KeyChar == 't') {
-                CurrentCluster.CurrentImage.Scale += 0.05F;
-            } else if (e.KeyChar == 'g') {
-                CurrentCluster.CurrentImage.Scale -= 0.05F;
-            }
-            CurrentCluster.BaseBox.Refresh();
+            CreationMode.KeyPressed(e.KeyChar);
         }
     }
 }

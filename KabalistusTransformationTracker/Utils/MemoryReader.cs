@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace KabalistusTransformationTracker.Utils {
     public class MemoryReader {
 
         private const int ProcessWmRead = 0x0010;
+
+        private const string IsaacProccessNotFound = "Isaac proccess not found. Still searching...";
+        private const string LoadingAddresses = "Isaac proccess found. Loading memory addresses...";
+        private const string Ready = "Ready.";
 
         private static int _isaacPid;
         private static ProcessModule _module;
@@ -32,9 +37,14 @@ namespace KabalistusTransformationTracker.Utils {
             SearchPattern = "bb????bb????bbvv??"
         };
 
-        public static bool Init() {
+        public static bool Init(MainForm mainForm) {
             var processArray = Process.GetProcessesByName("isaac-ng");
             if (processArray.Length == 0) {
+                mainForm.SetStatus(new Status() {
+                    Message = IsaacProccessNotFound,
+                    Ready = false
+                });
+
                 return false;
             }
 
@@ -45,6 +55,11 @@ namespace KabalistusTransformationTracker.Utils {
                 return true;
             }
 
+            mainForm.SetStatus(new Status() {
+                Message = LoadingAddresses,
+                Ready = false
+            });
+
             _module = process.MainModule;
             _baseAddr = _module.BaseAddress.ToInt32();
             _moduleMemSize = _module.ModuleMemorySize;
@@ -54,6 +69,12 @@ namespace KabalistusTransformationTracker.Utils {
             _playerManagerPlayerListOffset = SearchInt(PlayerManagerPlayerListOffsetQuery);
 
             _isaacPid = isaacPid;
+
+            mainForm.SetStatus(new Status() {
+                Message = Ready,
+                Ready = true
+            });
+
             return true;
         }
 
@@ -75,7 +96,7 @@ namespace KabalistusTransformationTracker.Utils {
             return ReadInt(player + offset, 4);
         }
 
-        public static int GetPlayerManagerInfo(int offset) {
+        public static int GetPlayerManagerInfo(int offset, int size) {
             if (!IsCurrentInfoValid()) {
                 return 0;
             }
@@ -84,7 +105,11 @@ namespace KabalistusTransformationTracker.Utils {
             var playerListPointer = playerManagetInstruct + _playerManagerPlayerListOffset;
 
             var numberOfPlayers = ReadInt(playerListPointer + 4, 4) - ReadInt(playerListPointer, 4);
-            return numberOfPlayers == 0 ? 0 : ReadInt(playerManagetInstruct + offset, 1);
+            return numberOfPlayers == 0 ? 0 : ReadInt(playerManagetInstruct + offset, size);
+        }
+
+        public static int ReadInt(int addr, int size) {
+            return ConvertLittleEndian(Read(addr, size));
         }
 
         private static bool IsCurrentInfoValid() {
@@ -105,10 +130,6 @@ namespace KabalistusTransformationTracker.Utils {
             var buffer = new byte[size];
             ReadProcessMemory((int)_processHandle, addr, buffer, buffer.Length, ref bytesRead);
             return buffer;
-        }
-
-        private static int ReadInt(int addr, int size) {
-            return ConvertLittleEndian(Read(addr, size));
         }
 
         private static int ConvertLittleEndian(IEnumerable<byte> array) {
@@ -172,8 +193,5 @@ namespace KabalistusTransformationTracker.Utils {
 
         [DllImport("kernel32.dll")]
         private static extern bool ReadProcessMemory(int hProcess, int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
-
-        [DllImport("kernel32.dll")]
-        private static extern IntPtr GetModuleHandle(string lpModuleName);
     }
 }

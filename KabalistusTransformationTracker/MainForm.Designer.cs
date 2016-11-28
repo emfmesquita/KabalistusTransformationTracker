@@ -60,7 +60,7 @@ namespace KabalistusTransformationTracker {
             this.momPBox = new System.Windows.Forms.PictureBox();
             this.beelzebubPanel = new System.Windows.Forms.Panel();
             this.beelzebubPBox = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeTextColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,10 +78,13 @@ namespace KabalistusTransformationTracker {
             this.leviathanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohCrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.superBumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showBlacklistedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.resetToDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textColor = new System.Windows.Forms.ColorDialog();
             this.backgroundColor = new System.Windows.Forms.ColorDialog();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ohCrapPBox)).BeginInit();
             this.ohCrapPanel.SuspendLayout();
             this.bobPanel.SuspendLayout();
@@ -104,8 +107,9 @@ namespace KabalistusTransformationTracker {
             ((System.ComponentModel.ISupportInitialize)(this.momPBox)).BeginInit();
             this.beelzebubPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.beelzebubPBox)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel.SuspendLayout();
             this.menu.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // guppyLabel
@@ -438,27 +442,27 @@ namespace KabalistusTransformationTracker {
             this.beelzebubPBox.TabIndex = 14;
             this.beelzebubPBox.TabStop = false;
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanel
             // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.Controls.Add(this.guppyPanel);
-            this.flowLayoutPanel1.Controls.Add(this.beelzebubPanel);
-            this.flowLayoutPanel1.Controls.Add(this.funGuyPanel);
-            this.flowLayoutPanel1.Controls.Add(this.seraphimPanel);
-            this.flowLayoutPanel1.Controls.Add(this.bobPanel);
-            this.flowLayoutPanel1.Controls.Add(this.spunPanel);
-            this.flowLayoutPanel1.Controls.Add(this.momPanel);
-            this.flowLayoutPanel1.Controls.Add(this.conjoinedPanel);
-            this.flowLayoutPanel1.Controls.Add(this.leviathanPanel);
-            this.flowLayoutPanel1.Controls.Add(this.ohCrapPanel);
-            this.flowLayoutPanel1.Controls.Add(this.superBumPanel);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(5);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(834, 308);
-            this.flowLayoutPanel1.TabIndex = 23;
+            this.flowLayoutPanel.AutoScroll = true;
+            this.flowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel.Controls.Add(this.guppyPanel);
+            this.flowLayoutPanel.Controls.Add(this.beelzebubPanel);
+            this.flowLayoutPanel.Controls.Add(this.funGuyPanel);
+            this.flowLayoutPanel.Controls.Add(this.seraphimPanel);
+            this.flowLayoutPanel.Controls.Add(this.bobPanel);
+            this.flowLayoutPanel.Controls.Add(this.spunPanel);
+            this.flowLayoutPanel.Controls.Add(this.momPanel);
+            this.flowLayoutPanel.Controls.Add(this.conjoinedPanel);
+            this.flowLayoutPanel.Controls.Add(this.leviathanPanel);
+            this.flowLayoutPanel.Controls.Add(this.ohCrapPanel);
+            this.flowLayoutPanel.Controls.Add(this.superBumPanel);
+            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel.Location = new System.Drawing.Point(0, 24);
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
+            this.flowLayoutPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(834, 337);
+            this.flowLayoutPanel.TabIndex = 23;
             // 
             // menu
             // 
@@ -477,6 +481,7 @@ namespace KabalistusTransformationTracker {
             this.changeBackgroundColorToolStripMenuItem,
             this.showHideTransformationsToolStripMenuItem,
             this.showTransformationsToolStripMenuItem,
+            this.showBlacklistedItemsToolStripMenuItem,
             this.toolStripSeparator6,
             this.resetToDefaultToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -508,7 +513,7 @@ namespace KabalistusTransformationTracker {
             this.showHideTransformationsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Space)));
             this.showHideTransformationsToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
             this.showHideTransformationsToolStripMenuItem.Text = "Show Transformation Image";
-            this.showHideTransformationsToolStripMenuItem.ToolTipText = "Controls if the image of the transformation shoulb be displayed when you have the" +
+            this.showHideTransformationsToolStripMenuItem.ToolTipText = "Controls if the image of the transformation should be displayed when you have the" +
     " transformation. Or only the items continue to be displayed.";
             this.showHideTransformationsToolStripMenuItem.Click += new System.EventHandler(this.showHideTransformationsToolStripMenuItem_Click);
             // 
@@ -640,6 +645,18 @@ namespace KabalistusTransformationTracker {
             this.superBumToolStripMenuItem.Text = "Super Bum";
             this.superBumToolStripMenuItem.Click += new System.EventHandler(this.superBumToolStripMenuItem_Click);
             // 
+            // showBlacklistedItemsToolStripMenuItem
+            // 
+            this.showBlacklistedItemsToolStripMenuItem.Checked = true;
+            this.showBlacklistedItemsToolStripMenuItem.CheckOnClick = true;
+            this.showBlacklistedItemsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showBlacklistedItemsToolStripMenuItem.Name = "showBlacklistedItemsToolStripMenuItem";
+            this.showBlacklistedItemsToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
+            this.showBlacklistedItemsToolStripMenuItem.Text = "Show Blacklisted Items";
+            this.showBlacklistedItemsToolStripMenuItem.ToolTipText = "Controls the indication if an item has no change to be generated again. So it wil" +
+    "l not appear again on the current run.";
+            this.showBlacklistedItemsToolStripMenuItem.Click += new System.EventHandler(this.showBlacklistedItemsToolStripMenuItem_Click);
+            // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
@@ -662,14 +679,30 @@ namespace KabalistusTransformationTracker {
             this.backgroundColor.Color = System.Drawing.SystemColors.Control;
             this.backgroundColor.FullOpen = true;
             // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 339);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(834, 22);
+            this.statusStrip.TabIndex = 25;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(146, 17);
+            this.statusLabel.Text = "Searching Isaac proccess...";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(834, 336);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(834, 361);
+            this.Controls.Add(this.statusStrip);
+            this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.menu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(100, 100);
@@ -710,9 +743,11 @@ namespace KabalistusTransformationTracker {
             this.beelzebubPanel.ResumeLayout(false);
             this.beelzebubPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.beelzebubPBox)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel.ResumeLayout(false);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -753,7 +788,7 @@ namespace KabalistusTransformationTracker {
         private PictureBox momPBox;
         private Panel beelzebubPanel;
         private PictureBox beelzebubPBox;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flowLayoutPanel;
         private MenuStrip menu;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem changeTextColorToolStripMenuItem;
@@ -775,6 +810,9 @@ namespace KabalistusTransformationTracker {
         private ToolStripMenuItem superBumToolStripMenuItem;
         private ToolStripMenuItem resetToDefaultToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator6;
+        private ToolStripMenuItem showBlacklistedItemsToolStripMenuItem;
+        private StatusStrip statusStrip;
+        private ToolStripStatusLabel statusLabel;
     }
 }
 
