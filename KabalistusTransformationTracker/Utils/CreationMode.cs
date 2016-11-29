@@ -3,8 +3,8 @@ using KabalistusTransformationTracker.Images;
 
 namespace KabalistusTransformationTracker.Utils {
     public class CreationMode {
-        public static readonly bool On = true;
-        public static readonly bool BlockModeOn = true;
+        public static readonly bool On = false;
+        public static readonly bool BlockModeOn = false;
         public static float ContrastBuff;
         public static float BrigtnessBuff;
         public static ItemCluster CurrentCluster;
