@@ -10,8 +10,9 @@ namespace KabalistusTransformationTracker.Images {
     public class ItemCluster {
 
         private int _currentIndex;
-        private static readonly Bitmap Ring = Properties.Resources.ring;
-        private static readonly Bitmap Block = Properties.Resources.block;
+        private static readonly Image Ring = Properties.Resources.ring;
+        private static readonly Image Block = Properties.Resources.block;
+        private static Image _coloredBlock;
 
         private readonly Stopwatch _tooltipIntervalSw = new Stopwatch();
 
@@ -84,6 +85,10 @@ namespace KabalistusTransformationTracker.Images {
             Images.ForEach(image => image.UpdateImagesCreationMode());
         }
 
+        public static void UpdateBlockImage(Color color) {
+            _coloredBlock = ImageHelper.WhiteToColor(Block, color);
+        }
+
         private bool ShowTransformation() {
             return Transformed && MainForm.ShowTransformationImage;
         }
@@ -147,7 +152,7 @@ namespace KabalistusTransformationTracker.Images {
         }
 
         private static void DrawBlock(PaintEventArgs args, ItemImage image) {
-            args.Graphics.DrawImage(Block, image.BlockX, image.BlockY, image.BlockSideLength, image.BlockSideLength);
+            args.Graphics.DrawImage(_coloredBlock, image.BlockX, image.BlockY, image.BlockSideLength, image.BlockSideLength);
         }
     }
 }

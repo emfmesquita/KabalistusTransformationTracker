@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using KabalistusTransformationTracker.Images;
 using KabalistusTransformationTracker.Trans;
 using KabalistusTransformationTracker.Utils;
 using static KabalistusTransformationTracker.Trans.Transformations;
@@ -7,7 +8,7 @@ using static KabalistusTransformationTracker.Trans.Transformations;
 namespace KabalistusTransformationTracker {
     public partial class MainForm : Form {
         private static readonly TransformationViewHelper TransViewHelper = new TransformationViewHelper();
-        
+
         public static bool ShowTransformationImage;
         public static bool ShowBlacklistedItems;
 
@@ -25,6 +26,8 @@ namespace KabalistusTransformationTracker {
             TransViewHelper.Add(Leviathan, new TransformationViewInfo(Leviathan, leviathanPBox, leviathanLabel, leviathanPanel, leviathanToolStripMenuItem));
             TransViewHelper.Add(OhCrap, new TransformationViewInfo(OhCrap, ohCrapPBox, ohCrapLabel, ohCrapPanel, ohCrapToolStripMenuItem));
             TransViewHelper.Add(SuperBum, new TransformationViewInfo(SuperBum, superBumPBox, superBumLabel, superBumPanel, superBumToolStripMenuItem));
+
+            statusLabel.BackColor = statusStrip.BackColor;
 
             SetInitialValuesFromConfig();
         }
@@ -55,6 +58,8 @@ namespace KabalistusTransformationTracker {
 
             TransViewHelper.SetInitialValuesFromConfig();
 
+            ItemCluster.UpdateBlockImage(Properties.Settings.Default.BlacklistedItemsIconColor);
+
             Resize -= this.MainForm_Resize;
             Width = Properties.Settings.Default.AppWidth;
             Resize += this.MainForm_Resize;
@@ -62,6 +67,7 @@ namespace KabalistusTransformationTracker {
         }
 
         private void changeTextColorToolStripMenuItem_Click(object sender, System.EventArgs e) {
+            textColor.Color = Properties.Settings.Default.TextColor;
             if (textColor.ShowDialog() != DialogResult.OK) return;
             TransViewHelper.SetTextColor(textColor.Color);
             Properties.Settings.Default.TextColor = textColor.Color;
@@ -69,10 +75,21 @@ namespace KabalistusTransformationTracker {
         }
 
         private void changeBackgroundColorToolStripMenuItem_Click(object sender, System.EventArgs e) {
+            backgroundColor.Color = Properties.Settings.Default.BackgroundColor;
             if (backgroundColor.ShowDialog() != DialogResult.OK) return;
             BackColor = backgroundColor.Color;
             Properties.Settings.Default.BackgroundColor = BackColor;
             Properties.Settings.Default.Save();
+        }
+
+        private void clangeBlacklisteIconColorToolStripMenuItem_Click(object sender, EventArgs e) {
+            blacklistedItemsIconColor.Color = Properties.Settings.Default.BlacklistedItemsIconColor;
+            if (blacklistedItemsIconColor.ShowDialog() != DialogResult.OK) return;
+            var color = blacklistedItemsIconColor.Color;
+            ItemCluster.UpdateBlockImage(color);
+            Properties.Settings.Default.BlacklistedItemsIconColor = color;
+            Properties.Settings.Default.Save();
+            Refresh();
         }
 
         private void showHideTransformationsToolStripMenuItem_Click(object sender, System.EventArgs e) {
@@ -146,6 +163,7 @@ namespace KabalistusTransformationTracker {
             if (confirmResult != DialogResult.Yes) return;
             Properties.Settings.Default.Reset();
             SetInitialValuesFromConfig();
+            Refresh();
         }
 
         private void MainForm_KeyPress(object sender, KeyPressEventArgs e) {

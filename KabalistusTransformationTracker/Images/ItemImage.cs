@@ -3,7 +3,7 @@ using KabalistusTransformationTracker.Utils;
 
 namespace KabalistusTransformationTracker.Images {
     public class ItemImage : BaseImage {
-        private Bitmap _untouchedImage;
+        private Image _untouchedImage;
 
         private const float UntouchedImageBrightness = 0.3F;
         private const float UntouchedImageContrast = 0.8F;
@@ -16,7 +16,7 @@ namespace KabalistusTransformationTracker.Images {
             CalcBlockStats();
         }
 
-        public override Bitmap Image => ItemTouched || ShowBlackListed(this) ? InnerImage : _untouchedImage;
+        public override Image Image => ItemTouched || ShowBlackListed(this) ? InnerImage : _untouchedImage;
 
         public bool ItemTouched { get; set; }
         public bool ItemBlacklisted { get; set; }
@@ -55,7 +55,7 @@ namespace KabalistusTransformationTracker.Images {
             return base.ToString() + "   BR: " + BlockReduction;
         }
 
-        private Bitmap BuildUntouchedImage() {
+        private Image BuildUntouchedImage() {
             return ImageHelper.AdjustBrightnessContrast(InnerImage, UntouchedImageBrightness, UntouchedImageContrast);
         }
     }

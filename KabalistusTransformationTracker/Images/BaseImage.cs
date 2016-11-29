@@ -25,7 +25,7 @@ namespace KabalistusTransformationTracker.Images {
         public int ScaledHeight => (int)(InnerImage.Height * Scale);
         public string Name { get; }
         public ToolTip Tooltip { get; }
-        public virtual Bitmap Image => InnerImage;
+        public virtual Image Image => InnerImage;
         public Point Center { get; }
 
         public override string ToString() {

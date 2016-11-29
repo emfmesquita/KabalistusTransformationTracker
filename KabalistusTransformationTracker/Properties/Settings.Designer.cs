@@ -226,5 +226,17 @@ namespace KabalistusTransformationTracker.Properties {
                 this["ShowBlacklistedItems"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("143, 25, 139")]
+        public global::System.Drawing.Color BlacklistedItemsIconColor {
+            get {
+                return ((global::System.Drawing.Color)(this["BlacklistedItemsIconColor"]));
+            }
+            set {
+                this["BlacklistedItemsIconColor"] = value;
+            }
+        }
     }
 }
