@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using KabalistusTransformationTracker.Images;
 using KabalistusTransformationTracker.Trans;
@@ -14,6 +16,7 @@ namespace KabalistusTransformationTracker {
 
         public MainForm() {
             InitializeComponent();
+            BuiltTitle();
 
             TransViewHelper.Add(Guppy, new TransformationViewInfo(Guppy, guppyPBox, guppyLabel, guppyPanel, guppyToolStripMenuItem));
             TransViewHelper.Add(Beelzebub, new TransformationViewInfo(Beelzebub, beelzebubPBox, beelzebubLabel, beelzebubPanel, beelzebubToolStripMenuItem));
@@ -47,6 +50,14 @@ namespace KabalistusTransformationTracker {
             }));
         }
 
+        private void BuiltTitle() {
+            var sb = new StringBuilder();
+            sb.Append("Kabalistus Transformation Tracker v");
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            sb.Append(version.Major).Append(".").Append(version.Minor).Append(".").Append(version.Build);
+            Text = sb.ToString();
+        }
+
         private void SetInitialValuesFromConfig() {
             BackColor = Properties.Settings.Default.BackgroundColor;
 
@@ -67,28 +78,55 @@ namespace KabalistusTransformationTracker {
         }
 
         private void changeTextColorToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            textColor.Color = Properties.Settings.Default.TextColor;
-            if (textColor.ShowDialog() != DialogResult.OK) return;
-            TransViewHelper.SetTextColor(textColor.Color);
-            Properties.Settings.Default.TextColor = textColor.Color;
-            Properties.Settings.Default.Save();
+            var colorDialog = new KttColorDialog() {
+                Color = Properties.Settings.Default.TextColor,
+                PreviewColorChangedListener = color => {
+                    Invoke((MethodInvoker)(() => {
+                        TransViewHelper.SetTextColor(color);
+                    }));
+                }
+            };
+
+            if (colorDialog.ShowDialog() == DialogResult.OK) {
+                Properties.Settings.Default.TextColor = colorDialog.Color;
+                Properties.Settings.Default.Save();
+            }
+            TransViewHelper.SetTextColor(colorDialog.Color);
         }
 
         private void changeBackgroundColorToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            backgroundColor.Color = Properties.Settings.Default.BackgroundColor;
-            if (backgroundColor.ShowDialog() != DialogResult.OK) return;
-            BackColor = backgroundColor.Color;
-            Properties.Settings.Default.BackgroundColor = BackColor;
-            Properties.Settings.Default.Save();
+            var colorDialog = new KttColorDialog() {
+                Color = Properties.Settings.Default.BackgroundColor,
+                PreviewColorChangedListener = color => {
+                    Invoke((MethodInvoker)(() => {
+                        BackColor = color;
+                    }));
+                }
+            };
+
+            if (colorDialog.ShowDialog() == DialogResult.OK) {
+                Properties.Settings.Default.BackgroundColor = colorDialog.Color;
+                Properties.Settings.Default.Save();
+            }
+            BackColor = colorDialog.Color;
         }
 
         private void clangeBlacklisteIconColorToolStripMenuItem_Click(object sender, EventArgs e) {
-            blacklistedItemsIconColor.Color = Properties.Settings.Default.BlacklistedItemsIconColor;
-            if (blacklistedItemsIconColor.ShowDialog() != DialogResult.OK) return;
-            var color = blacklistedItemsIconColor.Color;
-            ItemCluster.UpdateBlockImage(color);
-            Properties.Settings.Default.BlacklistedItemsIconColor = color;
-            Properties.Settings.Default.Save();
+            var colorDialog = new KttColorDialog() {
+                Color = Properties.Settings.Default.BlacklistedItemsIconColor,
+                PreviewColorChangedListener = color => {
+                    Invoke((MethodInvoker)(() => {
+                        ItemCluster.UpdateBlockImage(color);
+                        Refresh();
+                    }));
+                }
+            };
+
+            if (colorDialog.ShowDialog() == DialogResult.OK) {
+                Properties.Settings.Default.BlacklistedItemsIconColor = colorDialog.Color;
+                Properties.Settings.Default.Save();
+            }
+            ItemCluster.UpdateBlockImage(colorDialog.Color);
             Refresh();
         }
 

@@ -65,6 +65,7 @@ namespace KabalistusTransformationTracker {
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeTextColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeBackgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.showHideTransformationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showTransformationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guppyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,17 +79,13 @@ namespace KabalistusTransformationTracker {
             this.leviathanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohCrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.superBumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.clangeBlacklisteIconColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showBlacklistedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.resetToDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textColor = new System.Windows.Forms.ColorDialog();
-            this.backgroundColor = new System.Windows.Forms.ColorDialog();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.clangeBlacklisteIconColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.blacklistedItemsIconColor = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.ohCrapPBox)).BeginInit();
             this.ohCrapPanel.SuspendLayout();
             this.bobPanel.SuspendLayout();
@@ -511,6 +508,11 @@ namespace KabalistusTransformationTracker {
             this.changeBackgroundColorToolStripMenuItem.Text = "Change Background Color";
             this.changeBackgroundColorToolStripMenuItem.Click += new System.EventHandler(this.changeBackgroundColorToolStripMenuItem_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(294, 6);
+            // 
             // showHideTransformationsToolStripMenuItem
             // 
             this.showHideTransformationsToolStripMenuItem.Checked = true;
@@ -548,7 +550,7 @@ namespace KabalistusTransformationTracker {
             this.guppyToolStripMenuItem.CheckOnClick = true;
             this.guppyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.guppyToolStripMenuItem.Name = "guppyToolStripMenuItem";
-            this.guppyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.guppyToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.guppyToolStripMenuItem.Text = "Guppy";
             this.guppyToolStripMenuItem.Click += new System.EventHandler(this.guppyToolStripMenuItem_Click);
             // 
@@ -558,7 +560,7 @@ namespace KabalistusTransformationTracker {
             this.beelzebubToolStripMenuItem.CheckOnClick = true;
             this.beelzebubToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.beelzebubToolStripMenuItem.Name = "beelzebubToolStripMenuItem";
-            this.beelzebubToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.beelzebubToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.beelzebubToolStripMenuItem.Text = "Beelzebub";
             this.beelzebubToolStripMenuItem.Click += new System.EventHandler(this.beelzebubToolStripMenuItem_Click);
             // 
@@ -568,7 +570,7 @@ namespace KabalistusTransformationTracker {
             this.funGuyToolStripMenuItem.CheckOnClick = true;
             this.funGuyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.funGuyToolStripMenuItem.Name = "funGuyToolStripMenuItem";
-            this.funGuyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.funGuyToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.funGuyToolStripMenuItem.Text = "Fun Guy";
             this.funGuyToolStripMenuItem.Click += new System.EventHandler(this.funGuyToolStripMenuItem_Click);
             // 
@@ -578,7 +580,7 @@ namespace KabalistusTransformationTracker {
             this.seraphimToolStripMenuItem.CheckOnClick = true;
             this.seraphimToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.seraphimToolStripMenuItem.Name = "seraphimToolStripMenuItem";
-            this.seraphimToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.seraphimToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.seraphimToolStripMenuItem.Text = "Seraphim";
             this.seraphimToolStripMenuItem.Click += new System.EventHandler(this.seraphimToolStripMenuItem_Click);
             // 
@@ -588,7 +590,7 @@ namespace KabalistusTransformationTracker {
             this.bobToolStripMenuItem.CheckOnClick = true;
             this.bobToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.bobToolStripMenuItem.Name = "bobToolStripMenuItem";
-            this.bobToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bobToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.bobToolStripMenuItem.Text = "Bob";
             this.bobToolStripMenuItem.Click += new System.EventHandler(this.bobToolStripMenuItem_Click);
             // 
@@ -598,7 +600,7 @@ namespace KabalistusTransformationTracker {
             this.spunToolStripMenuItem.CheckOnClick = true;
             this.spunToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.spunToolStripMenuItem.Name = "spunToolStripMenuItem";
-            this.spunToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.spunToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.spunToolStripMenuItem.Text = "Spun";
             this.spunToolStripMenuItem.Click += new System.EventHandler(this.spunToolStripMenuItem_Click);
             // 
@@ -608,7 +610,7 @@ namespace KabalistusTransformationTracker {
             this.momToolStripMenuItem.CheckOnClick = true;
             this.momToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.momToolStripMenuItem.Name = "momToolStripMenuItem";
-            this.momToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.momToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.momToolStripMenuItem.Text = "Mom";
             this.momToolStripMenuItem.Click += new System.EventHandler(this.momToolStripMenuItem_Click);
             // 
@@ -618,7 +620,7 @@ namespace KabalistusTransformationTracker {
             this.conjoinedToolStripMenuItem.CheckOnClick = true;
             this.conjoinedToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.conjoinedToolStripMenuItem.Name = "conjoinedToolStripMenuItem";
-            this.conjoinedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.conjoinedToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.conjoinedToolStripMenuItem.Text = "Conjoined";
             this.conjoinedToolStripMenuItem.Click += new System.EventHandler(this.conjoinedToolStripMenuItem_Click);
             // 
@@ -628,7 +630,7 @@ namespace KabalistusTransformationTracker {
             this.leviathanToolStripMenuItem.CheckOnClick = true;
             this.leviathanToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.leviathanToolStripMenuItem.Name = "leviathanToolStripMenuItem";
-            this.leviathanToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.leviathanToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.leviathanToolStripMenuItem.Text = "Leviathan";
             this.leviathanToolStripMenuItem.Click += new System.EventHandler(this.leviathanToolStripMenuItem_Click);
             // 
@@ -638,7 +640,7 @@ namespace KabalistusTransformationTracker {
             this.ohCrapToolStripMenuItem.CheckOnClick = true;
             this.ohCrapToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ohCrapToolStripMenuItem.Name = "ohCrapToolStripMenuItem";
-            this.ohCrapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ohCrapToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.ohCrapToolStripMenuItem.Text = "Oh Crap";
             this.ohCrapToolStripMenuItem.Click += new System.EventHandler(this.ohCrapToolStripMenuItem_Click);
             // 
@@ -648,9 +650,22 @@ namespace KabalistusTransformationTracker {
             this.superBumToolStripMenuItem.CheckOnClick = true;
             this.superBumToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.superBumToolStripMenuItem.Name = "superBumToolStripMenuItem";
-            this.superBumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.superBumToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.superBumToolStripMenuItem.Text = "Super Bum";
             this.superBumToolStripMenuItem.Click += new System.EventHandler(this.superBumToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(294, 6);
+            // 
+            // clangeBlacklisteIconColorToolStripMenuItem
+            // 
+            this.clangeBlacklisteIconColorToolStripMenuItem.Name = "clangeBlacklisteIconColorToolStripMenuItem";
+            this.clangeBlacklisteIconColorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
+            this.clangeBlacklisteIconColorToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.clangeBlacklisteIconColorToolStripMenuItem.Text = "Clange Blacklisted Items Icon Color";
+            this.clangeBlacklisteIconColorToolStripMenuItem.Click += new System.EventHandler(this.clangeBlacklisteIconColorToolStripMenuItem_Click);
             // 
             // showBlacklistedItemsToolStripMenuItem
             // 
@@ -676,16 +691,6 @@ namespace KabalistusTransformationTracker {
             this.resetToDefaultToolStripMenuItem.Text = "Reset to Default";
             this.resetToDefaultToolStripMenuItem.Click += new System.EventHandler(this.resetToDefaultToolStripMenuItem_Click);
             // 
-            // textColor
-            // 
-            this.textColor.Color = System.Drawing.SystemColors.ControlText;
-            this.textColor.FullOpen = true;
-            // 
-            // backgroundColor
-            // 
-            this.backgroundColor.Color = System.Drawing.SystemColors.Control;
-            this.backgroundColor.FullOpen = true;
-            // 
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -701,28 +706,6 @@ namespace KabalistusTransformationTracker {
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(146, 17);
             this.statusLabel.Text = "Searching Isaac proccess...";
-            // 
-            // clangeBlacklisteIconColorToolStripMenuItem
-            // 
-            this.clangeBlacklisteIconColorToolStripMenuItem.Name = "clangeBlacklisteIconColorToolStripMenuItem";
-            this.clangeBlacklisteIconColorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.clangeBlacklisteIconColorToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
-            this.clangeBlacklisteIconColorToolStripMenuItem.Text = "Clange Blacklisted Items Icon Color";
-            this.clangeBlacklisteIconColorToolStripMenuItem.Click += new System.EventHandler(this.clangeBlacklisteIconColorToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(294, 6);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(294, 6);
-            // 
-            // blacklistedItemsIconColor
-            // 
-            this.blacklistedItemsIconColor.FullOpen = true;
             // 
             // MainForm
             // 
@@ -823,8 +806,6 @@ namespace KabalistusTransformationTracker {
         private ToolStripMenuItem changeTextColorToolStripMenuItem;
         private ToolStripMenuItem changeBackgroundColorToolStripMenuItem;
         private ToolStripMenuItem showHideTransformationsToolStripMenuItem;
-        private ColorDialog textColor;
-        private ColorDialog backgroundColor;
         private ToolStripMenuItem showTransformationsToolStripMenuItem;
         private ToolStripMenuItem guppyToolStripMenuItem;
         private ToolStripMenuItem beelzebubToolStripMenuItem;
@@ -845,7 +826,6 @@ namespace KabalistusTransformationTracker {
         private ToolStripMenuItem clangeBlacklisteIconColorToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator1;
-        private ColorDialog blacklistedItemsIconColor;
     }
 }
 

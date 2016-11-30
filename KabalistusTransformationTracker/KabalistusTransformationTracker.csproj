@@ -77,6 +77,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KttColorDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Utils\ArrayUtils.cs" />
     <Compile Include="Images\BaseImage.cs" />
     <Compile Include="Images\ImageHelper.cs" />
