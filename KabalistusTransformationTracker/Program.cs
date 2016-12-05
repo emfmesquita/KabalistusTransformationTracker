@@ -2,6 +2,7 @@
 using System.Timers;
 using System.Windows.Forms;
 using KabalistusTransformationTracker.Utils;
+using KabalistusTransformationTracker.Web;
 using Timer = System.Timers.Timer;
 
 namespace KabalistusTransformationTracker {
@@ -28,6 +29,8 @@ namespace KabalistusTransformationTracker {
             checkIsaacRunningTimer.Elapsed += CheckIsaacRunningEvent;
             checkIsaacRunningTimer.AutoReset = true;
             checkIsaacRunningTimer.Enabled = true;
+
+            WebHelper.StartWeb();
 
             Application.Run(_mainForm);
         }

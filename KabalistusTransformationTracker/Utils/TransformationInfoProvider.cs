@@ -39,8 +39,13 @@ namespace KabalistusTransformationTracker.Utils {
         }
 
         private static TransformationInfo GetSuperBumInfo() {
-            var counter = SuperBum.Items.Sum(item => HasItem(item) ? 1 : 0);
-            return new TransformationInfo(counter, ItemsTouched(SuperBum.Items), ItemsBlacklisted(SuperBum.Items));
+            var itemsGot = new List<string>();
+            var counter = SuperBum.Items.Sum(item => {
+                if (!HasItem(item)) return 0;
+                itemsGot.Add(item.Name);
+                return 1;
+            });
+            return new TransformationInfo(counter, itemsGot, ItemsBlacklisted(SuperBum.Items));
         }
 
         private static List<string> ItemsBlacklisted(IEnumerable<Item> allItens) {
