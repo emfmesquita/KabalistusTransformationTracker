@@ -91,7 +91,7 @@ namespace KabalistusTransformationTracker.Utils {
 
         private static void UpdateIsInBlindFloor() {
             var floorType = MemoryReader.GetPlayerManagerInfo(FloorTypeOffset, 1);
-            _isInBlindFloor = floorType == 64;
+            _isInBlindFloor = (floorType & 64) == 64;
         }
     }
 }
