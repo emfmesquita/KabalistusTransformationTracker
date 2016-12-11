@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Nancy;
 using Nancy.Conventions;
 
@@ -11,6 +7,15 @@ namespace KabalistusTransformationTracker.Web {
         protected override void ConfigureConventions(NancyConventions nancyConventions) {
             nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("res", "Resources"));
             base.ConfigureConventions(nancyConventions);
+        }
+
+        protected override byte[] FavIcon {
+            get {
+                var image = Properties.Resources.guppyshead;
+                var ms = new MemoryStream();
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
         }
     }
 }
