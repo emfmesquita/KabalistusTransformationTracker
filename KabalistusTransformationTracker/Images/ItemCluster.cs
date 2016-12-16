@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using KabalistusTransformationTracker.Trans;
 using KabalistusTransformationTracker.Utils;
 
 namespace KabalistusTransformationTracker.Images {
@@ -16,11 +17,57 @@ namespace KabalistusTransformationTracker.Images {
 
         private readonly Stopwatch _tooltipIntervalSw = new Stopwatch();
 
-        public ItemCluster(PictureBox baseBox, BaseImage transformationImage, List<ItemImage> images) {
-            BaseBox = baseBox;
-            BaseBox.BackColor = Color.Transparent;
-            TransformationImage = transformationImage;
-            Images = images;
+        public ItemCluster(Transformation trans) {
+            Label = new Label {
+                AutoSize = true,
+                Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0),
+                Location = new Point(4, 106),
+                MinimumSize = new Size(120, 0),
+                Name = trans.Name + "Label",
+                Size = new Size(120, 20),
+                TabIndex = 0,
+                Text = trans.I18N + ": 0",
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+
+            BaseBox = new PictureBox {
+                BackColor = Color.Transparent,
+                Location = new Point(14, 3),
+                Name = trans.Name + "PBox",
+                Size = new Size(100, 100),
+                TabIndex = 14,
+                TabStop = false
+            };
+
+            TransformationImage = new BaseImage(trans.Name, trans.X, trans.Y, trans.Scale);
+            InitTooltip(TransformationImage, BaseBox, trans.I18N);
+
+            Images = trans.Items.Select(item => {
+                var itemImage = new ItemImage(item.Name, item.X, item.Y, item.Scale, item.BlockReduction);
+                InitTooltip(itemImage, BaseBox, item.I18N);
+                return itemImage;
+            }).ToList();
+
+            Panel = new Panel {
+                Location = new Point(544, 8),
+                Name = trans.Name + "Panel",
+                Size = new Size(128, 143)
+            };
+            Panel.Controls.Add(BaseBox);
+            Panel.Controls.Add(Label);
+
+            Menu = new ToolStripMenuItem {
+                Checked = true,
+                CheckOnClick = true,
+                CheckState = CheckState.Checked,
+                Name = trans.Name + "ToolStripMenuItem",
+                Size = new Size(132, 22),
+                Text = trans.I18N
+            };
+
+            Menu.Click += (sender, e) => {
+                TransformationViewHelper.ShowHideTransformation(trans, Menu.Checked);
+            };
 
             AddMouseMovedHandler(this);
 
@@ -60,6 +107,10 @@ namespace KabalistusTransformationTracker.Images {
         }
 
         public PictureBox BaseBox { get; }
+        public Label Label { get; }
+        public Panel Panel { get; }
+        public ToolStripMenuItem Menu { get; }
+
         public BaseImage TransformationImage { get; }
         public List<ItemImage> Images { get; }
         public BaseImage CurrentImage => Transformed ? TransformationImage : Images[_currentIndex];
@@ -153,6 +204,12 @@ namespace KabalistusTransformationTracker.Images {
 
         private static void DrawBlock(PaintEventArgs args, ItemImage image) {
             args.Graphics.DrawImage(_coloredBlock, image.BlockX, image.BlockY, image.BlockSideLength, image.BlockSideLength);
+        }
+
+        private static void InitTooltip(BaseImage image, Control parentControl, string text) {
+            image.Tooltip.SetToolTip(parentControl, text);
+            image.Tooltip.Active = false;
+            image.Tooltip.AutomaticDelay = 300;
         }
     }
 }
