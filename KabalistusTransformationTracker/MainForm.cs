@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
@@ -9,7 +10,6 @@ using static KabalistusTransformationTracker.Trans.Transformations;
 
 namespace KabalistusTransformationTracker {
     public partial class MainForm : Form {
-        private static readonly TransformationViewHelper TransViewHelper = new TransformationViewHelper();
 
         public static bool ShowTransformationImage;
         public static bool ShowBlacklistedItems;
@@ -18,17 +18,15 @@ namespace KabalistusTransformationTracker {
             InitializeComponent();
             BuiltTitle();
 
-            TransViewHelper.Add(Guppy, new TransformationViewInfo(Guppy, guppyPBox, guppyLabel, guppyPanel, guppyToolStripMenuItem));
-            TransViewHelper.Add(Beelzebub, new TransformationViewInfo(Beelzebub, beelzebubPBox, beelzebubLabel, beelzebubPanel, beelzebubToolStripMenuItem));
-            TransViewHelper.Add(FunGuy, new TransformationViewInfo(FunGuy, funGuyPBox, funGuyLabel, funGuyPanel, funGuyToolStripMenuItem));
-            TransViewHelper.Add(Seraphim, new TransformationViewInfo(Seraphim, seraphimPBox, seraphimLabel, seraphimPanel, seraphimToolStripMenuItem));
-            TransViewHelper.Add(Bob, new TransformationViewInfo(Bob, bobPBox, bobLabel, bobPanel, bobToolStripMenuItem));
-            TransViewHelper.Add(Spun, new TransformationViewInfo(Spun, spunPBox, spunLabel, spunPanel, spunToolStripMenuItem));
-            TransViewHelper.Add(Mom, new TransformationViewInfo(Mom, momPBox, momLabel, momPanel, momToolStripMenuItem));
-            TransViewHelper.Add(Conjoined, new TransformationViewInfo(Conjoined, conjoinedPBox, conjoinedLabel, conjoinedPanel, conjoinedToolStripMenuItem));
-            TransViewHelper.Add(Leviathan, new TransformationViewInfo(Leviathan, leviathanPBox, leviathanLabel, leviathanPanel, leviathanToolStripMenuItem));
-            TransViewHelper.Add(OhCrap, new TransformationViewInfo(OhCrap, ohCrapPBox, ohCrapLabel, ohCrapPanel, ohCrapToolStripMenuItem));
-            TransViewHelper.Add(SuperBum, new TransformationViewInfo(SuperBum, superBumPBox, superBumLabel, superBumPanel, superBumToolStripMenuItem));
+            AllTransformations.ToList().ForEach(pair => {
+                var transformation = pair.Value;
+                var cluster = new ItemCluster(transformation);
+
+                flowLayoutPanel.Controls.Add(cluster.Panel);
+                showTransformationsToolStripMenuItem.DropDownItems.Add(cluster.Menu);
+
+                TransformationViewHelper.Add(transformation, cluster);
+            });
 
             statusLabel.BackColor = statusStrip.BackColor;
 
@@ -40,7 +38,7 @@ namespace KabalistusTransformationTracker {
                 return;
             }
             Invoke((MethodInvoker)(() => {
-                TransViewHelper.UpdateTransformationsInfo(ShowTransformationImage);
+                TransformationViewHelper.UpdateTransformationsInfo(ShowTransformationImage);
             }));
         }
 
@@ -67,7 +65,7 @@ namespace KabalistusTransformationTracker {
             ShowBlacklistedItems = Properties.Settings.Default.ShowBlacklistedItems;
             showBlacklistedItemsToolStripMenuItem.Checked = ShowBlacklistedItems;
 
-            TransViewHelper.SetInitialValuesFromConfig();
+            TransformationViewHelper.SetInitialValuesFromConfig();
 
             ItemCluster.UpdateBlockImage(Properties.Settings.Default.BlacklistedItemsIconColor);
 
@@ -82,7 +80,7 @@ namespace KabalistusTransformationTracker {
                 Color = Properties.Settings.Default.TextColor,
                 PreviewColorChangedListener = color => {
                     Invoke((MethodInvoker)(() => {
-                        TransViewHelper.SetTextColor(color);
+                        TransformationViewHelper.SetTextColor(color);
                     }));
                 }
             };
@@ -91,7 +89,7 @@ namespace KabalistusTransformationTracker {
                 Properties.Settings.Default.TextColor = colorDialog.Color;
                 Properties.Settings.Default.Save();
             }
-            TransViewHelper.SetTextColor(colorDialog.Color);
+            TransformationViewHelper.SetTextColor(colorDialog.Color);
         }
 
         private void changeBackgroundColorToolStripMenuItem_Click(object sender, System.EventArgs e) {
@@ -135,50 +133,6 @@ namespace KabalistusTransformationTracker {
             Properties.Settings.Default.ShowTransformationImages = ShowTransformationImage;
             Properties.Settings.Default.Save();
             Refresh();
-        }
-
-        private void guppyToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            TransViewHelper.ShowHideTransformation(Guppy, ((ToolStripMenuItem)sender).Checked);
-        }
-
-        private void beelzebubToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            TransViewHelper.ShowHideTransformation(Beelzebub, ((ToolStripMenuItem)sender).Checked);
-        }
-
-        private void funGuyToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            TransViewHelper.ShowHideTransformation(FunGuy, ((ToolStripMenuItem)sender).Checked);
-        }
-
-        private void seraphimToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            TransViewHelper.ShowHideTransformation(Seraphim, ((ToolStripMenuItem)sender).Checked);
-        }
-
-        private void bobToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            TransViewHelper.ShowHideTransformation(Bob, ((ToolStripMenuItem)sender).Checked);
-        }
-
-        private void spunToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            TransViewHelper.ShowHideTransformation(Spun, ((ToolStripMenuItem)sender).Checked);
-        }
-
-        private void momToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            TransViewHelper.ShowHideTransformation(Mom, ((ToolStripMenuItem)sender).Checked);
-        }
-
-        private void conjoinedToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            TransViewHelper.ShowHideTransformation(Conjoined, ((ToolStripMenuItem)sender).Checked);
-        }
-
-        private void leviathanToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            TransViewHelper.ShowHideTransformation(Leviathan, ((ToolStripMenuItem)sender).Checked);
-        }
-
-        private void ohCrapToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            TransViewHelper.ShowHideTransformation(OhCrap, ((ToolStripMenuItem)sender).Checked);
-        }
-
-        private void superBumToolStripMenuItem_Click(object sender, System.EventArgs e) {
-            TransViewHelper.ShowHideTransformation(SuperBum, ((ToolStripMenuItem)sender).Checked);
         }
 
         private void showBlacklistedItemsToolStripMenuItem_Click(object sender, EventArgs e) {

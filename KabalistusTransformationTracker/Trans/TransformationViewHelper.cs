@@ -1,71 +1,72 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using KabalistusTransformationTracker.Images;
 using KabalistusTransformationTracker.Utils;
 
 namespace KabalistusTransformationTracker.Trans {
     public class TransformationViewHelper {
-        private readonly Dictionary<string, TransformationViewInfo> _transformationViewInfos = new Dictionary<string, TransformationViewInfo>();
-        private readonly Dictionary<string, TransformationInfo> _transformationInfos = new Dictionary<string, TransformationInfo>();
+        private static readonly Dictionary<string, ItemCluster> Clusters = new Dictionary<string, ItemCluster>();
+        private static readonly Dictionary<string, TransformationInfo> TransformationInfos = new Dictionary<string, TransformationInfo>();
 
-        public void Add(Transformation transformation, TransformationViewInfo info) {
-            _transformationViewInfos.Add(transformation.Name, info);
+        public static void Add(Transformation transformation, ItemCluster cluster) {
+            Clusters.Add(transformation.Name, cluster);
         }
 
-        public void SetInitialValuesFromConfig() {
+        public static void SetInitialValuesFromConfig() {
             SetTextColor(Properties.Settings.Default.TextColor);
 
-            _transformationViewInfos.ToList().ForEach(pair => {
+            Clusters.ToList().ForEach(pair => {
                 var configValue = (bool)Properties.Settings.Default["show" + pair.Key];
                 pair.Value.Menu.Checked = configValue;
                 pair.Value.Panel.Visible = configValue;
             });
         }
 
-        public void UpdateTransformationsInfo(bool showTransformationImage) {
+        public static void UpdateTransformationsInfo(bool showTransformationImage) {
             var updatedTransformationInfo = TransformationInfoProvider.GetTransformationsInfo();
             Transformations.AllTransformations.Values.ToList().ForEach(transformation => {
                 UpdateTransformationInfo(transformation, showTransformationImage, updatedTransformationInfo);
             });
         }
 
-        public void SetTextColor(Color color) {
-            _transformationViewInfos.Values.ToList().ForEach(transformationViewInfo => {
-                transformationViewInfo.Label.ForeColor = color;
+        public static void SetTextColor(Color color) {
+            Clusters.Values.ToList().ForEach(cluster => {
+                cluster.Label.ForeColor = color;
             });
         }
 
-        public void ShowHideTransformation(Transformation transformation, bool visible) {
-            var info = _transformationViewInfos[transformation.Name];
-            info.Panel.Visible = visible;
+        public static void ShowHideTransformation(Transformation transformation, bool visible) {
+            var cluster = Clusters[transformation.Name];
+            cluster.Panel.Visible = visible;
             Properties.Settings.Default["show" + transformation.Name] = visible;
             Properties.Settings.Default.Save();
         }
 
-        private void UpdateTransformationInfo(Transformation transformation, bool showTransformationImage, Dictionary<string, TransformationInfo> updatedTransformationInfo) {
+        private static void UpdateTransformationInfo(Transformation transformation, bool showTransformationImage, Dictionary<string, TransformationInfo> updatedTransformationInfo) {
             var info = updatedTransformationInfo[transformation.Name];
             var name = transformation.Name;
-            if (_transformationInfos.ContainsKey(name) && _transformationInfos[name].Equals(info)) {
+            if (TransformationInfos.ContainsKey(name) && TransformationInfos[name].Equals(info)) {
                 return;
             }
 
-            if (!_transformationInfos.ContainsKey(name)) {
-                _transformationInfos.Add(name, info);
+            if (!TransformationInfos.ContainsKey(name)) {
+                TransformationInfos.Add(name, info);
             }
 
-            var viewInfo = _transformationViewInfos[name];
-            viewInfo.Label.Text = transformation.I18N + ": " + info.TransformationCount;
-            viewInfo.Cluster.Transformed = info.TransformationCount >= 3;
-            if (viewInfo.Cluster.Transformed && showTransformationImage) {
-                viewInfo.Cluster.BaseBox.Refresh();
+            var cluster = Clusters[name];
+            cluster.Label.Text = transformation.I18N + ": " + info.TransformationCount;
+            cluster.Transformed = info.TransformationCount >= 3;
+            if (cluster.Transformed && showTransformationImage) {
+                cluster.BaseBox.Refresh();
                 return;
             }
 
-            foreach (var itemImage in viewInfo.Cluster.Images) {
+            foreach (var itemImage in cluster.Images) {
                 itemImage.ItemTouched = info.TouchedItems.Contains(itemImage.Name);
                 itemImage.ItemBlacklisted = info.BlacklistedItems.Contains(itemImage.Name);
             }
-            viewInfo.Cluster.BaseBox.Refresh();
+            cluster.BaseBox.Refresh();
         }
     }
 }

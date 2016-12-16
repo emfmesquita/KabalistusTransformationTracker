@@ -129,7 +129,6 @@
     <Compile Include="Trans\Item.cs" />
     <Compile Include="Trans\Transformation.cs" />
     <Compile Include="Trans\TransformationViewHelper.cs" />
-    <Compile Include="Trans\TransformationViewInfo.cs" />
     <Compile Include="Web\NancyBootstrapper .cs" />
     <Compile Include="Web\NancyHelper.cs" />
     <Compile Include="Web\NatHelper.cs" />
