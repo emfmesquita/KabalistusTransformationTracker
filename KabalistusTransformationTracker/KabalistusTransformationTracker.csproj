@@ -80,6 +80,9 @@
     <Compile Include="KttColorDialog.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Providers\AfterbirthInfoProvider.cs" />
+    <Compile Include="Providers\IsaacVersion.cs" />
+    <Compile Include="Trans\AfterbirthTransformations.cs" />
     <Compile Include="Utils\ArrayUtils.cs" />
     <Compile Include="Images\BaseImage.cs" />
     <Compile Include="Images\ImageHelper.cs" />
@@ -91,6 +94,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Providers\BaseInfoProvider.cs" />
     <Compile Include="Utils\CreationMode.cs" />
     <Compile Include="Utils\MemoryQuery.cs" />
     <Compile Include="Utils\MemoryReader.cs" />
@@ -101,10 +105,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Trans\Transformations.cs" />
+    <Compile Include="Trans\RebirthTransformations.cs" />
     <Compile Include="Trans\TransformationInfo.cs" />
+    <Compile Include="Providers\RebirthInfoProvider.cs" />
     <Compile Include="Utils\Status.cs" />
-    <Compile Include="Utils\TransformationInfoProvider.cs" />
+    <Compile Include="Providers\TransformationInfoProvider.cs" />
     <Compile Include="Trans\Item.cs" />
     <Compile Include="Trans\Transformation.cs" />
     <Compile Include="Trans\TransformationViewHelper.cs" />
@@ -448,6 +453,7 @@
     <Content Include="guppy.ico" />
     <None Include="Resources\block.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

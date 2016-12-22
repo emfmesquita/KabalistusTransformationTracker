@@ -2,12 +2,17 @@
 using System.Drawing;
 using System.Linq;
 using KabalistusTransformationTracker.Images;
-using KabalistusTransformationTracker.Utils;
+using KabalistusTransformationTracker.Providers;
 
 namespace KabalistusTransformationTracker.Trans {
     public class TransformationViewHelper {
         private static readonly Dictionary<string, ItemCluster> Clusters = new Dictionary<string, ItemCluster>();
         private static readonly Dictionary<string, TransformationInfo> TransformationInfos = new Dictionary<string, TransformationInfo>();
+
+        public static void InitTransformations() {
+            Clusters.Clear();
+            TransformationInfos.Clear();
+        }
 
         public static void Add(Transformation transformation, ItemCluster cluster) {
             Clusters.Add(transformation.Name, cluster);
@@ -25,7 +30,7 @@ namespace KabalistusTransformationTracker.Trans {
 
         public static void UpdateTransformationsInfo(bool showTransformationImage) {
             var updatedTransformationInfo = TransformationInfoProvider.GetTransformationsInfo();
-            Transformations.AllTransformations.Values.ToList().ForEach(transformation => {
+            TransformationInfoProvider.GetAllTransformations().Values.ToList().ForEach(transformation => {
                 UpdateTransformationInfo(transformation, showTransformationImage, updatedTransformationInfo);
             });
         }

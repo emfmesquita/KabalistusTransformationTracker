@@ -4,9 +4,9 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using KabalistusTransformationTracker.Images;
+using KabalistusTransformationTracker.Providers;
 using KabalistusTransformationTracker.Trans;
 using KabalistusTransformationTracker.Utils;
-using static KabalistusTransformationTracker.Trans.Transformations;
 
 namespace KabalistusTransformationTracker {
     public partial class MainForm : Form {
@@ -14,19 +14,11 @@ namespace KabalistusTransformationTracker {
         public static bool ShowTransformationImage;
         public static bool ShowBlacklistedItems;
 
+        private IsaacVersion? _currentVersion = null;
+
         public MainForm() {
             InitializeComponent();
             BuiltTitle();
-
-            AllTransformations.ToList().ForEach(pair => {
-                var transformation = pair.Value;
-                var cluster = new ItemCluster(transformation);
-
-                flowLayoutPanel.Controls.Add(cluster.Panel);
-                showTransformationsToolStripMenuItem.DropDownItems.Add(cluster.Menu);
-
-                TransformationViewHelper.Add(transformation, cluster);
-            });
 
             statusLabel.BackColor = statusStrip.BackColor;
 
@@ -38,7 +30,15 @@ namespace KabalistusTransformationTracker {
                 return;
             }
             Invoke((MethodInvoker)(() => {
-                TransformationViewHelper.UpdateTransformationsInfo(ShowTransformationImage);
+                var newVersion = TransformationInfoProvider.GetVersion();
+                if (newVersion != _currentVersion) {
+                    _currentVersion = newVersion;
+                    InitTransformations();
+                }
+                if (_currentVersion != null) {
+                    TransformationViewHelper.UpdateTransformationsInfo(
+                        ShowTransformationImage);
+                }
             }));
         }
 
@@ -56,6 +56,29 @@ namespace KabalistusTransformationTracker {
             Text = sb.ToString();
         }
 
+        private void InitTransformations() {
+            flowLayoutPanel.Controls.Clear();
+            showTransformationsToolStripMenuItem.DropDownItems.Clear();
+            TransformationViewHelper.InitTransformations();
+            if (_currentVersion == null) {
+                return;
+            }
+
+            TransformationInfoProvider.GetAllTransformations().ToList().ForEach(pair => {
+                var transformation = pair.Value;
+                var cluster = new ItemCluster(transformation);
+
+                flowLayoutPanel.Controls.Add(cluster.Panel);
+                showTransformationsToolStripMenuItem.DropDownItems.Add(cluster.Menu);
+
+                TransformationViewHelper.Add(transformation, cluster);
+            });
+
+            TransformationViewHelper.SetInitialValuesFromConfig();
+
+            ItemCluster.UpdateBlockImage(Properties.Settings.Default.BlacklistedItemsIconColor);
+        }
+
         private void SetInitialValuesFromConfig() {
             BackColor = Properties.Settings.Default.BackgroundColor;
 
@@ -64,10 +87,6 @@ namespace KabalistusTransformationTracker {
 
             ShowBlacklistedItems = Properties.Settings.Default.ShowBlacklistedItems;
             showBlacklistedItemsToolStripMenuItem.Checked = ShowBlacklistedItems;
-
-            TransformationViewHelper.SetInitialValuesFromConfig();
-
-            ItemCluster.UpdateBlockImage(Properties.Settings.Default.BlacklistedItemsIconColor);
 
             Resize -= this.MainForm_Resize;
             Width = Properties.Settings.Default.AppWidth;

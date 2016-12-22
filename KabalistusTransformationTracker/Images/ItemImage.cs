@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using KabalistusTransformationTracker.Providers;
 using KabalistusTransformationTracker.Utils;
 
 namespace KabalistusTransformationTracker.Images {

@@ -11,5 +11,9 @@
         }
 
         public string SearchPattern { get; set; }
+
+        public int QueryResult { get; set; }
+
+        public int QueryResultAddress { get; set; }
     }
 }
