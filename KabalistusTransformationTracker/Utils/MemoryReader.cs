@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
+using System.Text;
 
 namespace KabalistusTransformationTracker.Utils {
     public class MemoryReader {
@@ -21,10 +21,11 @@ namespace KabalistusTransformationTracker.Utils {
 
         private static int _playerManagerInstructPointer;
         private static int _playerManagerPlayerListOffset;
+        private static bool? _isAfterbirth;
 
-        public static MemoryQuery AfterbirthQuery = new MemoryQuery() {
-            SearchChar = new[] { 'a', 'f', 't', 'e', 'r', 'b', 'i', 'r', 't', 'h', '.', 'a', ' ' },
-            SearchPattern = "bbbbbbbbbbbbv"
+        public static MemoryQuery VersionQuery = new MemoryQuery() {
+            SearchChar = new[] { 'B', 'i', 'n', 'd', 'i', 'n', 'g', ' ', 'o', 'f', ' ', 'I', 's', 'a', 'a', 'c', ':' },
+            SearchPattern = "bbbbbbbbbbbbbbbbb"
         };
 
         public static MemoryQuery PlayerManagerInstructPointerQuery = new MemoryQuery() {
@@ -45,6 +46,8 @@ namespace KabalistusTransformationTracker.Utils {
                     Ready = false
                 });
 
+                _isaacPid = 0;
+                _isAfterbirth = null;
                 return false;
             }
 
@@ -54,6 +57,8 @@ namespace KabalistusTransformationTracker.Utils {
             if (isaacPid == _isaacPid) {
                 return true;
             }
+
+            _isaacPid = isaacPid;
 
             mainForm.SetStatus(new Status() {
                 Message = LoadingAddresses,
@@ -65,10 +70,15 @@ namespace KabalistusTransformationTracker.Utils {
             _moduleMemSize = _module.ModuleMemorySize;
             _processHandle = OpenProcess(ProcessWmRead, false, isaacPid);
 
-            _playerManagerInstructPointer = SearchInt(PlayerManagerInstructPointerQuery);
-            _playerManagerPlayerListOffset = SearchInt(PlayerManagerPlayerListOffsetQuery);
+            var versionAddress = Search(VersionQuery, true, 800000).QueryResultAddress;
+            var versionChar = ReadInt(versionAddress + 18, 1);
+            _isAfterbirth = versionChar == 'A';
 
-            _isaacPid = isaacPid;
+            var instructSearchOffset = _isAfterbirth == true ? 1500000 : 1100000;
+            _playerManagerInstructPointer = Search(PlayerManagerInstructPointerQuery, false, instructSearchOffset).QueryResult;
+
+            var playerListSearchOffset = _isAfterbirth == true ? 50000 : 120000;
+            _playerManagerPlayerListOffset = Search(PlayerManagerPlayerListOffsetQuery, false, playerListSearchOffset).QueryResult;
 
             mainForm.SetStatus(new Status() {
                 Message = Ready,
@@ -110,6 +120,10 @@ namespace KabalistusTransformationTracker.Utils {
 
         public static int ReadInt(int addr, int size) {
             return ConvertLittleEndian(Read(addr, size));
+        }
+
+        public static bool? IsAfterbirth() {
+            return _isAfterbirth;
         }
 
         private static bool IsCurrentInfoValid() {
@@ -157,35 +171,37 @@ namespace KabalistusTransformationTracker.Utils {
             return true;
         }
 
-        private static byte[] Search(MemoryQuery query) {
+        private static MemoryQuery Search(MemoryQuery query, bool fromEndToStart = false, int offsetAddress = 0) {
+            query.QueryResult = -1;
+            query.QueryResultAddress = -1;
+
             if (query?.Search == null || query.Search.Length == 0 || string.IsNullOrEmpty(query.SearchPattern)) {
-                return null;
+                return query;
             }
 
             if (query.Search.Length != query.SearchPattern.Length) {
-                return null;
+                return query;
             }
 
             var searchSize = query.Search.Length;
             var pattern = query.SearchPattern;
-            for (var i = 0; i < _moduleMemSize - searchSize; i++) {
-                var read = Read(_baseAddr + i, searchSize);
+            for (
+                var i = !fromEndToStart ? offsetAddress : _moduleMemSize - offsetAddress;
+                (!fromEndToStart && i < _moduleMemSize - searchSize) || (fromEndToStart && i > searchSize);
+                i = !fromEndToStart ? i + 1 : i - 1) {
+
+                var addr = _baseAddr + i;
+                var read = Read(addr, searchSize);
                 var result = new List<byte>();
 
-                if (Match(pattern, read, query.Search, result)) {
-                    return result.ToArray();
-                }
+                if (!Match(pattern, read, query.Search, result)) continue;
+
+                query.QueryResult = ConvertLittleEndian(result.ToArray());
+                query.QueryResultAddress = addr;
+                return query;
             }
 
-            return null;
-        }
-
-        private static int SearchInt(MemoryQuery query) {
-            var result = Search(query);
-            if (result == null) {
-                return -1;
-            }
-            return ConvertLittleEndian(result);
+            return query;
         }
 
         [DllImport("kernel32.dll")]

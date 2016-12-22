@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace KabalistusTransformationTracker.Trans {
-    public class Transformations {
+    public class AfterbirthTransformations {
 
         public static readonly Transformation Guppy = new Transformation("guppy", "Guppy", 19480, 6, -2, 0.85F) {
             Items = new List<Item>() {
