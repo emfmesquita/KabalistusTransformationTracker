@@ -1,6 +1,6 @@
 ﻿using System.Linq;
+using KabalistusTransformationTracker.Providers;
 using KabalistusTransformationTracker.Trans;
-using KabalistusTransformationTracker.Utils;
 using Newtonsoft.Json.Linq;
 
 namespace KabalistusTransformationTracker.Web {
@@ -8,6 +8,11 @@ namespace KabalistusTransformationTracker.Web {
 
         public static string GetTransformationWebInfo() {
             var json = new JArray();
+            var version = TransformationInfoProvider.GetVersion();
+            if (version == null)
+            {
+                return json.ToString();
+            }
             TransformationInfoProvider.GetTransformationsInfo().ToList().ForEach(pair => {
                 json.Add(TransformationToJson(pair.Key, pair.Value));
             });
@@ -15,7 +20,7 @@ namespace KabalistusTransformationTracker.Web {
         }
 
         public static JObject TransformationToJson(string name, TransformationInfo info) {
-            var trans = Transformations.AllTransformations[name];
+            var trans = TransformationInfoProvider.GetAllTransformations()[name];
 
             var missingItems = new JArray();
             var touchedItems = new JArray();
