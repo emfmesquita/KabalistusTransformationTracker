@@ -1,5 +1,5 @@
 # KabalistusTransformationTracker
-Tracker for the transformations of The Binding of Isaac: Rebirth (v1.1.0 or newer, also works on Antibirth) and The Binding of Isaac: Afterbirth.
+Tracker for the transformations of The Binding of Isaac: Rebirth (Afterbirth and Antibirth).
 
 ### Rebirth Preview
 
