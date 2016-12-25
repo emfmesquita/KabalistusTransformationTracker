@@ -29,7 +29,7 @@ __C:\Users\<your user>\AppData\Local\KabalistusTransformationT__
 
 Ps.: The AppData folder is hidden by default, you have to change the Control Panel -> Folder Options / File Explorer Options to see hidden folders and files.
 
-### Antibirth Coop and Jacob Character
+### Antibirth Coop and Jacob/Esau Character
 
 For Antibirth coop and the character Jacob the tracker shows the transformation counter for both characters in the format __x/y__ being __x__ for the __P1__ (or Jacob) and __y__ for __P2__ (or Esau).
 
