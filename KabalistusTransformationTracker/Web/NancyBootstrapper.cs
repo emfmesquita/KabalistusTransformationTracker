@@ -5,7 +5,7 @@ using Nancy.Conventions;
 namespace KabalistusTransformationTracker.Web {
     public class NancyBootstrapper : DefaultNancyBootstrapper {
         protected override void ConfigureConventions(NancyConventions nancyConventions) {
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("res", "Resources"));
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("/", "Resources"));
             base.ConfigureConventions(nancyConventions);
         }
 

@@ -1,0 +1,17 @@
+{
+  "name": "kabalistus-transformation-tracker",
+  "version": "1.1.0",
+  "description": "Tracker for the transformations of The Binding of Isaac: Rebirth and The Binding of Isaac: Afterbirth",
+  "keywords": [],
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "jquery": "^3.1.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0"
+  },
+  "repository": {}
+}

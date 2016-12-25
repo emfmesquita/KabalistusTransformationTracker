@@ -134,7 +134,7 @@
     <Compile Include="Trans\Item.cs" />
     <Compile Include="Trans\Transformation.cs" />
     <Compile Include="Trans\TransformationViewHelper.cs" />
-    <Compile Include="Web\NancyBootstrapper .cs" />
+    <Compile Include="Web\NancyBootstrapper.cs" />
     <Compile Include="Web\NancyHelper.cs" />
     <Compile Include="Web\NatHelper.cs" />
     <Compile Include="Web\TransformationsWebHelper.cs" />
@@ -151,6 +151,7 @@
     <None Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="package.json" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -682,16 +683,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Gruntfile.js" />
     <Content Include="guppy.ico" />
-    <Content Include="Resources\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Scripts\jquery-3.1.1.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Scripts\ktt.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\index.html" />
+    <Content Include="Resources\Scripts\ktt.js" />
     <None Include="Resources\Images\block.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
