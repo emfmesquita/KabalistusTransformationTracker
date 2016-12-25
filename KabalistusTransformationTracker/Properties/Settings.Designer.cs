@@ -238,5 +238,17 @@ namespace KabalistusTransformationTracker.Properties {
                 this["BlacklistedItemsIconColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CoopTransformationMode {
+            get {
+                return ((bool)(this["CoopTransformationMode"]));
+            }
+            set {
+                this["CoopTransformationMode"] = value;
+            }
+        }
     }
 }

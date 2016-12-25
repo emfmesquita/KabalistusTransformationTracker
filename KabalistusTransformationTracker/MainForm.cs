@@ -14,6 +14,7 @@ namespace KabalistusTransformationTracker {
 
         public static bool ShowTransformationImage;
         public static bool ShowBlacklistedItems;
+        public static bool CoopTransformationMode;
 
         private IsaacVersion? _currentVersion = null;
 
@@ -37,13 +38,10 @@ namespace KabalistusTransformationTracker {
                     InitTransformations();
                 }
                 if (_currentVersion != null) {
-                    TransformationViewHelper.UpdateTransformationsInfo(
-                        ShowTransformationImage);
+                    TransformationViewHelper.UpdateTransformationsInfo(ShowTransformationImage);
                 }
             }));
         }
-
-
 
         public void SetStatusAsync(Status status) {
             new Task(() => {
@@ -158,6 +156,12 @@ namespace KabalistusTransformationTracker {
             Properties.Settings.Default.ShowTransformationImages = ShowTransformationImage;
             Properties.Settings.Default.Save();
             Refresh();
+        }
+
+        private void coopTransformationImageModeToolStripMenuItem_Click(object sender, EventArgs e) {
+            CoopTransformationMode = ((ToolStripMenuItem)sender).Checked;
+            Properties.Settings.Default.CoopTransformationMode = CoopTransformationMode;
+            Properties.Settings.Default.Save();
         }
 
         private void showBlacklistedItemsToolStripMenuItem_Click(object sender, EventArgs e) {

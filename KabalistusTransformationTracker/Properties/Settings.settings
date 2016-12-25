@@ -56,5 +56,8 @@
     <Setting Name="BlacklistedItemsIconColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">143, 25, 139</Value>
     </Setting>
+    <Setting Name="CoopTransformationMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

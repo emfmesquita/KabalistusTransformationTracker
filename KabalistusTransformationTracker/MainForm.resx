@@ -120,6 +120,9 @@
   <metadata name="menu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="coopTransformationImageModeToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Controls if the image of the transformation should be displayed only if both players have the transformation on coop (same for jacob). If not the transformation image is displayed if any player has it.</value>
+  </data>
   <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>100, 19</value>
   </metadata>

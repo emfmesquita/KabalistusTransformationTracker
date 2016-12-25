@@ -38,7 +38,9 @@ namespace KabalistusTransformationTracker.Providers {
             }
             var p1Counter = GetPlayerInfo(transformation.MemoryOffset);
             var p2Counter = GetPlayer2Info(transformation.MemoryOffset);
-            var transformed = p1Counter >= 3 || p2Counter >= 3;
+
+            var coopMode = MainForm.CoopTransformationMode;
+            var transformed = (!coopMode && (p1Counter >= 3 || p2Counter >= 3)) || (coopMode && (p1Counter >= 3 && p2Counter >= 3));
             var counter = p1Counter + "/" + p2Counter;
             return new TransformationInfo(counter, transformed, ItemsTouched(transformation.Items), ItemsBlacklisted(transformation.Items));
         }

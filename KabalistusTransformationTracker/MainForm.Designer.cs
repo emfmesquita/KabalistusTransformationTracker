@@ -41,6 +41,7 @@ namespace KabalistusTransformationTracker {
             this.resetToDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.coopTransformationImageModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +74,7 @@ namespace KabalistusTransformationTracker {
             this.changeBackgroundColorToolStripMenuItem,
             this.toolStripSeparator2,
             this.showHideTransformationsToolStripMenuItem,
+            this.coopTransformationImageModeToolStripMenuItem,
             this.showTransformationsToolStripMenuItem,
             this.toolStripSeparator1,
             this.clangeBlacklisteIconColorToolStripMenuItem,
@@ -176,6 +178,15 @@ namespace KabalistusTransformationTracker {
             this.statusLabel.Size = new System.Drawing.Size(146, 17);
             this.statusLabel.Text = "Searching Isaac proccess...";
             // 
+            // coopTransformationImageModeToolStripMenuItem
+            // 
+            this.coopTransformationImageModeToolStripMenuItem.CheckOnClick = true;
+            this.coopTransformationImageModeToolStripMenuItem.Name = "coopTransformationImageModeToolStripMenuItem";
+            this.coopTransformationImageModeToolStripMenuItem.Size = new System.Drawing.Size(363, 26);
+            this.coopTransformationImageModeToolStripMenuItem.Text = "Coop Transformation Image Mode";
+            this.coopTransformationImageModeToolStripMenuItem.ToolTipText = resources.GetString("coopTransformationImageModeToolStripMenuItem.ToolTipText");
+            this.coopTransformationImageModeToolStripMenuItem.Click += new System.EventHandler(this.coopTransformationImageModeToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,6 +227,7 @@ namespace KabalistusTransformationTracker {
         private ToolStripMenuItem clangeBlacklisteIconColorToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem coopTransformationImageModeToolStripMenuItem;
     }
 }
 
