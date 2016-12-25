@@ -29,10 +29,16 @@ __C:\Users\<your user>\AppData\Local\KabalistusTransformationT__
 
 Ps.: The AppData folder is hidden by default, you have to change the Control Panel -> Folder Options / File Explorer Options to see hidden folders and files.
 
+### Antibirth Coop and Jacob Character
+
+For Antibirth coop and the character Jacob the tracker shows the transformation counter for both characters in the format __x/y__ being __x__ for the __P1__ (or Jacob) and __y__ for __P2__ (or Esau).
+
+![AntibirthCoop](http://i.imgur.com/m0GDWJo.png)
 
 ### Customization
 The tracker offers some customizations:
 * Show/Hide transformations (Fun Guy and Bob are hidden on the image);
+* Antibirth coop transformation mode, the transformation image is only shown if both players have the transformation;
 * Change the colors of background, text and block signal;
 * Show/Hide the transformation image (Spun items are shown on the image although four seringes were acquired);
 * Resize the window to adjust the number of columns/rows.
