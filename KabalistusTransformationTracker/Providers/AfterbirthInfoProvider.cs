@@ -36,7 +36,8 @@ namespace KabalistusTransformationTracker.Providers {
                 itemsGot.Add(item.Name);
                 return 1;
             });
-            return new TransformationInfo(counter, itemsGot, ItemsBlacklisted(SuperBum.Items));
+            var transformed = counter == 3;
+            return new TransformationInfo(counter.ToString(), transformed, itemsGot, ItemsBlacklisted(SuperBum.Items));
         }
 
         private static bool HasItem(Item item) {

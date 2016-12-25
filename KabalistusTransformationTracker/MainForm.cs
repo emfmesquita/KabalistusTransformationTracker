@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using KabalistusTransformationTracker.Images;
 using KabalistusTransformationTracker.Providers;
@@ -42,10 +43,15 @@ namespace KabalistusTransformationTracker {
             }));
         }
 
-        public void SetStatus(Status status) {
-            Invoke((MethodInvoker)(() => {
-                statusLabel.Text = status.Message;
-            }));
+
+
+        public void SetStatusAsync(Status status) {
+            new Task(() => {
+                Invoke((MethodInvoker)(() => {
+                    statusLabel.Text = status.Message;
+                }));
+
+            }).Start();
         }
 
         private void BuiltTitle() {

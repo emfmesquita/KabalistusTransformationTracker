@@ -6,11 +6,13 @@ using KabalistusTransformationTracker.Utils;
 namespace KabalistusTransformationTracker.Providers {
     public abstract class BaseInfoProvider {
         protected bool BlindFloor;
+        protected bool ShowP2;
         protected readonly List<int> TouchedItems = new List<int>();
 
         public virtual Dictionary<string, TransformationInfo> GetTransformationsInfo() {
             UpdateTouchedItems();
             UpdateIsInBlindFloor();
+            UpdateShowP2();
 
             var transformationsInfo = new Dictionary<string, TransformationInfo>();
             GetAllTransformations().ToList().ForEach(pair => {
@@ -39,7 +41,8 @@ namespace KabalistusTransformationTracker.Providers {
 
         protected virtual TransformationInfo GetTransformationInfo(Transformation transformation) {
             var counter = MemoryReader.GetPlayerInfo(transformation.MemoryOffset);
-            return new TransformationInfo(counter, ItemsTouched(transformation.Items), ItemsBlacklisted(transformation.Items));
+            var transformed = counter >= 3;
+            return new TransformationInfo(counter.ToString(), transformed, ItemsTouched(transformation.Items), ItemsBlacklisted(transformation.Items));
         }
 
         protected virtual List<string> ItemsTouched(IEnumerable<Item> allItens) {
@@ -57,6 +60,20 @@ namespace KabalistusTransformationTracker.Providers {
         protected virtual bool IsItemBlacklisted(Item item) {
             var offset = GetBlacklistedOffset() + item.Id;
             return MemoryReader.GetPlayerManagerInfo(offset, 1) > 0;
+        }
+
+        protected virtual void UpdateShowP2() {
+            if (MemoryReader.IsAfterbirth() == true) {
+                ShowP2 = false;
+                return;
+            }
+
+            if (!MemoryReader.IsAntibirth()) {
+                ShowP2 = false;
+                return;
+            }
+
+            ShowP2 = MemoryReader.GetNumberOfPlayers() >= 2;
         }
     }
 }

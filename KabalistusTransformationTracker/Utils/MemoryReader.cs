@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -14,6 +15,7 @@ namespace KabalistusTransformationTracker.Utils {
         private const string Ready = "Ready.";
 
         private static int _isaacPid;
+        private static Process _isaacProcess;
         private static ProcessModule _module;
         private static int _baseAddr;
         private static int _moduleMemSize;
@@ -22,6 +24,8 @@ namespace KabalistusTransformationTracker.Utils {
         private static int _playerManagerInstructPointer;
         private static int _playerManagerPlayerListOffset;
         private static bool? _isAfterbirth;
+
+        private static bool _loadingMemory;
 
         public static MemoryQuery VersionQuery = new MemoryQuery() {
             SearchChar = new[] { 'B', 'i', 'n', 'd', 'i', 'n', 'g', ' ', 'o', 'f', ' ', 'I', 's', 'a', 'a', 'c', ':' },
@@ -41,7 +45,7 @@ namespace KabalistusTransformationTracker.Utils {
         public static bool Init(MainForm mainForm) {
             var processArray = Process.GetProcessesByName("isaac-ng");
             if (processArray.Length == 0) {
-                mainForm.SetStatus(new Status() {
+                mainForm.SetStatusAsync(new Status() {
                     Message = IsaacProccessNotFound,
                     Ready = false
                 });
@@ -54,13 +58,15 @@ namespace KabalistusTransformationTracker.Utils {
             var process = processArray[0];
             var isaacPid = process.Id;
 
-            if (isaacPid == _isaacPid) {
+            if (isaacPid == _isaacPid || _loadingMemory) {
                 return true;
             }
 
+            _loadingMemory = true;
             _isaacPid = isaacPid;
+            _isaacProcess = process;
 
-            mainForm.SetStatus(new Status() {
+            mainForm.SetStatusAsync(new Status() {
                 Message = LoadingAddresses,
                 Ready = false
             });
@@ -80,30 +86,35 @@ namespace KabalistusTransformationTracker.Utils {
             var playerListSearchOffset = _isAfterbirth == true ? 50000 : 120000;
             _playerManagerPlayerListOffset = Search(PlayerManagerPlayerListOffsetQuery, false, playerListSearchOffset).QueryResult;
 
-            mainForm.SetStatus(new Status() {
+            mainForm.SetStatusAsync(new Status() {
                 Message = Ready,
                 Ready = true
             });
 
+            _loadingMemory = false;
             return true;
         }
-
-        public static int GetPlayerInfo(int offset) {
+        
+        public static int GetNumberOfPlayers(int playerListPointer = -1) {
             if (!IsCurrentInfoValid()) {
                 return 0;
             }
 
-            var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
-            var playerListPointer = playerManagetInstruct + _playerManagerPlayerListOffset;
-
-            var numberOfPlayers = ReadInt(playerListPointer + 4, 4) - ReadInt(playerListPointer, 4);
-            if (numberOfPlayers == 0) {
-                return 0;
+            if (playerListPointer == -1) {
+                var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
+                playerListPointer = playerManagetInstruct + _playerManagerPlayerListOffset;
             }
 
-            var playerPointer = ReadInt(playerListPointer, 4);
-            var player = ReadInt(playerPointer, 4);
-            return ReadInt(player + offset, 4);
+            var numberOfPlayersX4 = ReadInt(playerListPointer + 4, 4) - ReadInt(playerListPointer, 4);
+            return numberOfPlayersX4 / 4;
+        }
+
+        public static int GetPlayerInfo(int offset) {
+            return GetPlayerInfo(offset, 0);
+        }
+
+        public static int GetPlayer2Info(int offset) {
+            return GetPlayerInfo(offset, 4);
         }
 
         public static int GetPlayerManagerInfo(int offset, int size) {
@@ -126,8 +137,33 @@ namespace KabalistusTransformationTracker.Utils {
             return _isAfterbirth;
         }
 
+        public static bool IsAntibirth() {
+            if (!IsCurrentInfoValid() || _isaacProcess == null) {
+                return false;
+            }
+            return _isaacProcess.Modules.Cast<ProcessModule>().Any(module => "zhlRemix2.dll".Equals(module.ModuleName));
+        }
+
+        private static int GetPlayerInfo(int offset, int playerOffset) {
+            if (!IsCurrentInfoValid()) {
+                return 0;
+            }
+
+            var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
+            var playerListPointer = playerManagetInstruct + _playerManagerPlayerListOffset;
+
+            var numberOfPlayers = GetNumberOfPlayers(playerListPointer);
+            if (numberOfPlayers == 0) {
+                return 0;
+            }
+
+            var playerPointer = ReadInt(playerListPointer, 4);
+            var player = ReadInt(playerPointer + playerOffset, 4);
+            return ReadInt(player + offset, 4);
+        }
+
         private static bool IsCurrentInfoValid() {
-            if (_isaacPid == 0) {
+            if (_isaacPid == 0 || _loadingMemory) {
                 return false;
             }
 
