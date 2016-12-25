@@ -2,14 +2,15 @@
 
 namespace KabalistusTransformationTracker.Trans {
     public class TransformationInfo {
-
-        public TransformationInfo(int transformationCount, List<string> touchedItems, List<string> blacklistedItems) {
+        public TransformationInfo(string transformationCount, bool transformed, List<string> touchedItems, List<string> blacklistedItems) {
             TransformationCount = transformationCount;
+            Transformed = transformed;
             TouchedItems = touchedItems;
             BlacklistedItems = blacklistedItems;
         }
 
-        public int TransformationCount { get; }
+        public string TransformationCount { get; }
+        public bool Transformed { get; }
         public List<string> TouchedItems { get; }
         public List<string> BlacklistedItems { get; }
 
@@ -19,12 +20,13 @@ namespace KabalistusTransformationTracker.Trans {
                 return false;
             }
 
-            return TransformationCount == other.TransformationCount && Equals(TouchedItems, other.TouchedItems) && Equals(BlacklistedItems, other.BlacklistedItems);
+            return string.Equals(TransformationCount, other.TransformationCount) && Transformed == other.Transformed && Equals(TouchedItems, other.TouchedItems) && Equals(BlacklistedItems, other.BlacklistedItems);
         }
 
         public override int GetHashCode() {
             unchecked {
-                var hashCode = TransformationCount;
+                var hashCode = TransformationCount?.GetHashCode() ?? 0;
+                hashCode = (hashCode * 397) ^ Transformed.GetHashCode();
                 hashCode = (hashCode * 397) ^ (TouchedItems?.GetHashCode() ?? 0);
                 hashCode = (hashCode * 397) ^ (BlacklistedItems?.GetHashCode() ?? 0);
                 return hashCode;

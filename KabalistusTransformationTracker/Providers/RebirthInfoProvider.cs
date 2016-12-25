@@ -32,6 +32,17 @@ namespace KabalistusTransformationTracker.Providers {
             ReadNode(root);
         }
 
+        protected override TransformationInfo GetTransformationInfo(Transformation transformation) {
+            if (!ShowP2) {
+                return base.GetTransformationInfo(transformation);
+            }
+            var p1Counter = GetPlayerInfo(transformation.MemoryOffset);
+            var p2Counter = GetPlayer2Info(transformation.MemoryOffset);
+            var transformed = p1Counter >= 3 || p2Counter >= 3;
+            var counter = p1Counter + "/" + p2Counter;
+            return new TransformationInfo(counter, transformed, ItemsTouched(transformation.Items), ItemsBlacklisted(transformation.Items));
+        }
+
         private void ReadNode(int nodePointer) {
             if (!IsFilled(nodePointer)) {
                 return;

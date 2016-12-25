@@ -61,7 +61,7 @@ namespace KabalistusTransformationTracker.Trans {
 
             var cluster = Clusters[name];
             cluster.Label.Text = transformation.I18N + ": " + info.TransformationCount;
-            cluster.Transformed = info.TransformationCount >= 3;
+            cluster.Transformed = info.Transformed;
             if (cluster.Transformed && showTransformationImage) {
                 cluster.BaseBox.Refresh();
                 return;
