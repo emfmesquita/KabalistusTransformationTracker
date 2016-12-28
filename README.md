@@ -55,7 +55,7 @@ Otherwise if you trust me just click more info and run it anyway.
 
 If you want to run you may have to follow these steps the first time the tracker is opened:
 
-1. On the smart scrren opened by windows click on __More info__:
+1. On the smart screen opened by windows click on __More info__:
 
 ![Unsined1](http://i.imgur.com/HXkBJ1B.png)
 
