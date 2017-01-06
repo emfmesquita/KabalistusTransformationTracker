@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using KabalistusTransformationTracker.Trans;
 using static KabalistusTransformationTracker.Trans.AfterbirthTransformations;
 using static KabalistusTransformationTracker.Utils.MemoryReader;
 
 namespace KabalistusTransformationTracker.Providers {
-    public class AfterbirthInfoProvider : BaseInfoProvider {
+    public class AfterbirthInfoProvider : AfterbirthBaseInfoProvider {
         private const int ItemBlacklistOffset = 37152;
         private const int HasItemOffset = 7588;
         private const int FloorTypeOffset = 12;
@@ -25,43 +24,24 @@ namespace KabalistusTransformationTracker.Providers {
             return ItemBlacklistOffset;
         }
 
+        protected override Transformation GetSuperBumTransformation() {
+            return SuperBum;
+        }
+        protected override int GetTouchedItensListEndOffset() {
+            return TouchedItensListInitOffset;
+        }
+
+        protected override int GetTouchedItensListInitOffset() {
+            return TouchedItensListEndOffset;
+        }
+
         protected override TransformationInfo GetTransformationInfo(Transformation transformation) {
             return SuperBum.Equals(transformation) ? GetSuperBumInfo() : base.GetTransformationInfo(transformation);
         }
 
-        private TransformationInfo GetSuperBumInfo() {
-            var itemsGot = new List<string>();
-            var counter = SuperBum.Items.Sum(item => {
-                if (!HasItem(item)) return 0;
-                itemsGot.Add(item.Name);
-                return 1;
-            });
-            var transformed = counter == 3;
-            return new TransformationInfo(counter.ToString(), transformed, itemsGot, ItemsBlacklisted(SuperBum.Items));
-        }
-
-        private static bool HasItem(Item item) {
+        protected override bool HasItem(Item item) {
             var offset = HasItemOffset + 4 * item.Id;
             return GetPlayerInfo(offset) > 0;
-        }
-
-        protected override void UpdateTouchedItems() {
-            var touchedItemsListInit = GetPlayerManagerInfo(TouchedItensListInitOffset, 4);
-            var touchedItemsListEnd = GetPlayerManagerInfo(TouchedItensListEndOffset, 4);
-
-            var touchedItemsListSize = (touchedItemsListEnd - touchedItemsListInit) / 24;
-
-            if (TouchedItems.Count == touchedItemsListSize) return;
-
-            if (TouchedItems.Count > touchedItemsListSize) {
-                TouchedItems.Clear();
-            }
-
-            for (var i = TouchedItems.Count; i < touchedItemsListSize; i++) {
-                var addressToRead = touchedItemsListInit + 4 + 24 * i;
-                var touchedItemId = ReadInt(addressToRead, 4);
-                TouchedItems.Add(touchedItemId);
-            }
         }
     }
 }

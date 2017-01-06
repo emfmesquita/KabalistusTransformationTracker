@@ -121,6 +121,12 @@
   <data name="abaddon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\abaddon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="adult" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\adult.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="anarchistcookbook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\anarchistcookbook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bbf" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bbf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -156,6 +162,27 @@
   </data>
   <data name="bobshead" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bobshead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bookofbelial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bookofbelial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bookofrevelations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bookofrevelations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bookofsecrets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bookofsecrets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bookofshadows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bookofshadows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bookofsin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bookofsin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bookworm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bookworm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boxofspiders" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boxofspiders.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="brimstone" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\brimstone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,6 +274,9 @@
   <data name="holymantle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\holymantle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="howtojump" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\howtojump.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="infestation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\infestation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -328,6 +358,9 @@
   <data name="momspurse" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\momspurse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="momsrazor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\momsrazor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="momsunderwear" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\momsunderwear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -339,6 +372,9 @@
   </data>
   <data name="mulligan" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mulligan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mutantspider" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mutantspider.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="nail" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -366,6 +402,51 @@
   </data>
   <data name="pentagram" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pentagram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pill9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pill9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="poop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\poop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -397,6 +478,21 @@
   <data name="speedball" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\speedball.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="spiderbaby" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spiderbaby.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spiderbabytrans" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spiderbabytrans.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spiderbite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spiderbite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spiderbutt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spiderbutt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spidermod" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spidermod.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="spiritofthenight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\spiritofthenight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -411,6 +507,9 @@
   </data>
   <data name="synthoil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\synthoil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="telepathyfordummies" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\telepathyfordummies.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="virus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\virus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

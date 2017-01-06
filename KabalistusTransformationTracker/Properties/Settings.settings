@@ -45,7 +45,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="AppWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">850</Value>
+      <Value Profile="(Default)">975</Value>
     </Setting>
     <Setting Name="AppHeight" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">400</Value>
@@ -58,6 +58,15 @@
     </Setting>
     <Setting Name="CoopTransformationMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="showadult" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="showbookworm" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="showspiderbabytrans" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

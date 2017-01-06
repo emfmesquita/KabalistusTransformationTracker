@@ -193,7 +193,7 @@ namespace KabalistusTransformationTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("850")]
+        [global::System.Configuration.DefaultSettingValueAttribute("975")]
         public int AppWidth {
             get {
                 return ((int)(this["AppWidth"]));
@@ -248,6 +248,42 @@ namespace KabalistusTransformationTracker.Properties {
             }
             set {
                 this["CoopTransformationMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool showadult {
+            get {
+                return ((bool)(this["showadult"]));
+            }
+            set {
+                this["showadult"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool showbookworm {
+            get {
+                return ((bool)(this["showbookworm"]));
+            }
+            set {
+                this["showbookworm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool showspiderbabytrans {
+            get {
+                return ((bool)(this["showspiderbabytrans"]));
+            }
+            set {
+                this["showspiderbabytrans"] = value;
             }
         }
     }

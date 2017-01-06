@@ -43,7 +43,7 @@ namespace KabalistusTransformationTracker.Images {
             InitTooltip(TransformationImage, BaseBox, trans.I18N);
 
             Images = trans.Items.Select(item => {
-                var itemImage = new ItemImage(item.Name, item.X, item.Y, item.Scale, item.BlockReduction);
+                var itemImage = AfterbirthPlusTransformations.Adult.Equals(trans) ? new PillImage(item.Name, item.X, item.Y, item.Scale, item.BlockReduction) : new ItemImage(item.Name, item.X, item.Y, item.Scale, item.BlockReduction);
                 InitTooltip(itemImage, BaseBox, item.I18N);
                 return itemImage;
             }).ToList();
@@ -133,7 +133,7 @@ namespace KabalistusTransformationTracker.Images {
         }
 
         public void UpdateImagesCreationMode() {
-            Images.ForEach(image => image.UpdateImagesCreationMode());
+            Images.ForEach(image => image.UpdateImages());
         }
 
         public static void UpdateBlockImage(Color color) {

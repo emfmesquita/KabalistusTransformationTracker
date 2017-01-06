@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace KabalistusTransformationTracker.Utils {
     public class MemoryReader {
@@ -15,7 +14,6 @@ namespace KabalistusTransformationTracker.Utils {
         private const string Ready = "Ready.";
 
         private static int _isaacPid;
-        private static Process _isaacProcess;
         private static ProcessModule _module;
         private static int _baseAddr;
         private static int _moduleMemSize;
@@ -23,7 +21,8 @@ namespace KabalistusTransformationTracker.Utils {
 
         private static int _playerManagerInstructPointer;
         private static int _playerManagerPlayerListOffset;
-        private static bool? _isAfterbirth;
+
+        private static IsaacVersion? _version;
 
         private static bool _loadingMemory;
 
@@ -51,7 +50,7 @@ namespace KabalistusTransformationTracker.Utils {
                 });
 
                 _isaacPid = 0;
-                _isAfterbirth = null;
+                _version = null;
                 return false;
             }
 
@@ -64,7 +63,6 @@ namespace KabalistusTransformationTracker.Utils {
 
             _loadingMemory = true;
             _isaacPid = isaacPid;
-            _isaacProcess = process;
 
             mainForm.SetStatusAsync(new Status() {
                 Message = LoadingAddresses,
@@ -77,13 +75,21 @@ namespace KabalistusTransformationTracker.Utils {
             _processHandle = OpenProcess(ProcessWmRead, false, isaacPid);
 
             var versionAddress = Search(VersionQuery, true, 800000).QueryResultAddress;
-            var versionChar = ReadInt(versionAddress + 18, 1);
-            _isAfterbirth = versionChar == 'A';
+            var versionChar = InnerReadInt(versionAddress + 18, 1, true);
 
-            var instructSearchOffset = _isAfterbirth == true ? 1500000 : 1100000;
+            var isAfterbirth = versionChar == 'A';
+            if (isAfterbirth) {
+                versionChar = InnerReadInt(versionAddress + 28, 1, true);
+                _version = versionChar == '+' ? IsaacVersion.AfterbirthPlus : IsaacVersion.Afterbirth;
+            } else {
+                var isAntibirth = process.Modules.Cast<ProcessModule>().Any(module => "zhlRemix2.dll".Equals(module.ModuleName));
+                _version = isAntibirth ? IsaacVersion.Antibirth : IsaacVersion.Rebirth;
+            }
+
+            var instructSearchOffset = isAfterbirth ? 1500000 : 1100000;
             _playerManagerInstructPointer = Search(PlayerManagerInstructPointerQuery, false, instructSearchOffset).QueryResult;
 
-            var playerListSearchOffset = _isAfterbirth == true ? 50000 : 120000;
+            var playerListSearchOffset = isAfterbirth ? 50000 : 120000;
             _playerManagerPlayerListOffset = Search(PlayerManagerPlayerListOffsetQuery, false, playerListSearchOffset).QueryResult;
 
             mainForm.SetStatusAsync(new Status() {
@@ -94,19 +100,22 @@ namespace KabalistusTransformationTracker.Utils {
             _loadingMemory = false;
             return true;
         }
-        
-        public static int GetNumberOfPlayers(int playerListPointer = -1) {
-            if (!IsCurrentInfoValid()) {
-                return 0;
+
+        public static int GetNumberOfPlayers(int playerManagetInstruct = -1) {
+            if (playerManagetInstruct == -1) {
+                playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
+                if (playerManagetInstruct == 0) {
+                    return 0;
+                }
             }
 
-            if (playerListPointer == -1) {
-                var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
-                playerListPointer = playerManagetInstruct + _playerManagerPlayerListOffset;
-            }
-
+            var playerListPointer = playerManagetInstruct + _playerManagerPlayerListOffset;
             var numberOfPlayersX4 = ReadInt(playerListPointer + 4, 4) - ReadInt(playerListPointer, 4);
             return numberOfPlayersX4 / 4;
+        }
+
+        public static IsaacVersion? GetVersion() {
+            return _version;
         }
 
         public static int GetPlayerInfo(int offset) {
@@ -118,93 +127,55 @@ namespace KabalistusTransformationTracker.Utils {
         }
 
         public static int GetPlayerManagerInfo(int offset, int size) {
-            if (!IsCurrentInfoValid()) {
+            var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
+            if (playerManagetInstruct == 0) {
                 return 0;
             }
-
-            var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
-            var playerListPointer = playerManagetInstruct + _playerManagerPlayerListOffset;
-
-            var numberOfPlayers = ReadInt(playerListPointer + 4, 4) - ReadInt(playerListPointer, 4);
+            var numberOfPlayers = GetNumberOfPlayers(playerManagetInstruct);
             return numberOfPlayers == 0 ? 0 : ReadInt(playerManagetInstruct + offset, size);
         }
 
         public static int ReadInt(int addr, int size) {
-            return ConvertLittleEndian(Read(addr, size));
+            return InnerReadInt(addr, size);
         }
 
-        public static bool? IsAfterbirth() {
-            return _isAfterbirth;
-        }
-
-        public static bool IsAntibirth() {
-            if (!IsCurrentInfoValid() || _isaacProcess == null) {
-                return false;
-            }
-            return _isaacProcess.Modules.Cast<ProcessModule>().Any(module => "zhlRemix2.dll".Equals(module.ModuleName));
+        private static int InnerReadInt(int addr, int size, bool forceRead = false) {
+            return MemoryReaderUtils.ConvertLittleEndian(Read(addr, size, forceRead));
         }
 
         private static int GetPlayerInfo(int offset, int playerOffset) {
-            if (!IsCurrentInfoValid()) {
+            var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
+            if (playerManagetInstruct == 0) {
                 return 0;
             }
 
-            var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
-            var playerListPointer = playerManagetInstruct + _playerManagerPlayerListOffset;
-
-            var numberOfPlayers = GetNumberOfPlayers(playerListPointer);
+            var numberOfPlayers = GetNumberOfPlayers(playerManagetInstruct);
             if (numberOfPlayers == 0) {
                 return 0;
             }
 
-            var playerPointer = ReadInt(playerListPointer, 4);
+            var playerPointer = ReadInt(playerManagetInstruct + _playerManagerPlayerListOffset, 4);
+            if (playerPointer == 0) {
+                return 0;
+            }
+
             var player = ReadInt(playerPointer + playerOffset, 4);
-            return ReadInt(player + offset, 4);
+            return player == 0 ? 0 : ReadInt(player + offset, 4);
         }
 
-        private static bool IsCurrentInfoValid() {
-            if (_isaacPid == 0 || _loadingMemory) {
-                return false;
+        private static byte[] Read(int addr, int size, bool forceRead = false) {
+            if (_isaacPid == 0) {
+                return new byte[0];
             }
 
-            var processArray = Process.GetProcessesByName("isaac-ng");
-            if (processArray.Length == 0) {
-                return false;
+            if (!forceRead && _loadingMemory) {
+                return new byte[0];
             }
 
-            return _isaacPid == processArray[0].Id;
-        }
-
-        private static byte[] Read(int addr, int size) {
             var bytesRead = 0;
             var buffer = new byte[size];
             ReadProcessMemory((int)_processHandle, addr, buffer, buffer.Length, ref bytesRead);
             return buffer;
-        }
-
-        private static int ConvertLittleEndian(IEnumerable<byte> array) {
-            var pos = 0;
-            var result = 0;
-            foreach (var by in array) {
-                result |= ((int)by) << pos;
-                pos += 8;
-            }
-            return result;
-        }
-
-        private static bool Match(string pattern, byte[] read, byte[] expected, List<byte> queryResult) {
-            for (var i = 0; i < read.Length; i++) {
-                if (pattern[i] != 'b') {
-                    if (pattern[i] == 'v') {
-                        queryResult.Add(read[i]);
-                    }
-                } else {
-                    if (read[i] != expected[i]) {
-                        return false;
-                    }
-                }
-            }
-            return true;
         }
 
         private static MemoryQuery Search(MemoryQuery query, bool fromEndToStart = false, int offsetAddress = 0) {
@@ -227,12 +198,12 @@ namespace KabalistusTransformationTracker.Utils {
                 i = !fromEndToStart ? i + 1 : i - 1) {
 
                 var addr = _baseAddr + i;
-                var read = Read(addr, searchSize);
+                var read = Read(addr, searchSize, true);
                 var result = new List<byte>();
 
-                if (!Match(pattern, read, query.Search, result)) continue;
+                if (!MemoryReaderUtils.Match(pattern, read, query.Search, result)) continue;
 
-                query.QueryResult = ConvertLittleEndian(result.ToArray());
+                query.QueryResult = MemoryReaderUtils.ConvertLittleEndian(result.ToArray());
                 query.QueryResultAddress = addr;
                 return query;
             }

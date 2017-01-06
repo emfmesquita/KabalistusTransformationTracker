@@ -4,7 +4,7 @@ using KabalistusTransformationTracker.Utils;
 
 namespace KabalistusTransformationTracker.Images {
     public class ItemImage : BaseImage {
-        private Image _untouchedImage;
+        protected Image UntouchedImage;
 
         private const float UntouchedImageBrightness = 0.3F;
         private const float UntouchedImageContrast = 0.8F;
@@ -12,12 +12,12 @@ namespace KabalistusTransformationTracker.Images {
         public ItemImage(string name, int x = 0, int y = 0, float scale = 1F, int blockReduction = 10) : base(name, x, y, scale) {
             ItemTouched = false;
             BlockReduction = blockReduction;
-            _untouchedImage = BuildUntouchedImage();
+            UntouchedImage = BuildUntouchedImage();
 
             CalcBlockStats();
         }
 
-        public override Image Image => ItemTouched || ShowBlackListed(this) ? InnerImage : _untouchedImage;
+        public override Image Image => ItemTouched || ShowBlackListed(this) ? InnerImage : UntouchedImage;
 
         public bool ItemTouched { get; set; }
         public bool ItemBlacklisted { get; set; }
@@ -43,8 +43,8 @@ namespace KabalistusTransformationTracker.Images {
             }
         }
 
-        public void UpdateImagesCreationMode() {
-            _untouchedImage = BuildUntouchedImage();
+        public void UpdateImages() {
+            UntouchedImage = BuildUntouchedImage();
         }
 
         public static bool ShowBlackListed(ItemImage image) {

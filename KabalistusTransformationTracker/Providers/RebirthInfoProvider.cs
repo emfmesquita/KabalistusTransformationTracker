@@ -46,7 +46,7 @@ namespace KabalistusTransformationTracker.Providers {
         }
 
         private void ReadNode(int nodePointer) {
-            if (!IsFilled(nodePointer)) {
+            if (nodePointer == 0 || !IsFilled(nodePointer)) {
                 return;
             }
 

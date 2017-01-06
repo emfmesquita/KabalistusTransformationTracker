@@ -7,6 +7,7 @@ namespace KabalistusTransformationTracker.Providers {
 
         private static readonly BaseInfoProvider RebirthProvider = new RebirthInfoProvider();
         private static readonly BaseInfoProvider AfterbirthProvider = new AfterbirthInfoProvider();
+        private static readonly BaseInfoProvider AfterbirthPlusProvider = new AfterbirthPlusInfoProvider();
 
         public static Dictionary<string, TransformationInfo> GetTransformationsInfo() {
             return GetProvider().GetTransformationsInfo();
@@ -20,20 +21,30 @@ namespace KabalistusTransformationTracker.Providers {
             return GetProvider().IsInBlindFloor();
         }
 
-        public static IsaacVersion? GetVersion() {
-            var isAfterbirth = MemoryReader.IsAfterbirth();
-            if (isAfterbirth == null) {
-                return null;
-            }
-            return (bool)isAfterbirth ? IsaacVersion.Afterbirth : IsaacVersion.Rebirth;
+        public static string GetPubertyPill() {
+            var provider = GetProvider();
+            return provider == null ? BaseInfoProvider.UnknowPubertyPill : provider.GetPubertyPill();
         }
 
         private static BaseInfoProvider GetProvider() {
-            var version = GetVersion();
-            if (version == null) {
-                return null;
+            var version = MemoryReader.GetVersion();
+            BaseInfoProvider provider = null;
+            switch (version) {
+                case IsaacVersion.Rebirth:
+                case IsaacVersion.Antibirth:
+                    provider = RebirthProvider;
+                    break;
+                case IsaacVersion.Afterbirth:
+                    provider = AfterbirthProvider;
+                    break;
+                case IsaacVersion.AfterbirthPlus:
+                    provider = AfterbirthPlusProvider;
+                    break;
+                case null:
+                default:
+                    break;
             }
-            return version == IsaacVersion.Rebirth ? RebirthProvider : AfterbirthProvider;
+            return provider;
         }
     }
 }

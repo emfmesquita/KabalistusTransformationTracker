@@ -16,7 +16,7 @@ namespace KabalistusTransformationTracker {
         public static bool ShowBlacklistedItems;
         public static bool CoopTransformationMode;
 
-        private IsaacVersion? _currentVersion = null;
+        private IsaacVersion? _currentVersion;
 
         public MainForm() {
             InitializeComponent();
@@ -28,16 +28,13 @@ namespace KabalistusTransformationTracker {
         }
 
         public void UpdateTransformationsView() {
-            if (CreationMode.On) {
-                return;
-            }
             Invoke((MethodInvoker)(() => {
-                var newVersion = TransformationInfoProvider.GetVersion();
+                var newVersion = MemoryReader.GetVersion();
                 if (newVersion != _currentVersion) {
                     _currentVersion = newVersion;
                     InitTransformations();
                 }
-                if (_currentVersion != null) {
+                if (_currentVersion != null && !CreationMode.On) {
                     TransformationViewHelper.UpdateTransformationsInfo(ShowTransformationImage);
                 }
             }));

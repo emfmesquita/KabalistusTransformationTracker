@@ -77,11 +77,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Images\PillImage.cs" />
     <Compile Include="KttColorDialog.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Providers\AfterbirthBaseInfoProvider.cs" />
+    <Compile Include="Providers\AfterbirthPlusInfoProvider.cs" />
     <Compile Include="Providers\AfterbirthInfoProvider.cs" />
-    <Compile Include="Providers\IsaacVersion.cs" />
+    <Compile Include="Trans\AfterbirthPlusTransformations.cs" />
     <Compile Include="Trans\AfterbirthTransformations.cs" />
     <Compile Include="Utils\ArrayUtils.cs" />
     <Compile Include="Images\BaseImage.cs" />
@@ -96,6 +99,7 @@
     </Compile>
     <Compile Include="Providers\BaseInfoProvider.cs" />
     <Compile Include="Utils\CreationMode.cs" />
+    <Compile Include="Utils\IsaacVersion.cs" />
     <Compile Include="Utils\MemoryQuery.cs" />
     <Compile Include="Utils\MemoryReader.cs" />
     <Compile Include="Program.cs" />
@@ -108,6 +112,7 @@
     <Compile Include="Trans\RebirthTransformations.cs" />
     <Compile Include="Trans\TransformationInfo.cs" />
     <Compile Include="Providers\RebirthInfoProvider.cs" />
+    <Compile Include="Utils\MemoryReaderUtils.cs" />
     <Compile Include="Utils\Status.cs" />
     <Compile Include="Providers\TransformationInfoProvider.cs" />
     <Compile Include="Trans\Item.cs" />
@@ -451,6 +456,39 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="guppy.ico" />
+    <None Include="Resources\pill13.png" />
+    <None Include="Resources\pill12.png" />
+    <None Include="Resources\pill11.png" />
+    <None Include="Resources\pill10.png" />
+    <None Include="Resources\pill9.png" />
+    <None Include="Resources\pill8.png" />
+    <None Include="Resources\pill7.png" />
+    <None Include="Resources\pill6.png" />
+    <None Include="Resources\pill5.png" />
+    <None Include="Resources\pill4.png" />
+    <None Include="Resources\pill3.png" />
+    <None Include="Resources\pill2.png" />
+    <None Include="Resources\pill1.png" />
+    <None Include="Resources\pill0.png" />
+    <None Include="Resources\spiderbabytrans.png" />
+    <None Include="Resources\momsrazor.png" />
+    <None Include="Resources\telepathyfordummies.png" />
+    <None Include="Resources\spidermod.png" />
+    <None Include="Resources\spiderbutt.png" />
+    <None Include="Resources\spiderbite.png" />
+    <None Include="Resources\spiderbaby.png" />
+    <None Include="Resources\mutantspider.png" />
+    <None Include="Resources\howtojump.png" />
+    <None Include="Resources\boxofspiders.png" />
+    <None Include="Resources\bookworm.png" />
+    <None Include="Resources\bookofsin.png" />
+    <None Include="Resources\bookofshadows.png" />
+    <None Include="Resources\bookofsecrets.png" />
+    <None Include="Resources\bookofrevelations.png" />
+    <None Include="Resources\bookofbelial.png" />
+    <None Include="Resources\anarchistcookbook.png" />
+    <None Include="Resources\pill.png" />
+    <None Include="Resources\adult.png" />
     <None Include="Resources\block.png" />
   </ItemGroup>
   <ItemGroup />

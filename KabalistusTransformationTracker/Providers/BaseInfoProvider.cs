@@ -5,6 +5,9 @@ using KabalistusTransformationTracker.Utils;
 
 namespace KabalistusTransformationTracker.Providers {
     public abstract class BaseInfoProvider {
+
+        public const string UnknowPubertyPill = "pill0";
+
         protected bool BlindFloor;
         protected bool ShowP2;
         protected readonly List<int> TouchedItems = new List<int>();
@@ -26,6 +29,10 @@ namespace KabalistusTransformationTracker.Providers {
         }
 
         public abstract Dictionary<string, Transformation> GetAllTransformations();
+
+        public virtual string GetPubertyPill() {
+            return "pill0";
+        }
 
         protected abstract int GetFloorTypeOffset();
 
@@ -63,16 +70,10 @@ namespace KabalistusTransformationTracker.Providers {
         }
 
         protected virtual void UpdateShowP2() {
-            if (MemoryReader.IsAfterbirth() == true) {
+            if (IsaacVersion.Antibirth != MemoryReader.GetVersion()) {
                 ShowP2 = false;
                 return;
             }
-
-            if (!MemoryReader.IsAntibirth()) {
-                ShowP2 = false;
-                return;
-            }
-
             ShowP2 = MemoryReader.GetNumberOfPlayers() >= 2;
         }
     }
