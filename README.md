@@ -1,13 +1,17 @@
 # KabalistusTransformationTracker
-Tracker for the transformations of The Binding of Isaac: Rebirth (Afterbirth and Antibirth).
+Tracker for the transformations of The Binding of Isaac: Rebirth (Antibirth, Afterbirth and Afterbirth+).
+
 
 ### Rebirth Preview
-
 ![KTT Preview](http://i.imgur.com/Ru0mdhA.png)
 
-### Afterbirth Preview
 
+### Afterbirth Preview
 ![KTT Preview](http://i.imgur.com/RK67bmi.png)
+
+
+### Afterbirth+ Preview
+![KTT Preview](http://i.imgur.com/kAT3fGW.png)
 
 
 ### Blacklisted Items
@@ -31,11 +35,18 @@ __C:\Users\<your user>\AppData\Local\KabalistusTransformationT__
 
 Ps.: The AppData folder is hidden by default, you have to change the Control Panel -> Folder Options / File Explorer Options to see hidden folders and files.
 
-### Antibirth Coop and Jacob/Esau Character
 
+### Antibirth Coop and Jacob/Esau Character
 For Antibirth coop and the character Jacob the tracker shows the transformation counter for both characters in the format __x/y__ being __x__ for the __P1__ (or Jacob) and __y__ for __P2__ (or Esau).
 
 ![AntibirthCoop](http://i.imgur.com/m0GDWJo.png)
+
+
+### Afterbirth+ Adult Transformation Pill Color
+After taking the first puberty pill the correct pill color is shown:
+
+![UnknownPill](http://i.imgur.com/GuQgkBZ.png) -> ![KnownPill](http://i.imgur.com/mfgiQwP.png)
+
 
 ### Customization
 The tracker offers some customizations:
@@ -58,7 +69,6 @@ If you want to run you may have to follow these steps the first time the tracker
 1. On the smart screen opened by windows click on __More info__:
 
 ![Unsined1](http://i.imgur.com/HXkBJ1B.png)
-
 
 
 2. Click on __Run anyway__:
