@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using KabalistusCommons.Utils;
 using KabalistusTransformationTracker.Images;
 using KabalistusTransformationTracker.Providers;
 using KabalistusTransformationTracker.Trans;
@@ -20,7 +18,7 @@ namespace KabalistusTransformationTracker {
 
         public MainForm() {
             InitializeComponent();
-            BuiltTitle();
+            FormUtils.BuiltTitle("Kabalistus Transformation Tracker", this);
 
             statusLabel.BackColor = statusStrip.BackColor;
 
@@ -38,23 +36,6 @@ namespace KabalistusTransformationTracker {
                     TransformationViewHelper.UpdateTransformationsInfo(ShowTransformationImage);
                 }
             }));
-        }
-
-        public void SetStatusAsync(Status status) {
-            new Task(() => {
-                Invoke((MethodInvoker)(() => {
-                    statusLabel.Text = status.Message;
-                }));
-
-            }).Start();
-        }
-
-        private void BuiltTitle() {
-            var sb = new StringBuilder();
-            sb.Append("Kabalistus Transformation Tracker v");
-            var version = Assembly.GetExecutingAssembly().GetName().Version;
-            sb.Append(version.Major).Append(".").Append(version.Minor).Append(".").Append(version.Build);
-            Text = sb.ToString();
         }
 
         private void InitTransformations() {

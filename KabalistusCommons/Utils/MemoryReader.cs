@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Timer = System.Timers.Timer;
 
-namespace KabalistusTransformationTracker.Utils {
+namespace KabalistusCommons.Utils {
     public class MemoryReader {
 
         private const int ProcessWmRead = 0x0010;
-
-        private const string IsaacProccessNotFound = "Isaac proccess not found. Still searching...";
-        private const string LoadingAddresses = "Isaac proccess found. Loading memory addresses...";
-        private const string Ready = "Ready.";
 
         private static int _isaacPid;
         private static ProcessModule _module;
@@ -41,33 +39,41 @@ namespace KabalistusTransformationTracker.Utils {
             SearchPattern = "bb????bb????bbvv??"
         };
 
-        public static bool Init(MainForm mainForm) {
+        public static void Init(Action<Status> callback, double interval = 1000) {
+            var checkIsaacRunningTimer = new Timer(1000);
+            checkIsaacRunningTimer.Elapsed += (source, e) => {
+                Update(callback);
+            };
+            checkIsaacRunningTimer.AutoReset = true;
+            checkIsaacRunningTimer.Enabled = true;
+        }
+
+        private static void Update(Action<Status> callback) {
             var processArray = Process.GetProcessesByName("isaac-ng");
             if (processArray.Length == 0) {
-                mainForm.SetStatusAsync(new Status() {
-                    Message = IsaacProccessNotFound,
-                    Ready = false
-                });
-
                 _isaacPid = 0;
                 _version = null;
-                return false;
+
+                CallbackAsync(callback, Status.ProcessNotFound);
+                return;
             }
 
             var process = processArray[0];
             var isaacPid = process.Id;
 
-            if (isaacPid == _isaacPid || _loadingMemory) {
-                return true;
+            if (_loadingMemory) {
+                return;
+            }
+
+            if (isaacPid == _isaacPid) {
+                CallbackAsync(callback, Status.ReadyStatus);
+                return;
             }
 
             _loadingMemory = true;
             _isaacPid = isaacPid;
 
-            mainForm.SetStatusAsync(new Status() {
-                Message = LoadingAddresses,
-                Ready = false
-            });
+            CallbackAsync(callback, Status.LoadingAddresses);
 
             _module = process.MainModule;
             _baseAddr = _module.BaseAddress.ToInt32();
@@ -91,14 +97,9 @@ namespace KabalistusTransformationTracker.Utils {
 
             var playerListSearchOffset = isAfterbirth ? 50000 : 120000;
             _playerManagerPlayerListOffset = Search(PlayerManagerPlayerListOffsetQuery, false, playerListSearchOffset).QueryResult;
-
-            mainForm.SetStatusAsync(new Status() {
-                Message = Ready,
-                Ready = true
-            });
-
             _loadingMemory = false;
-            return true;
+
+            CallbackAsync(callback, Status.ReadyStatus);
         }
 
         public static int GetNumberOfPlayers(int playerManagetInstruct = -1) {
@@ -209,6 +210,10 @@ namespace KabalistusTransformationTracker.Utils {
             }
 
             return query;
+        }
+
+        private static void CallbackAsync(Action<Status> callback, Status status) {
+            new Task(() => callback(status)).Start();
         }
 
         [DllImport("kernel32.dll")]

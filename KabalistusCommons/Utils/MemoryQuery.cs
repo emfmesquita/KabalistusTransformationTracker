@@ -1,4 +1,4 @@
-﻿namespace KabalistusTransformationTracker.Utils {
+﻿namespace KabalistusCommons.Utils {
     public class MemoryQuery {
         public byte[] Search { get; set; }
 

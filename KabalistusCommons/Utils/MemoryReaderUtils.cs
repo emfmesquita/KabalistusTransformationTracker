@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KabalistusTransformationTracker.Utils {
+namespace KabalistusCommons.Utils {
     public class MemoryReaderUtils {
 
         public static int ConvertLittleEndian(byte[] array, int start = 0, int size = 0) {

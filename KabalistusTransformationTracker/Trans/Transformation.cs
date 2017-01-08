@@ -14,7 +14,7 @@ namespace KabalistusTransformationTracker.Trans {
         public string Name { get; }
         public string I18N { get; }
         public int MemoryOffset { get; }
-        public List<Item> Items { get; set; }
+        public List<TransformationItem> Items { get; set; }
         public int X { get; }
         public int Y { get; }
         public float Scale { get; }

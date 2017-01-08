@@ -33,6 +33,7 @@ namespace KabalistusTransformationTracker {
             this.changeBackgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.showHideTransformationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.coopTransformationImageModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showTransformationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.clangeBlacklisteIconColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +42,6 @@ namespace KabalistusTransformationTracker {
             this.resetToDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.coopTransformationImageModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -119,6 +119,15 @@ namespace KabalistusTransformationTracker {
     " transformation. Or only the items continue to be displayed.";
             this.showHideTransformationsToolStripMenuItem.Click += new System.EventHandler(this.showHideTransformationsToolStripMenuItem_Click);
             // 
+            // coopTransformationImageModeToolStripMenuItem
+            // 
+            this.coopTransformationImageModeToolStripMenuItem.CheckOnClick = true;
+            this.coopTransformationImageModeToolStripMenuItem.Name = "coopTransformationImageModeToolStripMenuItem";
+            this.coopTransformationImageModeToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
+            this.coopTransformationImageModeToolStripMenuItem.Text = "Coop Transformation Image Mode";
+            this.coopTransformationImageModeToolStripMenuItem.ToolTipText = resources.GetString("coopTransformationImageModeToolStripMenuItem.ToolTipText");
+            this.coopTransformationImageModeToolStripMenuItem.Click += new System.EventHandler(this.coopTransformationImageModeToolStripMenuItem_Click);
+            // 
             // showTransformationsToolStripMenuItem
             // 
             this.showTransformationsToolStripMenuItem.Name = "showTransformationsToolStripMenuItem";
@@ -178,15 +187,6 @@ namespace KabalistusTransformationTracker {
             this.statusLabel.Size = new System.Drawing.Size(146, 17);
             this.statusLabel.Text = "Searching Isaac proccess...";
             // 
-            // coopTransformationImageModeToolStripMenuItem
-            // 
-            this.coopTransformationImageModeToolStripMenuItem.CheckOnClick = true;
-            this.coopTransformationImageModeToolStripMenuItem.Name = "coopTransformationImageModeToolStripMenuItem";
-            this.coopTransformationImageModeToolStripMenuItem.Size = new System.Drawing.Size(363, 26);
-            this.coopTransformationImageModeToolStripMenuItem.Text = "Coop Transformation Image Mode";
-            this.coopTransformationImageModeToolStripMenuItem.ToolTipText = resources.GetString("coopTransformationImageModeToolStripMenuItem.ToolTipText");
-            this.coopTransformationImageModeToolStripMenuItem.Click += new System.EventHandler(this.coopTransformationImageModeToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -223,11 +223,11 @@ namespace KabalistusTransformationTracker {
         private ToolStripSeparator toolStripSeparator6;
         private ToolStripMenuItem showBlacklistedItemsToolStripMenuItem;
         private StatusStrip statusStrip;
-        private ToolStripStatusLabel statusLabel;
         private ToolStripMenuItem clangeBlacklisteIconColorToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem coopTransformationImageModeToolStripMenuItem;
+        public ToolStripStatusLabel statusLabel;
     }
 }
 

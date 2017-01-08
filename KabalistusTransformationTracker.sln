@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KabalistusTransformationTracker", "KabalistusTransformationTracker\KabalistusTransformationTracker.csproj", "{BCED1241-BE36-4371-94C7-4BFA366539B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsaacSoundFun", "IsaacSoundFun\IsaacSoundFun.csproj", "{7939C0C5-36C3-493C-97C4-6202900E57E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KabalistusCommons", "KabalistusCommons\KabalistusCommons.csproj", "{09220BE5-7C8C-4885-8E46-20B8DFB3DDF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{BCED1241-BE36-4371-94C7-4BFA366539B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCED1241-BE36-4371-94C7-4BFA366539B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCED1241-BE36-4371-94C7-4BFA366539B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7939C0C5-36C3-493C-97C4-6202900E57E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7939C0C5-36C3-493C-97C4-6202900E57E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7939C0C5-36C3-493C-97C4-6202900E57E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7939C0C5-36C3-493C-97C4-6202900E57E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09220BE5-7C8C-4885-8E46-20B8DFB3DDF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09220BE5-7C8C-4885-8E46-20B8DFB3DDF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09220BE5-7C8C-4885-8E46-20B8DFB3DDF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09220BE5-7C8C-4885-8E46-20B8DFB3DDF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

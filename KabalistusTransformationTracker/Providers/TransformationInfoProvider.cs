@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using KabalistusCommons.Utils;
 using KabalistusTransformationTracker.Trans;
-using KabalistusTransformationTracker.Utils;
 
 namespace KabalistusTransformationTracker.Providers {
     public class TransformationInfoProvider {

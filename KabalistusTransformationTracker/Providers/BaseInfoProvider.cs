@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using KabalistusCommons.Isaac;
+using KabalistusCommons.Utils;
 using KabalistusTransformationTracker.Trans;
-using KabalistusTransformationTracker.Utils;
 
 namespace KabalistusTransformationTracker.Providers {
     public abstract class BaseInfoProvider {
@@ -10,12 +11,19 @@ namespace KabalistusTransformationTracker.Providers {
 
         protected bool BlindFloor;
         protected bool ShowP2;
-        protected readonly List<int> TouchedItems = new List<int>();
+        protected List<int> TouchedItems = new List<int>();
 
         public virtual Dictionary<string, TransformationInfo> GetTransformationsInfo() {
-            UpdateTouchedItems();
-            UpdateIsInBlindFloor();
-            UpdateShowP2();
+            TouchedItems = GetReader().GetItemsTouchedList();
+
+            var curses = GetReader().GetFloorCurses();
+            BlindFloor = (curses & 64) == 64;
+
+            if (IsaacVersion.Antibirth != MemoryReader.GetVersion()) {
+                ShowP2 = false;
+            } else {
+                ShowP2 = MemoryReader.GetNumberOfPlayers() >= 2;
+            }
 
             var transformationsInfo = new Dictionary<string, TransformationInfo>();
             GetAllTransformations().ToList().ForEach(pair => {
@@ -34,17 +42,7 @@ namespace KabalistusTransformationTracker.Providers {
             return "pill0";
         }
 
-        protected abstract int GetFloorTypeOffset();
-
-        protected abstract int GetBlacklistedOffset();
-
-        protected abstract void UpdateTouchedItems();
-
-        protected virtual void UpdateIsInBlindFloor() {
-            var offset = GetFloorTypeOffset();
-            var floorType = MemoryReader.GetPlayerManagerInfo(offset, 1);
-            BlindFloor = (floorType & 64) == 64;
-        }
+        protected abstract IIsaacReader GetReader();
 
         protected virtual TransformationInfo GetTransformationInfo(Transformation transformation) {
             var counter = MemoryReader.GetPlayerInfo(transformation.MemoryOffset);
@@ -52,29 +50,16 @@ namespace KabalistusTransformationTracker.Providers {
             return new TransformationInfo(counter.ToString(), transformed, ItemsTouched(transformation.Items), ItemsBlacklisted(transformation.Items));
         }
 
-        protected virtual List<string> ItemsTouched(IEnumerable<Item> allItens) {
+        protected virtual List<string> ItemsTouched(IEnumerable<TransformationItem> allItens) {
             return allItens.Where(IsItemTouched).Select(item => item.Name).ToList();
         }
 
-        protected virtual List<string> ItemsBlacklisted(IEnumerable<Item> allItens) {
-            return allItens.Where(item => !IsItemTouched(item) && IsItemBlacklisted(item)).Select(item => item.Name).ToList();
+        protected virtual List<string> ItemsBlacklisted(IEnumerable<TransformationItem> allItens) {
+            return allItens.Where(item => !IsItemTouched(item) && GetReader().IsItemBlacklisted(item)).Select(item => item.Name).ToList();
         }
 
-        protected virtual bool IsItemTouched(Item item) {
+        public bool IsItemTouched(TransformationItem item) {
             return TouchedItems.Contains(item.Id);
-        }
-
-        protected virtual bool IsItemBlacklisted(Item item) {
-            var offset = GetBlacklistedOffset() + item.Id;
-            return MemoryReader.GetPlayerManagerInfo(offset, 1) > 0;
-        }
-
-        protected virtual void UpdateShowP2() {
-            if (IsaacVersion.Antibirth != MemoryReader.GetVersion()) {
-                ShowP2 = false;
-                return;
-            }
-            ShowP2 = MemoryReader.GetNumberOfPlayers() >= 2;
         }
     }
 }

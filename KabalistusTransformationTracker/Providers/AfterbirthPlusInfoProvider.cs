@@ -1,22 +1,17 @@
 ﻿using System.Collections.Generic;
+using KabalistusCommons.Isaac;
 using KabalistusTransformationTracker.Trans;
-using KabalistusTransformationTracker.Utils;
 using static KabalistusTransformationTracker.Trans.AfterbirthPlusTransformations;
-using static KabalistusTransformationTracker.Utils.MemoryReader;
+using static KabalistusCommons.Utils.MemoryReader;
 
 namespace KabalistusTransformationTracker.Providers {
     public class AfterbirthPlusInfoProvider : AfterbirthBaseInfoProvider {
-        private const int ItemBlacklistOffset = 32048;
-        private const int HasItemOffset = 7600;
-        private const int FloorTypeOffset = 12;
-
-        private const int TouchedItensListInitOffset = 30640;
-        private const int TouchedItensListEndOffset = TouchedItensListInitOffset + 4;
 
         private const int PillsOffset = 33236;
         private const int PubertyId = 9;
         private string _pubertyPill = UnknowPubertyPill;
         private bool _pubertyPillSet;
+        private readonly IIsaacReader _reader = new AfterbirthPlusIsaacReader();
 
         public override Dictionary<string, Transformation> GetAllTransformations() {
             return AllTransformations;
@@ -26,37 +21,8 @@ namespace KabalistusTransformationTracker.Providers {
             return _pubertyPill;
         }
 
-        protected override int GetFloorTypeOffset() {
-            return FloorTypeOffset;
-        }
-
-        protected override int GetBlacklistedOffset() {
-            return ItemBlacklistOffset;
-        }
-
         protected override Transformation GetSuperBumTransformation() {
             return SuperBum;
-        }
-
-        protected override int GetTouchedItensListInitOffset() {
-            return TouchedItensListInitOffset;
-        }
-
-        protected override int GetTouchedItensListEndOffset() {
-            return TouchedItensListEndOffset;
-        }
-
-        protected override bool HasItem(Item item) {
-            var hasItemPointer = GetPlayerInfo(HasItemOffset);
-            var hasItem = ReadInt(hasItemPointer + 4 * item.Id, 4);
-            return hasItem > 0;
-        }
-
-        protected override bool IsItemBlacklisted(Item item) {
-            var blockListPointer = GetPlayerManagerInfo(GetBlacklistedOffset(), 4);
-            var blockByte = ReadInt(blockListPointer + item.Id / 8, 1);
-            var itemBlockBit = MemoryReaderUtils.Pow(2, item.Id % 8);
-            return (blockByte & itemBlockBit) == itemBlockBit;
         }
 
         protected override TransformationInfo GetTransformationInfo(Transformation transformation) {
@@ -64,6 +30,10 @@ namespace KabalistusTransformationTracker.Providers {
                 return GetSuperBumInfo();
             }
             return Adult.Equals(transformation) ? GetAdultInfo() : base.GetTransformationInfo(transformation);
+        }
+
+        protected override IIsaacReader GetReader() {
+            return _reader;
         }
 
         private TransformationInfo GetAdultInfo() {

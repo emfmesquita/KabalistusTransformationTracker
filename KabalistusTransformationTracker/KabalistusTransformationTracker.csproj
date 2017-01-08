@@ -86,7 +86,6 @@
     <Compile Include="Providers\AfterbirthInfoProvider.cs" />
     <Compile Include="Trans\AfterbirthPlusTransformations.cs" />
     <Compile Include="Trans\AfterbirthTransformations.cs" />
-    <Compile Include="Utils\ArrayUtils.cs" />
     <Compile Include="Images\BaseImage.cs" />
     <Compile Include="Images\ImageHelper.cs" />
     <Compile Include="Images\ItemCluster.cs" />
@@ -99,9 +98,6 @@
     </Compile>
     <Compile Include="Providers\BaseInfoProvider.cs" />
     <Compile Include="Utils\CreationMode.cs" />
-    <Compile Include="Utils\IsaacVersion.cs" />
-    <Compile Include="Utils\MemoryQuery.cs" />
-    <Compile Include="Utils\MemoryReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -112,10 +108,8 @@
     <Compile Include="Trans\RebirthTransformations.cs" />
     <Compile Include="Trans\TransformationInfo.cs" />
     <Compile Include="Providers\RebirthInfoProvider.cs" />
-    <Compile Include="Utils\MemoryReaderUtils.cs" />
-    <Compile Include="Utils\Status.cs" />
     <Compile Include="Providers\TransformationInfoProvider.cs" />
-    <Compile Include="Trans\Item.cs" />
+    <Compile Include="Trans\TransformationItem.cs" />
     <Compile Include="Trans\Transformation.cs" />
     <Compile Include="Trans\TransformationViewHelper.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -491,7 +485,12 @@
     <None Include="Resources\adult.png" />
     <None Include="Resources\block.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\KabalistusCommons\KabalistusCommons.csproj">
+      <Project>{09220be5-7c8c-4885-8e46-20b8dfb3ddf2}</Project>
+      <Name>KabalistusCommons</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

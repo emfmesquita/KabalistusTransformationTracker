@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KabalistusTransformationTracker.Utils {
+namespace KabalistusCommons.Utils {
     public class ArrayUtils {
         public static byte[] ToByteArray(IReadOnlyList<char> baseArray) {
             var result = new byte[baseArray.Count];

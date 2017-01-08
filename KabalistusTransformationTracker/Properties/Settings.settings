@@ -45,7 +45,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="AppWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">975</Value>
+      <Value Profile="(Default)">1000</Value>
     </Setting>
     <Setting Name="AppHeight" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">400</Value>
