@@ -1,9 +1,10 @@
-﻿using System;
+﻿using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KabalistusCommons.Utils;
 
-namespace KabalistusCommons.Utils {
+namespace KabalistusCommons.View {
     public class FormUtils {
         public static void BuiltTitle(string projetTitle, Form mainForm) {
             var sb = new StringBuilder();
@@ -19,8 +20,12 @@ namespace KabalistusCommons.Utils {
                 mainForm.Invoke((MethodInvoker)(() => {
                     statusLabel.Text = status.Message;
                 }));
-
             }).Start();
+        }
+
+        public static float CalcLabelWidth(Form mainForm, string text) {
+            var itemLabel = new Label { Text = text };
+            return mainForm.CreateGraphics().MeasureString(itemLabel.Text, itemLabel.Font).Width;
         }
     }
 }

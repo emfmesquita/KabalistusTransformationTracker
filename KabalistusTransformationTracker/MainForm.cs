@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using KabalistusCommons.Utils;
+using KabalistusCommons.View;
 using KabalistusTransformationTracker.Images;
 using KabalistusTransformationTracker.Providers;
 using KabalistusTransformationTracker.Trans;

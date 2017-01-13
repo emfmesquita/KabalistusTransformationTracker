@@ -30,6 +30,8 @@ namespace KabalistusCommons.Isaac {
         public abstract bool HasItem(Item item);
         public abstract bool IsItemBlacklisted(Item item);
         public abstract int GetFloorCurses();
+        public abstract int GetTimeCounter();
+        public abstract bool IsGamePaused();
         protected abstract int GetTouchedItensListInitOffset();
     }
 }

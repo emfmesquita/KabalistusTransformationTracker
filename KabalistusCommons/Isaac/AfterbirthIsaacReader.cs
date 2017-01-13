@@ -20,6 +20,15 @@ namespace KabalistusCommons.Isaac {
             return GetPlayerManagerInfo(CursesOffset, 1); ;
         }
 
+        public override int GetTimeCounter() {
+            return 5;
+        }
+
+        public override bool IsGamePaused() {
+            // TODO
+            return false;
+        }
+
         protected override int GetTouchedItensListInitOffset() {
             return TouchedItensListInitOffset;
         }

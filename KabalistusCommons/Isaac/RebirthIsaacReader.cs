@@ -35,6 +35,16 @@ namespace KabalistusCommons.Isaac {
             return GetPlayerManagerInfo(CursesOffset, 1); ;
         }
 
+        public int GetTimeCounter() {
+            // TODO
+            return 5;
+        }
+
+        public bool IsGamePaused() {
+            // TODO
+            return false;
+        }
+
         private void ReadNode(int nodePointer) {
             if (nodePointer == 0 || !IsFilled(nodePointer)) {
                 return;

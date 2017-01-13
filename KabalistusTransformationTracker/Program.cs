@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Timers;
 using System.Windows.Forms;
 using KabalistusCommons.Utils;
-using Timer = System.Timers.Timer;
+using KabalistusCommons.View;
 
 namespace KabalistusTransformationTracker {
     public static class Program {

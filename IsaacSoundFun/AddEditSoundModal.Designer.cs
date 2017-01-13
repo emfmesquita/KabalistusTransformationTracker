@@ -1,5 +1,5 @@
 ﻿namespace IsaacFun {
-    partial class AddSoundModal {
+    partial class AddEditSoundModal {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.addButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.itemComboBox = new System.Windows.Forms.ComboBox();
             this.itemLabel = new System.Windows.Forms.Label();
             this.soundLabel = new System.Windows.Forms.Label();
@@ -32,16 +32,16 @@
             this.soundFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
-            // addButton
+            // saveButton
             // 
-            this.addButton.Enabled = false;
-            this.addButton.Location = new System.Drawing.Point(433, 76);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(39, 23);
-            this.addButton.TabIndex = 1;
-            this.addButton.Text = "Add";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.AddSound);
+            this.saveButton.Enabled = false;
+            this.saveButton.Location = new System.Drawing.Point(413, 76);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(59, 23);
+            this.saveButton.TabIndex = 1;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.SaveSound);
             // 
             // itemComboBox
             // 
@@ -93,9 +93,9 @@
             // 
             this.soundFileDialog.Filter = "Supported Files (*.wav;*.mp3)|*.wav;*.mp3";
             // 
-            // AddSoundModal
+            // AddEditSoundModal
             // 
-            this.AcceptButton = this.addButton;
+            this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 111);
@@ -104,11 +104,11 @@
             this.Controls.Add(this.soundLabel);
             this.Controls.Add(this.itemLabel);
             this.Controls.Add(this.itemComboBox);
-            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.saveButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "AddSoundModal";
+            this.Name = "AddEditSoundModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add Sound";
+            this.Text = "Add New Sound";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,7 +116,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.ComboBox itemComboBox;
         private System.Windows.Forms.Label itemLabel;
         private System.Windows.Forms.Label soundLabel;

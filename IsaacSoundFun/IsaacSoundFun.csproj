@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddSoundModal.cs">
+    <Compile Include="AddEditSoundModal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddSoundModal.Designer.cs">
-      <DependentUpon>AddSoundModal.cs</DependentUpon>
+    <Compile Include="AddEditSoundModal.Designer.cs">
+      <DependentUpon>AddEditSoundModal.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -58,12 +58,24 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Player\Player.cs" />
+    <Compile Include="Player\SoundFunSerializer.cs" />
+    <Compile Include="Player\SoundFunPlayer.cs" />
+    <Compile Include="RowPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RowPanel.Designer.cs">
+      <DependentUpon>RowPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SoundFunButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Player\SoundFunEntity.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddSoundModal.resx">
-      <DependentUpon>AddSoundModal.cs</DependentUpon>
+    <Compile Include="View\SoundFunRow.cs" />
+    <Compile Include="View\ViewUtils.cs" />
+    <EmbeddedResource Include="AddEditSoundModal.resx">
+      <DependentUpon>AddEditSoundModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -78,6 +90,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RowPanel.resx">
+      <DependentUpon>RowPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -109,10 +125,22 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\play.png" />
+    <None Include="Resources\play16.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\add.png" />
+    <None Include="Resources\edit16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

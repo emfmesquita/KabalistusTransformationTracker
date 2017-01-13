@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 
 namespace KabalistusCommons.Isaac {
-    public class Items
-    {
-        public static readonly List<Item> RebirthItems = new List<Item>()
-        {
+    public class Items {
+        public static readonly List<Item> RebirthItems = new List<Item>() {
             new Item("The Sad Onion", 1),
             new Item("The Inner Eye", 2),
             new Item("Spoon Bender", 3),
@@ -348,8 +346,7 @@ namespace KabalistusCommons.Isaac {
             new Item("A Snack", 346)
         };
 
-        public static readonly List<Item> AfterbirthItems = new List<Item>()
-        {
+        public static readonly List<Item> AfterbirthItems = new List<Item>() {
             new Item("Diplopia", 347),
             new Item("Placebo", 348),
             new Item("Wooden Nickel", 349),
@@ -447,7 +444,7 @@ namespace KabalistusCommons.Isaac {
             new Item("Mega Blast", 441)
         };
 
-        public static readonly List<Item> AfterbirthPlusItems = new List<Item>(){
+        public static readonly List<Item> AfterbirthPlusItems = new List<Item>() {
             new Item("Dark Princes Crown", 442),
             new Item("Apple!", 443),
             new Item("Lead Pencil", 444),
@@ -516,6 +513,96 @@ namespace KabalistusCommons.Isaac {
             new Item("Mom's Razor", 508),
             new Item("Bloodshot Eye", 509),
             new Item("Delirious", 510)
+        };
+
+        public static readonly List<Item> AntibirthItems = new List<Item>() {
+            new Item("Mucormycosis", 1000),
+            new Item("2Spooky", 1001),
+            new Item("Schoolbag", 1002),
+            new Item("Sulfur", 1003),
+            new Item("Fortune Cookie", 1004),
+            new Item("Eye Sore", 1005),
+            new Item("120 Volt", 1006),
+            new Item("It Hurts", 1007),
+            new Item("Almond Milk", 1008),
+            new Item("Rock Bottom", 1009),
+            new Item("Enigma Bombs", 1010),
+            new Item("A Bar of Soap", 1011),
+            new Item("Book of Despair", 1012),
+            new Item("D12", 1013),
+            new Item("Paschal Candle", 1014),
+            new Item("Bowl of Tears", 1015),
+            new Item("Blood Oath", 1016),
+            new Item("Playdoh Cookie", 1017),
+            new Item("Orphan Socks", 1018),
+            new Item("Eye of the Occult", 1019),
+            new Item("Immaculate Heart", 1020),
+            new Item("Monstrance", 1021),
+            new Item("The Intruder", 1022),
+            new Item("Dirty Mind", 1023),
+            new Item("Damocles", 1024),
+            new Item("Free Lemonade", 1025),
+            new Item("Spirit Sword", 1026),
+            new Item("Red Key", 1027),
+            new Item("Psy Fly", 1028),
+            new Item("Black Mushroom", 1029),
+            new Item("Rocket in a Jar", 1030),
+            new Item("Book of Virtues", 1031),
+            new Item("Alabaster Box", 1032),
+            new Item("Jacob's Ladder", 1033),
+            new Item("Menorah", 1034),
+            new Item("Sol", 1035),
+            new Item("Luna", 1036),
+            new Item("Mercurius", 1037),
+            new Item("Venus", 1038),
+            new Item("Terra", 1039),
+            new Item("Mars", 1040),
+            new Item("Saturnus", 1042),
+            new Item("Uranus", 1043),
+            new Item("Pluto", 1045),
+            new Item("Voodoo Head", 1046),
+            new Item("Eye Drops", 1047),
+            new Item("Act of Contrition", 1048),
+            new Item("Member Card", 1049),
+            new Item("Battery Pack", 1050),
+            new Item("Mom's Bracelet", 1051),
+            new Item("The Scooper", 1052),
+            new Item("Oculus Rift", 1053),
+            new Item("Boiled Baby", 1054),
+            new Item("Freezer Baby", 1055),
+            new Item("Eternal D6", 1056),
+            new Item("Bird Cage", 1057),
+            new Item("Donkey Jawbone", 1058),
+            new Item("Lost Soul", 1059),
+            new Item("Blood Bombs", 1061),
+            new Item("Lil' Dumpy", 1062),
+            new Item("Bird's Eye", 1063),
+            new Item("Lodestone", 1064),
+            new Item("Rotten Tomato", 1065),
+            new Item("Birthright", 1066),
+            new Item("Voodoo Pin", 1067),
+            new Item("Red Stew", 1068),
+            new Item("Sausage", 1069),
+            new Item("Sharp Key", 1070),
+            new Item("Booster Pack", 1071),
+            new Item("Mega Mush", 1072),
+            new Item("Knife Piece 1", 1073),
+            new Item("Knife Piece 2", 1074),
+            new Item("Knife Piece 3", 1075),
+            new Item("Bot Fly", 1076),
+            new Item("Meat Cleaver", 1078),
+            new Item("Evil Charm", 1079),
+            new Item("Stone Bombs", 1080),
+            new Item("Stitches", 1082),
+            new Item("R Key", 1083),
+            new Item("Knockout Drops", 1084),
+            new Item("Eraser", 1085),
+            new Item("Yuck Heart", 1086),
+            new Item("Akeldama", 1088),
+            new Item("Magic Skin", 1089),
+            new Item("Revelation", 1090),
+            new Item("Consolation Prize", 1091),
+            new Item("Tinytoma", 1092)
         };
     }
 }

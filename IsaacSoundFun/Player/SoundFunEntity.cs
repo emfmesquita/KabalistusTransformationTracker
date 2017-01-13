@@ -1,12 +1,12 @@
-﻿namespace IsaacFun.Player {
+﻿using System.Xml.Serialization;
+using KabalistusCommons.Isaac;
+
+namespace IsaacFun.Player {
     public class SoundFunEntity {
+        [XmlElement(ElementName = "item")]
+        public Item Item { get; set; }
 
-        public SoundFunEntity(string soundFile, int itemId) {
-            SoundFile = soundFile;
-            ItemId = itemId;
-        }
-
-        public string SoundFile { get; private set; }
-        public int ItemId { get; private set; }
+        [XmlElement(ElementName = "file")]
+        public string SoundFile { get; set; }
     }
 }

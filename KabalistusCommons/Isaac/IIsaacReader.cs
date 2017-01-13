@@ -9,5 +9,9 @@ namespace KabalistusCommons.Isaac {
         bool IsItemBlacklisted(Item item);
 
         int GetFloorCurses();
+
+        int GetTimeCounter();
+
+        bool IsGamePaused();
     }
 }

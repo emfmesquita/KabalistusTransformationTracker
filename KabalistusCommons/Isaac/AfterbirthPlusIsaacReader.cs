@@ -4,10 +4,12 @@ using static KabalistusCommons.Utils.MemoryReader;
 
 namespace KabalistusCommons.Isaac {
     public class AfterbirthPlusIsaacReader : AfterbirthBaseIsaacReader {
-        private const int ItemBlacklistOffset = 32048;
+        private const int ItemBlacklistOffset = 31836;
         private const int HasItemOffset = 7600;
         private const int CursesOffset = 12;
-        private const int TouchedItensListInitOffset = 30640;
+        private const int TouchedItensListInitOffset = 30428;
+        private const int TimeCounterOffset = 2178748;
+        private const int GamePausedOffset = 1245636;
         
         public override bool HasItem(Item item) {
             var hasItemPointer = GetPlayerInfo(HasItemOffset);
@@ -28,6 +30,14 @@ namespace KabalistusCommons.Isaac {
 
         public override int GetFloorCurses() {
             return GetPlayerManagerInfo(CursesOffset, 1); ;
+        }
+
+        public override int GetTimeCounter() {
+            return GetPlayerManagerInfo(TimeCounterOffset, 4) / 30;
+        }
+
+        public override bool IsGamePaused() {
+            return GetPlayerManagerInfo(GamePausedOffset, 4) > 0;
         }
 
         protected override int GetTouchedItensListInitOffset() {
