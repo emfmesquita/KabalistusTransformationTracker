@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace IsaacFun.Player {
+namespace IsaacSoundFun.Player {
     public class SoundFunSerializer {
         private const string SaveFileName = "IsaacSoundFunSave.xml";
         private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(SoundFunSave));

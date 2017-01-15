@@ -22,6 +22,11 @@ namespace KabalistusCommons.Utils {
             return BaseDir + sufix;
         }
 
+        public static string GetFileName(string path) {
+            var index = path.LastIndexOf("\\", StringComparison.Ordinal);
+            return path.Substring(index + 1);
+        }
+
         public static string GetDirectory(string path) {
             var fullPath = GetFullPath(path);
             var lastIndex = fullPath.LastIndexOf("\\", StringComparison.Ordinal);

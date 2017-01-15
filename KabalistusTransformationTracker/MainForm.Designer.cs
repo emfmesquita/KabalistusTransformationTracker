@@ -154,7 +154,7 @@ namespace KabalistusTransformationTracker {
             this.showBlacklistedItemsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showBlacklistedItemsToolStripMenuItem.Name = "showBlacklistedItemsToolStripMenuItem";
             this.showBlacklistedItemsToolStripMenuItem.Size = new System.Drawing.Size(297, 22);
-            this.showBlacklistedItemsToolStripMenuItem.Text = "Show Blacklisted Items";
+            this.showBlacklistedItemsToolStripMenuItem.Text = "Show Blacklisted Items Icon";
             this.showBlacklistedItemsToolStripMenuItem.ToolTipText = "Controls the indication if an item has no change to be generated again. So it wil" +
     "l not appear again on the current run.";
             this.showBlacklistedItemsToolStripMenuItem.Click += new System.EventHandler(this.showBlacklistedItemsToolStripMenuItem_Click);

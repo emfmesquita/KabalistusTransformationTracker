@@ -19,11 +19,16 @@ namespace KabalistusTransformationTracker {
 
         public MainForm() {
             InitializeComponent();
-            FormUtils.BuiltTitle("Kabalistus Transformation Tracker", this);
+            Text = FormUtils.BuiltTitle("Kabalistus Transformation Tracker", this);
 
             statusLabel.BackColor = statusStrip.BackColor;
 
             SetInitialValuesFromConfig();
+        }
+
+        public sealed override string Text {
+            get { return base.Text; }
+            set { base.Text = value; }
         }
 
         public void UpdateTransformationsView() {

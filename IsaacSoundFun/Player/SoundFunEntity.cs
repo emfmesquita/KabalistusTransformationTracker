@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 using KabalistusCommons.Isaac;
 
-namespace IsaacFun.Player {
+namespace IsaacSoundFun.Player {
     public class SoundFunEntity {
         [XmlElement(ElementName = "item")]
         public Item Item { get; set; }

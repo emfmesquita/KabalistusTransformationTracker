@@ -4,10 +4,11 @@ using System.Linq;
 using KabalistusCommons.Utils;
 using WMPLib;
 
-namespace IsaacFun.Player {
+namespace IsaacSoundFun.Player {
     public class SoundFunPlayer {
 
         private static readonly WindowsMediaPlayer WmPlayer = new WindowsMediaPlayer();
+
         public static readonly Dictionary<int, SoundFunEntity> Entities = new Dictionary<int, SoundFunEntity>();
         private static readonly List<int> TouchedItems = new List<int>();
 
@@ -17,19 +18,6 @@ namespace IsaacFun.Player {
         public static void PlaySound(string file, bool playedByUser = true) {
             _playedByUser = playedByUser;
             WmPlayer.URL = FileUtils.GetFullPath(file);
-            WmPlayer.controls.play();
-        }
-
-        public static void PlayList(List<string> files, bool playedByUser = true) {
-            _playedByUser = playedByUser;
-            var playlist = WmPlayer.playlistCollection.newPlaylist("isaacSoundFun");
-            var i = playlist.count;
-            files.ForEach(file => {
-                var media = WmPlayer.newMedia(FileUtils.GetFullPath(file));
-                playlist.appendItem(media);
-            });
-
-            WmPlayer.currentPlaylist = playlist;
             WmPlayer.controls.play();
         }
 

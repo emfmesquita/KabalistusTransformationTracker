@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="IsaacSoundFun.SoundRow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IsaacSoundFun"
+             mc:Ignorable="d" 
+             d:DesignHeight="36" d:DesignWidth="600">
+    <Grid  Margin="0" Height="36" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="0" x:Name="playButton" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center" Width="24" Height="24" ToolTip="Play" Click="PlayClick">
+            <Image x:Name="playButtonImage" Height="16" Width="16" HorizontalAlignment="Center" VerticalAlignment="Center" Source="Images/play16.png"/>
+        </Button>
+        <Button Grid.Column="1" x:Name="editButton" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center" Width="24" Height="24" ToolTip="Edit" Click="EditClick">
+            <Image x:Name="editButtonImage" Height="16" Width="16" HorizontalAlignment="Center" VerticalAlignment="Center" Source="Images/edit16.png"/>
+        </Button>
+        <Button Grid.Column="2" x:Name="deleteButton" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center" Width="24" Height="24" ToolTip="Delete" Click="DeleteClick">
+            <Image x:Name="deleteButtonImage" Height="16" Width="16" HorizontalAlignment="Center" VerticalAlignment="Center" Source="Images/delete16.png"/>
+        </Button>
+        <Label Grid.Column="3" x:Name="itemLabel" HorizontalAlignment="Center" Content="" Width="192" BorderThickness="1" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,3" />
+        <Label Grid.Column="4" x:Name="fileLabel" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Margin="0,3,3,3" Foreground="#FFDE0000"/>
+    </Grid>
+</UserControl>
