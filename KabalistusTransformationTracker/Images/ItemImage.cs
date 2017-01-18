@@ -17,7 +17,7 @@ namespace KabalistusTransformationTracker.Images {
             CalcBlockStats();
         }
 
-        public override Image Image => ItemTouched || ShowBlackListed(this) ? InnerImage : UntouchedImage;
+        public override Image Image => ItemTouched || ShowBlackListed(this) || CreationMode.On ? InnerImage : UntouchedImage;
 
         public bool ItemTouched { get; set; }
         public bool ItemBlacklisted { get; set; }

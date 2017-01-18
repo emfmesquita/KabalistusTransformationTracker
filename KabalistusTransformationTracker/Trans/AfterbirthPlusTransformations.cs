@@ -73,12 +73,13 @@ namespace KabalistusTransformationTracker.Trans {
 
         public static readonly Transformation Spun = new Transformation("spun", "Spun", 7788, 4, 0, 0.9F) {
             Items = new List<TransformationItem>() {
-                new TransformationItem("virus", "The Virus", 13, 76, 30, 0.8F, 1),
-                new TransformationItem("roidrage", "Roid Rage", 14, 48, -2, 0.8F, 11),
-                new TransformationItem("growthhormones", "Growth Hormones", 70, 18, 1, 0.8F, 5),
-                new TransformationItem("speedball", "Speed Ball", 143, -2, 28, 0.8F, 4),
-                new TransformationItem("experimentaltreatment", "Experimental Treatment", 240, 18, 54, 0.8F, 4),
-                new TransformationItem("synthoil", "Synthoil", 345, 46, 54, 0.8F, 14)
+                new TransformationItem("virus", "The Virus", 13, 76, 30, 0.75F, 1),
+                new TransformationItem("roidrage", "Roid Rage", 14, 53, -2, 0.75F, 11),
+                new TransformationItem("growthhormones", "Growth Hormones", 70, 15, 0, 0.75F, 5),
+                new TransformationItem("speedball", "Speed Ball", 143, -2, 28, 0.75F, 4),
+                new TransformationItem("experimentaltreatment", "Experimental Treatment", 240, 14, 52, 0.75F, 4),
+                new TransformationItem("synthoil", "Synthoil", 345, 52, 54, 0.75F, 14),
+                new TransformationItem("adrenaline", "Adrenaline", 493, 30, 30, 0.75F, 13)
             }
         };
 
@@ -139,14 +140,16 @@ namespace KabalistusTransformationTracker.Trans {
 
         public static readonly Transformation Bookworm = new Transformation("bookworm", "Bookworm", 7808, 5, 3, 0.95f) {
             Items = new List<TransformationItem>() {
-                new TransformationItem("bookofbelial", "The Book Of Belial", 34, 55, 1, 0.6f, 4),
-                new TransformationItem("bookofshadows", "Book Of Shadows", 58, 52, 62, 0.6f, 4),
-                new TransformationItem("anarchistcookbook", "Anarchist Cookbook", 65, 24, 63, 0.6f, 3),
-                new TransformationItem("bookofrevelations", "Book Of Revelations", 78, 32, 30, 0.6f, 1),
-                new TransformationItem("bookofsin", "The Book Of Sin", 97, 28, -2, 0.6f, 2),
-                new TransformationItem("telepathyfordummies", "Telepathy For Dummies", 192, 0, 47, 0.6f, 1),
-                new TransformationItem("howtojump", "How To Jump", 282, 66, 33, 0.6f, 4),
-                new TransformationItem("bookofsecrets", "Book Of Secrets", 287, -1, 12, 0.6f, 4)
+                new TransformationItem("bible", "The Bible", 33, 72, 50, 0.5f, 2),
+                new TransformationItem("bookofbelial", "The Book Of Belial", 34, 72, 15, 0.5f, 4),
+                new TransformationItem("necronomicon", "The Necronomicon", 35, 22, 2, 0.5f, 2),
+                new TransformationItem("bookofshadows", "Book Of Shadows", 58, 48, 64, 0.5f, 4),
+                new TransformationItem("anarchistcookbook", "Anarchist Cookbook", 65, 23, 64, 0.5f, 3),
+                new TransformationItem("bookofrevelations", "Book Of Revelations", 78, 22, 33, 0.5f, 1),
+                new TransformationItem("bookofsin", "The Book Of Sin", 97, 48, 1, 0.5f, 2),
+                new TransformationItem("telepathyfordummies", "Telepathy For Dummies", 192, 0, 49, 0.5f, 1),
+                new TransformationItem("howtojump", "How To Jump", 282, 46, 33, 0.5f, 4),
+                new TransformationItem("bookofsecrets", "Book Of Secrets", 287, -2, 16, 0.5f, 4)
             }
         };
 
