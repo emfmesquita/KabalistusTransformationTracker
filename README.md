@@ -11,7 +11,7 @@ Tracker for the transformations of The Binding of Isaac: Rebirth (Antibirth, Aft
 
 
 ### Afterbirth+ Preview
-![KTT Preview](http://i.imgur.com/kAT3fGW.png)
+![KTT Preview](http://i.imgur.com/uuimwQH.png)
 
 
 ### Blacklisted Items
