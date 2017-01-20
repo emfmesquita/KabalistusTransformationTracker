@@ -73,13 +73,14 @@ namespace KabalistusTransformationTracker.Trans {
 
         public static readonly Transformation Spun = new Transformation("spun", "Spun", 7788, 4, 0, 0.9F) {
             Items = new List<TransformationItem>() {
-                new TransformationItem("virus", "The Virus", 13, 76, 30, 0.75F, 1),
-                new TransformationItem("roidrage", "Roid Rage", 14, 53, -2, 0.75F, 11),
-                new TransformationItem("growthhormones", "Growth Hormones", 70, 15, 0, 0.75F, 5),
-                new TransformationItem("speedball", "Speed Ball", 143, -2, 28, 0.75F, 4),
-                new TransformationItem("experimentaltreatment", "Experimental Treatment", 240, 14, 52, 0.75F, 4),
-                new TransformationItem("synthoil", "Synthoil", 345, 52, 54, 0.75F, 14),
-                new TransformationItem("adrenaline", "Adrenaline", 493, 30, 30, 0.75F, 13)
+                new TransformationItem("virus", "The Virus", 13, 77, 36, 0.7F, 1),
+                new TransformationItem("roidrage", "Roid Rage", 14, 59, 6, 0.7F, 11),
+                new TransformationItem("growthhormones", "Growth Hormones", 70, 11, 8, 0.7F, 5),
+                new TransformationItem("speedball", "Speed Ball", 143, 0, 34, 0.7F, 4),
+                new TransformationItem("experimentaltreatment", "Experimental Treatment", 240, 16, 50, 0.7F, 4),
+                new TransformationItem("synthoil", "Synthoil", 345, 32, 1, 0.7F, 14),
+                new TransformationItem("adrenaline", "Adrenaline", 493, 50, 50, 0.7F, 13),
+                new TransformationItem("euthanasia", "Euthanasia", 496, 30, 59, 0.7F, 15)
             }
         };
 

@@ -383,6 +383,16 @@ namespace KabalistusTransformationTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap euthanasia {
+            get {
+                object obj = ResourceManager.GetObject("euthanasia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap experimentaltreatment {
             get {
                 object obj = ResourceManager.GetObject("experimentaltreatment", resourceCulture);
