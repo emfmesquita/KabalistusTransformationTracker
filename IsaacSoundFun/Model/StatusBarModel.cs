@@ -1,4 +1,6 @@
-﻿namespace IsaacSoundFun.Model {
+﻿using KabalistusCommons.Model;
+
+namespace IsaacSoundFun.Model {
     public class StatusBarModel : BaseModel {
         private string _status = "";
 

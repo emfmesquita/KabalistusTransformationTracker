@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="KabalistusIsaacTools.SoundFun.SoundFun"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KabalistusIsaacTools.SoundFun"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="525">
+    <Grid>
+        <Grid HorizontalAlignment="Stretch" Height="40" Margin="3" VerticalAlignment="Top" Grid.Column="4" Background="#FFF0F0F0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="44" />
+                <ColumnDefinition Width="44" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" x:Name="NewButton" Width="36" HorizontalAlignment="Center" Margin="0,3" Click="NewButtonClick" ToolTip="Add New Sound">
+                <Image x:Name="NewButtonImage" Height="24" Width="24" Source="../Images/SoundFun/new24.png"/>
+            </Button>
+            <Button Grid.Column="1" x:Name="PlayButton" Width="36" HorizontalAlignment="Center" Margin="0,3" IsEnabled="False" ToolTip="Play/Pause" Click="PauseResumeClick">
+                <Image x:Name="PlayButtonImage" Height="24" Width="24"/>
+            </Button>
+            <Label Grid.Column="2" x:Name="ProgressLabel" HorizontalAlignment="Center" Content="" Width="92" BorderThickness="1" BorderBrush="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,3" />
+            <Label Grid.Column="3" x:Name="NowPlayingLabel" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Margin="0,3,3,3"/>
+        </Grid>
+        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,40,0,0">
+            <StackPanel  x:Name="MainPanel" Orientation="Vertical"/>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

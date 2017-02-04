@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using KabalistusCommons.Utils;
 using static KabalistusCommons.Utils.MemoryReader;
 
@@ -10,7 +13,8 @@ namespace KabalistusCommons.Isaac {
         private const int TouchedItensListInitOffset = 30428;
         private const int TimeCounterOffset = 2178748;
         private const int GamePausedOffset = 1245636;
-        
+        private const int SmeltedTrinketsPointerOffset = 7588;
+
         public override bool HasItem(Item item) {
             var hasItemPointer = GetPlayerInfo(HasItemOffset);
             if (hasItemPointer == 0) {
@@ -18,7 +22,25 @@ namespace KabalistusCommons.Isaac {
             }
 
             var hasItem = ReadInt(hasItemPointer + 4 * item.Id, 4);
+
+            var smelted = GetSmeltedTrinkets();
+            Console.WriteLine(string.Join(", ", smelted));
             return hasItem > 0;
+        }
+
+        public override List<Trinket> GetSmeltedTrinkets() {
+            var smeltedTrinketsOffset = GetPlayerInfo(SmeltedTrinketsPointerOffset);
+            var smeltedTrinkets = Read(smeltedTrinketsOffset + 1, 119);
+
+            var currentSmeltedTrinkets = new List<Trinket>();
+            for (var i = 0; i < smeltedTrinkets.Length; i++) {
+                if (smeltedTrinkets[i] == 1) {
+                    currentSmeltedTrinkets.Add(Trinkets.AllTrinkets[i + 1]);
+                }
+            }
+
+            currentSmeltedTrinkets.Sort((trinketA, trinketB) => string.CompareOrdinal(trinketA.I18N, trinketB.I18N));
+            return currentSmeltedTrinkets;
         }
 
         public override bool IsItemBlacklisted(Item item) {

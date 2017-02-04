@@ -1,5 +1,6 @@
 ﻿using System.Windows.Media;
 using KabalistusCommons.Isaac;
+using KabalistusCommons.Model;
 
 namespace IsaacSoundFun.Model {
     public class SoundRowModel : BaseModel {

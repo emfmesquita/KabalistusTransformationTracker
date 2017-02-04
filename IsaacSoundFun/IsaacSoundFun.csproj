@@ -125,7 +125,6 @@
     <Compile Include="AddEditSoundDialog.xaml.cs">
       <DependentUpon>AddEditSoundDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\MenuBarModel.cs" />
     <Compile Include="Model\SoundDialogModel.cs" />
     <Compile Include="Player\SoundFunEntity.cs" />
@@ -175,6 +174,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\app.manifest">
       <SubType>Designer</SubType>

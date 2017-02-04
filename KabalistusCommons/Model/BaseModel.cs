@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace IsaacSoundFun.Model {
+namespace KabalistusCommons.Model {
     public abstract class BaseModel : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
 

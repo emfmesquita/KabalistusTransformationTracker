@@ -1,4 +1,5 @@
 ﻿using System.Windows.Media.Imaging;
+using KabalistusCommons.Model;
 
 namespace IsaacSoundFun.Model {
     public class MenuBarModel : BaseModel {

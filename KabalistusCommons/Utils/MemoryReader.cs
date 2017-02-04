@@ -40,7 +40,7 @@ namespace KabalistusCommons.Utils {
         };
 
         public static void Init(Action<Status> callback, double interval = 1000) {
-            var checkIsaacRunningTimer = new Timer(1000);
+            var checkIsaacRunningTimer = new Timer(interval);
             checkIsaacRunningTimer.Elapsed += (source, e) => {
                 Update(callback);
             };
@@ -139,12 +139,15 @@ namespace KabalistusCommons.Utils {
         public static int ReadInt(int addr, int size) {
             return InnerReadInt(addr, size);
         }
-
-        private static int InnerReadInt(int addr, int size, bool forceRead = false) {
-            return MemoryReaderUtils.ConvertLittleEndian(Read(addr, size, forceRead));
+        public static byte[] Read(int addr, int size) {
+            return InnerRead(addr, size);
         }
 
-        private static int GetPlayerInfo(int offset, int playerOffset) {
+        private static int InnerReadInt(int addr, int size, bool forceRead = false) {
+            return MemoryReaderUtils.ConvertLittleEndian(InnerRead(addr, size, forceRead));
+        }
+
+        private static int GetPlayer(int playerOffset) {
             var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
             if (playerManagetInstruct == 0) {
                 return 0;
@@ -156,15 +159,15 @@ namespace KabalistusCommons.Utils {
             }
 
             var playerPointer = ReadInt(playerManagetInstruct + _playerManagerPlayerListOffset, 4);
-            if (playerPointer == 0) {
-                return 0;
-            }
+            return playerPointer == 0 ? 0 : ReadInt(playerPointer + playerOffset, 4);
+        }
 
-            var player = ReadInt(playerPointer + playerOffset, 4);
+        private static int GetPlayerInfo(int offset, int playerOffset) {
+            var player = GetPlayer(playerOffset);
             return player == 0 ? 0 : ReadInt(player + offset, 4);
         }
 
-        private static byte[] Read(int addr, int size, bool forceRead = false) {
+        private static byte[] InnerRead(int addr, int size, bool forceRead = false) {
             if (_isaacPid == 0) {
                 return new byte[0];
             }
@@ -199,7 +202,7 @@ namespace KabalistusCommons.Utils {
                 i = !fromEndToStart ? i + 1 : i - 1) {
 
                 var addr = _baseAddr + i;
-                var read = Read(addr, searchSize, true);
+                var read = InnerRead(addr, searchSize, true);
                 var result = new List<byte>();
 
                 if (!MemoryReaderUtils.Match(pattern, read, query.Search, result)) continue;

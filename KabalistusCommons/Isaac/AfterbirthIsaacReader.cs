@@ -1,4 +1,5 @@
-﻿using static KabalistusCommons.Utils.MemoryReader;
+﻿using System.Collections.Generic;
+using static KabalistusCommons.Utils.MemoryReader;
 
 namespace KabalistusCommons.Isaac {
     public class AfterbirthIsaacReader : AfterbirthBaseIsaacReader {
@@ -10,6 +11,10 @@ namespace KabalistusCommons.Isaac {
         public override bool HasItem(Item item) {
             var offset = HasItemOffset + 4 * item.Id;
             return GetPlayerInfo(offset) > 0;
+        }
+
+        public override List<Trinket> GetSmeltedTrinkets() {
+            return new List<Trinket>();
         }
 
         public override bool IsItemBlacklisted(Item item) {

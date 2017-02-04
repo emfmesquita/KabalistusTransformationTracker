@@ -1,0 +1,964 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{68053FFD-FD32-4A04-BAEC-E8791452C131}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KabalistusIsaacTools</RootNamespace>
+    <AssemblyName>KabalistusIsaacTools</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Commons\View\ExtraWindow.xaml.cs">
+      <DependentUpon>ExtraWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commons\View\ExtraWindowModel.cs" />
+    <Compile Include="Commons\View\GeneralImage.xaml.cs">
+      <DependentUpon>GeneralImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commons\View\GeneralImageModel.cs" />
+    <Compile Include="SmeltedTrinkets\SmeltedTrinkets.xaml.cs">
+      <DependentUpon>SmeltedTrinkets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoundFun\AddEditSoundDialog.xaml.cs">
+      <DependentUpon>AddEditSoundDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoundFun\MenuBarModel.cs" />
+    <Compile Include="SoundFun\Player\SoundFunEntity.cs" />
+    <Compile Include="SoundFun\Player\SoundFunPlayer.cs" />
+    <Compile Include="SoundFun\Player\SoundFunSerializer.cs" />
+    <Compile Include="SoundFun\SoundDialogModel.cs" />
+    <Compile Include="SoundFun\SoundFun.xaml.cs">
+      <DependentUpon>SoundFun.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoundFun\SoundRow.xaml.cs">
+      <DependentUpon>SoundRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoundFun\SoundRowModel.cs" />
+    <Compile Include="TransformationTracker\Model\AfterbirthPlusTransformations.cs" />
+    <Compile Include="TransformationTracker\Model\Transformation.cs" />
+    <Compile Include="TransformationTracker\Model\TransformationItem.cs" />
+    <Compile Include="TransformationTracker\Model\TransformationPill.cs" />
+    <Compile Include="TransformationTracker\Providers\AfterbirthBaseInfoProvider.cs" />
+    <Compile Include="TransformationTracker\Providers\AfterbirthPlusInfoProvider.cs" />
+    <Compile Include="TransformationTracker\Providers\BaseInfoProvider.cs" />
+    <Compile Include="TransformationTracker\Providers\TransformationInfoProvider.cs" />
+    <Compile Include="TransformationTracker\TransformationGrid.xaml.cs">
+      <DependentUpon>TransformationGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransformationTracker\TransformationItemControl.xaml.cs">
+      <DependentUpon>TransformationItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransformationTracker\TransformationTracker.xaml.cs">
+      <DependentUpon>TransformationTracker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\CreationMode.cs" />
+    <Compile Include="Utils\ImageUtils.cs" />
+    <Page Include="Commons\View\ExtraWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Commons\View\GeneralImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="SmeltedTrinkets\SmeltedTrinkets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoundFun\AddEditSoundDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SoundFun\SoundFun.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoundFun\SoundRow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TransformationTracker\TransformationGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransformationTracker\TransformationItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TransformationTracker\TransformationTracker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="StatusBarModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KabalistusCommons\KabalistusCommons.csproj">
+      <Project>{09220be5-7c8c-4885-8e46-20b8dfb3ddf2}</Project>
+      <Name>KabalistusCommons</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Trinkets\t1.png" />
+    <EmbeddedResource Include="Images\Trinkets\t10.png" />
+    <EmbeddedResource Include="Images\Trinkets\t100.png" />
+    <EmbeddedResource Include="Images\Trinkets\t101.png" />
+    <EmbeddedResource Include="Images\Trinkets\t102.png" />
+    <EmbeddedResource Include="Images\Trinkets\t103.png" />
+    <EmbeddedResource Include="Images\Trinkets\t104.png" />
+    <EmbeddedResource Include="Images\Trinkets\t105.png" />
+    <EmbeddedResource Include="Images\Trinkets\t106.png" />
+    <EmbeddedResource Include="Images\Trinkets\t107.png" />
+    <EmbeddedResource Include="Images\Trinkets\t108.png" />
+    <EmbeddedResource Include="Images\Trinkets\t109.png" />
+    <EmbeddedResource Include="Images\Trinkets\t11.png" />
+    <EmbeddedResource Include="Images\Trinkets\t110.png" />
+    <EmbeddedResource Include="Images\Trinkets\t111.png" />
+    <EmbeddedResource Include="Images\Trinkets\t112.png" />
+    <EmbeddedResource Include="Images\Trinkets\t113.png" />
+    <EmbeddedResource Include="Images\Trinkets\t114.png" />
+    <EmbeddedResource Include="Images\Trinkets\t115.png" />
+    <EmbeddedResource Include="Images\Trinkets\t116.png" />
+    <EmbeddedResource Include="Images\Trinkets\t117.png" />
+    <EmbeddedResource Include="Images\Trinkets\t118.png" />
+    <EmbeddedResource Include="Images\Trinkets\t119.png" />
+    <EmbeddedResource Include="Images\Trinkets\t12.png" />
+    <EmbeddedResource Include="Images\Trinkets\t13.png" />
+    <EmbeddedResource Include="Images\Trinkets\t14.png" />
+    <EmbeddedResource Include="Images\Trinkets\t15.png" />
+    <EmbeddedResource Include="Images\Trinkets\t16.png" />
+    <EmbeddedResource Include="Images\Trinkets\t17.png" />
+    <EmbeddedResource Include="Images\Trinkets\t18.png" />
+    <EmbeddedResource Include="Images\Trinkets\t19.png" />
+    <EmbeddedResource Include="Images\Trinkets\t2.png" />
+    <EmbeddedResource Include="Images\Trinkets\t20.png" />
+    <EmbeddedResource Include="Images\Trinkets\t21.png" />
+    <EmbeddedResource Include="Images\Trinkets\t22.png" />
+    <EmbeddedResource Include="Images\Trinkets\t23.png" />
+    <EmbeddedResource Include="Images\Trinkets\t24.png" />
+    <EmbeddedResource Include="Images\Trinkets\t25.png" />
+    <EmbeddedResource Include="Images\Trinkets\t26.png" />
+    <EmbeddedResource Include="Images\Trinkets\t27.png" />
+    <EmbeddedResource Include="Images\Trinkets\t28.png" />
+    <EmbeddedResource Include="Images\Trinkets\t29.png" />
+    <EmbeddedResource Include="Images\Trinkets\t3.png" />
+    <EmbeddedResource Include="Images\Trinkets\t30.png" />
+    <EmbeddedResource Include="Images\Trinkets\t31.png" />
+    <EmbeddedResource Include="Images\Trinkets\t32.png" />
+    <EmbeddedResource Include="Images\Trinkets\t33.png" />
+    <EmbeddedResource Include="Images\Trinkets\t34.png" />
+    <EmbeddedResource Include="Images\Trinkets\t35.png" />
+    <EmbeddedResource Include="Images\Trinkets\t36.png" />
+    <EmbeddedResource Include="Images\Trinkets\t37.png" />
+    <EmbeddedResource Include="Images\Trinkets\t38.png" />
+    <EmbeddedResource Include="Images\Trinkets\t39.png" />
+    <EmbeddedResource Include="Images\Trinkets\t4.png" />
+    <EmbeddedResource Include="Images\Trinkets\t40.png" />
+    <EmbeddedResource Include="Images\Trinkets\t41.png" />
+    <EmbeddedResource Include="Images\Trinkets\t42.png" />
+    <EmbeddedResource Include="Images\Trinkets\t43.png" />
+    <EmbeddedResource Include="Images\Trinkets\t44.png" />
+    <EmbeddedResource Include="Images\Trinkets\t45.png" />
+    <EmbeddedResource Include="Images\Trinkets\t46.png" />
+    <EmbeddedResource Include="Images\Trinkets\t47.png" />
+    <EmbeddedResource Include="Images\Trinkets\t48.png" />
+    <EmbeddedResource Include="Images\Trinkets\t49.png" />
+    <EmbeddedResource Include="Images\Trinkets\t5.png" />
+    <EmbeddedResource Include="Images\Trinkets\t50.png" />
+    <EmbeddedResource Include="Images\Trinkets\t51.png" />
+    <EmbeddedResource Include="Images\Trinkets\t52.png" />
+    <EmbeddedResource Include="Images\Trinkets\t53.png" />
+    <EmbeddedResource Include="Images\Trinkets\t54.png" />
+    <EmbeddedResource Include="Images\Trinkets\t55.png" />
+    <EmbeddedResource Include="Images\Trinkets\t56.png" />
+    <EmbeddedResource Include="Images\Trinkets\t57.png" />
+    <EmbeddedResource Include="Images\Trinkets\t58.png" />
+    <EmbeddedResource Include="Images\Trinkets\t59.png" />
+    <EmbeddedResource Include="Images\Trinkets\t6.png" />
+    <EmbeddedResource Include="Images\Trinkets\t60.png" />
+    <EmbeddedResource Include="Images\Trinkets\t61.png" />
+    <EmbeddedResource Include="Images\Trinkets\t62.png" />
+    <EmbeddedResource Include="Images\Trinkets\t63.png" />
+    <EmbeddedResource Include="Images\Trinkets\t64.png" />
+    <EmbeddedResource Include="Images\Trinkets\t65.png" />
+    <EmbeddedResource Include="Images\Trinkets\t66.png" />
+    <EmbeddedResource Include="Images\Trinkets\t67.png" />
+    <EmbeddedResource Include="Images\Trinkets\t68.png" />
+    <EmbeddedResource Include="Images\Trinkets\t69.png" />
+    <EmbeddedResource Include="Images\Trinkets\t7.png" />
+    <EmbeddedResource Include="Images\Trinkets\t70.png" />
+    <EmbeddedResource Include="Images\Trinkets\t71.png" />
+    <EmbeddedResource Include="Images\Trinkets\t72.png" />
+    <EmbeddedResource Include="Images\Trinkets\t73.png" />
+    <EmbeddedResource Include="Images\Trinkets\t74.png" />
+    <EmbeddedResource Include="Images\Trinkets\t75.png" />
+    <EmbeddedResource Include="Images\Trinkets\t76.png" />
+    <EmbeddedResource Include="Images\Trinkets\t77.png" />
+    <EmbeddedResource Include="Images\Trinkets\t78.png" />
+    <EmbeddedResource Include="Images\Trinkets\t79.png" />
+    <EmbeddedResource Include="Images\Trinkets\t8.png" />
+    <EmbeddedResource Include="Images\Trinkets\t80.png" />
+    <EmbeddedResource Include="Images\Trinkets\t81.png" />
+    <EmbeddedResource Include="Images\Trinkets\t82.png" />
+    <EmbeddedResource Include="Images\Trinkets\t83.png" />
+    <EmbeddedResource Include="Images\Trinkets\t84.png" />
+    <EmbeddedResource Include="Images\Trinkets\t85.png" />
+    <EmbeddedResource Include="Images\Trinkets\t86.png" />
+    <EmbeddedResource Include="Images\Trinkets\t87.png" />
+    <EmbeddedResource Include="Images\Trinkets\t88.png" />
+    <EmbeddedResource Include="Images\Trinkets\t89.png" />
+    <EmbeddedResource Include="Images\Trinkets\t9.png" />
+    <EmbeddedResource Include="Images\Trinkets\t90.png" />
+    <EmbeddedResource Include="Images\Trinkets\t91.png" />
+    <EmbeddedResource Include="Images\Trinkets\t92.png" />
+    <EmbeddedResource Include="Images\Trinkets\t93.png" />
+    <EmbeddedResource Include="Images\Trinkets\t94.png" />
+    <EmbeddedResource Include="Images\Trinkets\t95.png" />
+    <EmbeddedResource Include="Images\Trinkets\t96.png" />
+    <EmbeddedResource Include="Images\Trinkets\t97.png" />
+    <EmbeddedResource Include="Images\Trinkets\t98.png" />
+    <EmbeddedResource Include="Images\Trinkets\t99.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Items\c1.png" />
+    <EmbeddedResource Include="Images\Items\c10.png" />
+    <EmbeddedResource Include="Images\Items\c100.png" />
+    <EmbeddedResource Include="Images\Items\c101.png" />
+    <EmbeddedResource Include="Images\Items\c102.png" />
+    <EmbeddedResource Include="Images\Items\c103.png" />
+    <EmbeddedResource Include="Images\Items\c104.png" />
+    <EmbeddedResource Include="Images\Items\c105.png" />
+    <EmbeddedResource Include="Images\Items\c106.png" />
+    <EmbeddedResource Include="Images\Items\c107.png" />
+    <EmbeddedResource Include="Images\Items\c108.png" />
+    <EmbeddedResource Include="Images\Items\c109.png" />
+    <EmbeddedResource Include="Images\Items\c11.png" />
+    <EmbeddedResource Include="Images\Items\c110.png" />
+    <EmbeddedResource Include="Images\Items\c111.png" />
+    <EmbeddedResource Include="Images\Items\c112.png" />
+    <EmbeddedResource Include="Images\Items\c113.png" />
+    <EmbeddedResource Include="Images\Items\c114.png" />
+    <EmbeddedResource Include="Images\Items\c115.png" />
+    <EmbeddedResource Include="Images\Items\c116.png" />
+    <EmbeddedResource Include="Images\Items\c117.png" />
+    <EmbeddedResource Include="Images\Items\c118.png" />
+    <EmbeddedResource Include="Images\Items\c119.png" />
+    <EmbeddedResource Include="Images\Items\c12.png" />
+    <EmbeddedResource Include="Images\Items\c120.png" />
+    <EmbeddedResource Include="Images\Items\c121.png" />
+    <EmbeddedResource Include="Images\Items\c122.png" />
+    <EmbeddedResource Include="Images\Items\c123.png" />
+    <EmbeddedResource Include="Images\Items\c124.png" />
+    <EmbeddedResource Include="Images\Items\c125.png" />
+    <EmbeddedResource Include="Images\Items\c126.png" />
+    <EmbeddedResource Include="Images\Items\c127.png" />
+    <EmbeddedResource Include="Images\Items\c128.png" />
+    <EmbeddedResource Include="Images\Items\c129.png" />
+    <EmbeddedResource Include="Images\Items\c13.png" />
+    <EmbeddedResource Include="Images\Items\c130.png" />
+    <EmbeddedResource Include="Images\Items\c131.png" />
+    <EmbeddedResource Include="Images\Items\c132.png" />
+    <EmbeddedResource Include="Images\Items\c133.png" />
+    <EmbeddedResource Include="Images\Items\c134.png" />
+    <EmbeddedResource Include="Images\Items\c135.png" />
+    <EmbeddedResource Include="Images\Items\c136.png" />
+    <EmbeddedResource Include="Images\Items\c137.png" />
+    <EmbeddedResource Include="Images\Items\c138.png" />
+    <EmbeddedResource Include="Images\Items\c139.png" />
+    <EmbeddedResource Include="Images\Items\c14.png" />
+    <EmbeddedResource Include="Images\Items\c140.png" />
+    <EmbeddedResource Include="Images\Items\c141.png" />
+    <EmbeddedResource Include="Images\Items\c142.png" />
+    <EmbeddedResource Include="Images\Items\c143.png" />
+    <EmbeddedResource Include="Images\Items\c144.png" />
+    <EmbeddedResource Include="Images\Items\c145.png" />
+    <EmbeddedResource Include="Images\Items\c146.png" />
+    <EmbeddedResource Include="Images\Items\c147.png" />
+    <EmbeddedResource Include="Images\Items\c148.png" />
+    <EmbeddedResource Include="Images\Items\c149.png" />
+    <EmbeddedResource Include="Images\Items\c15.png" />
+    <EmbeddedResource Include="Images\Items\c150.png" />
+    <EmbeddedResource Include="Images\Items\c151.png" />
+    <EmbeddedResource Include="Images\Items\c152.png" />
+    <EmbeddedResource Include="Images\Items\c153.png" />
+    <EmbeddedResource Include="Images\Items\c154.png" />
+    <EmbeddedResource Include="Images\Items\c155.png" />
+    <EmbeddedResource Include="Images\Items\c156.png" />
+    <EmbeddedResource Include="Images\Items\c157.png" />
+    <EmbeddedResource Include="Images\Items\c158.png" />
+    <EmbeddedResource Include="Images\Items\c159.png" />
+    <EmbeddedResource Include="Images\Items\c16.png" />
+    <EmbeddedResource Include="Images\Items\c160.png" />
+    <EmbeddedResource Include="Images\Items\c161.png" />
+    <EmbeddedResource Include="Images\Items\c162.png" />
+    <EmbeddedResource Include="Images\Items\c163.png" />
+    <EmbeddedResource Include="Images\Items\c164.png" />
+    <EmbeddedResource Include="Images\Items\c165.png" />
+    <EmbeddedResource Include="Images\Items\c166.png" />
+    <EmbeddedResource Include="Images\Items\c167.png" />
+    <EmbeddedResource Include="Images\Items\c168.png" />
+    <EmbeddedResource Include="Images\Items\c169.png" />
+    <EmbeddedResource Include="Images\Items\c17.png" />
+    <EmbeddedResource Include="Images\Items\c170.png" />
+    <EmbeddedResource Include="Images\Items\c171.png" />
+    <EmbeddedResource Include="Images\Items\c172.png" />
+    <EmbeddedResource Include="Images\Items\c173.png" />
+    <EmbeddedResource Include="Images\Items\c174.png" />
+    <EmbeddedResource Include="Images\Items\c175.png" />
+    <EmbeddedResource Include="Images\Items\c176.png" />
+    <EmbeddedResource Include="Images\Items\c177.png" />
+    <EmbeddedResource Include="Images\Items\c178.png" />
+    <EmbeddedResource Include="Images\Items\c179.png" />
+    <EmbeddedResource Include="Images\Items\c18.png" />
+    <EmbeddedResource Include="Images\Items\c180.png" />
+    <EmbeddedResource Include="Images\Items\c181.png" />
+    <EmbeddedResource Include="Images\Items\c182.png" />
+    <EmbeddedResource Include="Images\Items\c183.png" />
+    <EmbeddedResource Include="Images\Items\c184.png" />
+    <EmbeddedResource Include="Images\Items\c185.png" />
+    <EmbeddedResource Include="Images\Items\c186.png" />
+    <EmbeddedResource Include="Images\Items\c187.png" />
+    <EmbeddedResource Include="Images\Items\c188.png" />
+    <EmbeddedResource Include="Images\Items\c189.png" />
+    <EmbeddedResource Include="Images\Items\c19.png" />
+    <EmbeddedResource Include="Images\Items\c190.png" />
+    <EmbeddedResource Include="Images\Items\c191.png" />
+    <EmbeddedResource Include="Images\Items\c192.png" />
+    <EmbeddedResource Include="Images\Items\c193.png" />
+    <EmbeddedResource Include="Images\Items\c194.png" />
+    <EmbeddedResource Include="Images\Items\c195.png" />
+    <EmbeddedResource Include="Images\Items\c196.png" />
+    <EmbeddedResource Include="Images\Items\c197.png" />
+    <EmbeddedResource Include="Images\Items\c198.png" />
+    <EmbeddedResource Include="Images\Items\c199.png" />
+    <EmbeddedResource Include="Images\Items\c2.png" />
+    <EmbeddedResource Include="Images\Items\c20.png" />
+    <EmbeddedResource Include="Images\Items\c200.png" />
+    <EmbeddedResource Include="Images\Items\c201.png" />
+    <EmbeddedResource Include="Images\Items\c202.png" />
+    <EmbeddedResource Include="Images\Items\c203.png" />
+    <EmbeddedResource Include="Images\Items\c204.png" />
+    <EmbeddedResource Include="Images\Items\c205.png" />
+    <EmbeddedResource Include="Images\Items\c206.png" />
+    <EmbeddedResource Include="Images\Items\c207.png" />
+    <EmbeddedResource Include="Images\Items\c208.png" />
+    <EmbeddedResource Include="Images\Items\c209.png" />
+    <EmbeddedResource Include="Images\Items\c21.png" />
+    <EmbeddedResource Include="Images\Items\c210.png" />
+    <EmbeddedResource Include="Images\Items\c211.png" />
+    <EmbeddedResource Include="Images\Items\c212.png" />
+    <EmbeddedResource Include="Images\Items\c213.png" />
+    <EmbeddedResource Include="Images\Items\c214.png" />
+    <EmbeddedResource Include="Images\Items\c215.png" />
+    <EmbeddedResource Include="Images\Items\c216.png" />
+    <EmbeddedResource Include="Images\Items\c217.png" />
+    <EmbeddedResource Include="Images\Items\c218.png" />
+    <EmbeddedResource Include="Images\Items\c219.png" />
+    <EmbeddedResource Include="Images\Items\c22.png" />
+    <EmbeddedResource Include="Images\Items\c220.png" />
+    <EmbeddedResource Include="Images\Items\c221.png" />
+    <EmbeddedResource Include="Images\Items\c222.png" />
+    <EmbeddedResource Include="Images\Items\c223.png" />
+    <EmbeddedResource Include="Images\Items\c224.png" />
+    <EmbeddedResource Include="Images\Items\c225.png" />
+    <EmbeddedResource Include="Images\Items\c226.png" />
+    <EmbeddedResource Include="Images\Items\c227.png" />
+    <EmbeddedResource Include="Images\Items\c228.png" />
+    <EmbeddedResource Include="Images\Items\c229.png" />
+    <EmbeddedResource Include="Images\Items\c23.png" />
+    <EmbeddedResource Include="Images\Items\c230.png" />
+    <EmbeddedResource Include="Images\Items\c231.png" />
+    <EmbeddedResource Include="Images\Items\c232.png" />
+    <EmbeddedResource Include="Images\Items\c233.png" />
+    <EmbeddedResource Include="Images\Items\c234.png" />
+    <EmbeddedResource Include="Images\Items\c236.png" />
+    <EmbeddedResource Include="Images\Items\c237.png" />
+    <EmbeddedResource Include="Images\Items\c238.png" />
+    <EmbeddedResource Include="Images\Items\c239.png" />
+    <EmbeddedResource Include="Images\Items\c24.png" />
+    <EmbeddedResource Include="Images\Items\c240.png" />
+    <EmbeddedResource Include="Images\Items\c241.png" />
+    <EmbeddedResource Include="Images\Items\c242.png" />
+    <EmbeddedResource Include="Images\Items\c243.png" />
+    <EmbeddedResource Include="Images\Items\c244.png" />
+    <EmbeddedResource Include="Images\Items\c245.png" />
+    <EmbeddedResource Include="Images\Items\c246.png" />
+    <EmbeddedResource Include="Images\Items\c247.png" />
+    <EmbeddedResource Include="Images\Items\c248.png" />
+    <EmbeddedResource Include="Images\Items\c249.png" />
+    <EmbeddedResource Include="Images\Items\c25.png" />
+    <EmbeddedResource Include="Images\Items\c250.png" />
+    <EmbeddedResource Include="Images\Items\c251.png" />
+    <EmbeddedResource Include="Images\Items\c252.png" />
+    <EmbeddedResource Include="Images\Items\c253.png" />
+    <EmbeddedResource Include="Images\Items\c254.png" />
+    <EmbeddedResource Include="Images\Items\c255.png" />
+    <EmbeddedResource Include="Images\Items\c256.png" />
+    <EmbeddedResource Include="Images\Items\c257.png" />
+    <EmbeddedResource Include="Images\Items\c258.png" />
+    <EmbeddedResource Include="Images\Items\c259.png" />
+    <EmbeddedResource Include="Images\Items\c26.png" />
+    <EmbeddedResource Include="Images\Items\c260.png" />
+    <EmbeddedResource Include="Images\Items\c261.png" />
+    <EmbeddedResource Include="Images\Items\c262.png" />
+    <EmbeddedResource Include="Images\Items\c264.png" />
+    <EmbeddedResource Include="Images\Items\c265.png" />
+    <EmbeddedResource Include="Images\Items\c266.png" />
+    <EmbeddedResource Include="Images\Items\c267.png" />
+    <EmbeddedResource Include="Images\Items\c268.png" />
+    <EmbeddedResource Include="Images\Items\c269.png" />
+    <EmbeddedResource Include="Images\Items\c27.png" />
+    <EmbeddedResource Include="Images\Items\c270.png" />
+    <EmbeddedResource Include="Images\Items\c271.png" />
+    <EmbeddedResource Include="Images\Items\c272.png" />
+    <EmbeddedResource Include="Images\Items\c273.png" />
+    <EmbeddedResource Include="Images\Items\c274.png" />
+    <EmbeddedResource Include="Images\Items\c275.png" />
+    <EmbeddedResource Include="Images\Items\c276.png" />
+    <EmbeddedResource Include="Images\Items\c277.png" />
+    <EmbeddedResource Include="Images\Items\c278.png" />
+    <EmbeddedResource Include="Images\Items\c279.png" />
+    <EmbeddedResource Include="Images\Items\c28.png" />
+    <EmbeddedResource Include="Images\Items\c280.png" />
+    <EmbeddedResource Include="Images\Items\c281.png" />
+    <EmbeddedResource Include="Images\Items\c282.png" />
+    <EmbeddedResource Include="Images\Items\c283.png" />
+    <EmbeddedResource Include="Images\Items\c284.png" />
+    <EmbeddedResource Include="Images\Items\c285.png" />
+    <EmbeddedResource Include="Images\Items\c286.png" />
+    <EmbeddedResource Include="Images\Items\c287.png" />
+    <EmbeddedResource Include="Images\Items\c288.png" />
+    <EmbeddedResource Include="Images\Items\c289.png" />
+    <EmbeddedResource Include="Images\Items\c29.png" />
+    <EmbeddedResource Include="Images\Items\c290.png" />
+    <EmbeddedResource Include="Images\Items\c291.png" />
+    <EmbeddedResource Include="Images\Items\c292.png" />
+    <EmbeddedResource Include="Images\Items\c293.png" />
+    <EmbeddedResource Include="Images\Items\c294.png" />
+    <EmbeddedResource Include="Images\Items\c295.png" />
+    <EmbeddedResource Include="Images\Items\c296.png" />
+    <EmbeddedResource Include="Images\Items\c297.png" />
+    <EmbeddedResource Include="Images\Items\c298.png" />
+    <EmbeddedResource Include="Images\Items\c299.png" />
+    <EmbeddedResource Include="Images\Items\c3.png" />
+    <EmbeddedResource Include="Images\Items\c30.png" />
+    <EmbeddedResource Include="Images\Items\c300.png" />
+    <EmbeddedResource Include="Images\Items\c301.png" />
+    <EmbeddedResource Include="Images\Items\c302.png" />
+    <EmbeddedResource Include="Images\Items\c303.png" />
+    <EmbeddedResource Include="Images\Items\c304.png" />
+    <EmbeddedResource Include="Images\Items\c305.png" />
+    <EmbeddedResource Include="Images\Items\c306.png" />
+    <EmbeddedResource Include="Images\Items\c307.png" />
+    <EmbeddedResource Include="Images\Items\c308.png" />
+    <EmbeddedResource Include="Images\Items\c309.png" />
+    <EmbeddedResource Include="Images\Items\c31.png" />
+    <EmbeddedResource Include="Images\Items\c310.png" />
+    <EmbeddedResource Include="Images\Items\c311.png" />
+    <EmbeddedResource Include="Images\Items\c312.png" />
+    <EmbeddedResource Include="Images\Items\c313.png" />
+    <EmbeddedResource Include="Images\Items\c314.png" />
+    <EmbeddedResource Include="Images\Items\c315.png" />
+    <EmbeddedResource Include="Images\Items\c316.png" />
+    <EmbeddedResource Include="Images\Items\c317.png" />
+    <EmbeddedResource Include="Images\Items\c318.png" />
+    <EmbeddedResource Include="Images\Items\c319.png" />
+    <EmbeddedResource Include="Images\Items\c32.png" />
+    <EmbeddedResource Include="Images\Items\c320.png" />
+    <EmbeddedResource Include="Images\Items\c321.png" />
+    <EmbeddedResource Include="Images\Items\c322.png" />
+    <EmbeddedResource Include="Images\Items\c323.png" />
+    <EmbeddedResource Include="Images\Items\c324.png" />
+    <EmbeddedResource Include="Images\Items\c325.png" />
+    <EmbeddedResource Include="Images\Items\c326.png" />
+    <EmbeddedResource Include="Images\Items\c327.png" />
+    <EmbeddedResource Include="Images\Items\c328.png" />
+    <EmbeddedResource Include="Images\Items\c329.png" />
+    <EmbeddedResource Include="Images\Items\c33.png" />
+    <EmbeddedResource Include="Images\Items\c330.png" />
+    <EmbeddedResource Include="Images\Items\c331.png" />
+    <EmbeddedResource Include="Images\Items\c332.png" />
+    <EmbeddedResource Include="Images\Items\c333.png" />
+    <EmbeddedResource Include="Images\Items\c334.png" />
+    <EmbeddedResource Include="Images\Items\c335.png" />
+    <EmbeddedResource Include="Images\Items\c336.png" />
+    <EmbeddedResource Include="Images\Items\c337.png" />
+    <EmbeddedResource Include="Images\Items\c338.png" />
+    <EmbeddedResource Include="Images\Items\c339.png" />
+    <EmbeddedResource Include="Images\Items\c34.png" />
+    <EmbeddedResource Include="Images\Items\c340.png" />
+    <EmbeddedResource Include="Images\Items\c341.png" />
+    <EmbeddedResource Include="Images\Items\c342.png" />
+    <EmbeddedResource Include="Images\Items\c343.png" />
+    <EmbeddedResource Include="Images\Items\c344.png" />
+    <EmbeddedResource Include="Images\Items\c345.png" />
+    <EmbeddedResource Include="Images\Items\c346.png" />
+    <EmbeddedResource Include="Images\Items\c347.png" />
+    <EmbeddedResource Include="Images\Items\c348.png" />
+    <EmbeddedResource Include="Images\Items\c349.png" />
+    <EmbeddedResource Include="Images\Items\c35.png" />
+    <EmbeddedResource Include="Images\Items\c350.png" />
+    <EmbeddedResource Include="Images\Items\c351.png" />
+    <EmbeddedResource Include="Images\Items\c352.png" />
+    <EmbeddedResource Include="Images\Items\c353.png" />
+    <EmbeddedResource Include="Images\Items\c354.png" />
+    <EmbeddedResource Include="Images\Items\c355.png" />
+    <EmbeddedResource Include="Images\Items\c356.png" />
+    <EmbeddedResource Include="Images\Items\c357.png" />
+    <EmbeddedResource Include="Images\Items\c358.png" />
+    <EmbeddedResource Include="Images\Items\c359.png" />
+    <EmbeddedResource Include="Images\Items\c36.png" />
+    <EmbeddedResource Include="Images\Items\c360.png" />
+    <EmbeddedResource Include="Images\Items\c361.png" />
+    <EmbeddedResource Include="Images\Items\c362.png" />
+    <EmbeddedResource Include="Images\Items\c363.png" />
+    <EmbeddedResource Include="Images\Items\c364.png" />
+    <EmbeddedResource Include="Images\Items\c365.png" />
+    <EmbeddedResource Include="Images\Items\c366.png" />
+    <EmbeddedResource Include="Images\Items\c367.png" />
+    <EmbeddedResource Include="Images\Items\c368.png" />
+    <EmbeddedResource Include="Images\Items\c369.png" />
+    <EmbeddedResource Include="Images\Items\c37.png" />
+    <EmbeddedResource Include="Images\Items\c370.png" />
+    <EmbeddedResource Include="Images\Items\c371.png" />
+    <EmbeddedResource Include="Images\Items\c372.png" />
+    <EmbeddedResource Include="Images\Items\c373.png" />
+    <EmbeddedResource Include="Images\Items\c374.png" />
+    <EmbeddedResource Include="Images\Items\c375.png" />
+    <EmbeddedResource Include="Images\Items\c376.png" />
+    <EmbeddedResource Include="Images\Items\c377.png" />
+    <EmbeddedResource Include="Images\Items\c378.png" />
+    <EmbeddedResource Include="Images\Items\c379.png" />
+    <EmbeddedResource Include="Images\Items\c38.png" />
+    <EmbeddedResource Include="Images\Items\c380.png" />
+    <EmbeddedResource Include="Images\Items\c381.png" />
+    <EmbeddedResource Include="Images\Items\c382.png" />
+    <EmbeddedResource Include="Images\Items\c383.png" />
+    <EmbeddedResource Include="Images\Items\c384.png" />
+    <EmbeddedResource Include="Images\Items\c385.png" />
+    <EmbeddedResource Include="Images\Items\c386.png" />
+    <EmbeddedResource Include="Images\Items\c387.png" />
+    <EmbeddedResource Include="Images\Items\c388.png" />
+    <EmbeddedResource Include="Images\Items\c389.png" />
+    <EmbeddedResource Include="Images\Items\c39.png" />
+    <EmbeddedResource Include="Images\Items\c390.png" />
+    <EmbeddedResource Include="Images\Items\c391.png" />
+    <EmbeddedResource Include="Images\Items\c392.png" />
+    <EmbeddedResource Include="Images\Items\c393.png" />
+    <EmbeddedResource Include="Images\Items\c394.png" />
+    <EmbeddedResource Include="Images\Items\c395.png" />
+    <EmbeddedResource Include="Images\Items\c396.png" />
+    <EmbeddedResource Include="Images\Items\c397.png" />
+    <EmbeddedResource Include="Images\Items\c398.png" />
+    <EmbeddedResource Include="Images\Items\c399.png" />
+    <EmbeddedResource Include="Images\Items\c4.png" />
+    <EmbeddedResource Include="Images\Items\c40.png" />
+    <EmbeddedResource Include="Images\Items\c400.png" />
+    <EmbeddedResource Include="Images\Items\c401.png" />
+    <EmbeddedResource Include="Images\Items\c402.png" />
+    <EmbeddedResource Include="Images\Items\c403.png" />
+    <EmbeddedResource Include="Images\Items\c404.png" />
+    <EmbeddedResource Include="Images\Items\c405.png" />
+    <EmbeddedResource Include="Images\Items\c406.png" />
+    <EmbeddedResource Include="Images\Items\c407.png" />
+    <EmbeddedResource Include="Images\Items\c408.png" />
+    <EmbeddedResource Include="Images\Items\c409.png" />
+    <EmbeddedResource Include="Images\Items\c41.png" />
+    <EmbeddedResource Include="Images\Items\c410.png" />
+    <EmbeddedResource Include="Images\Items\c411.png" />
+    <EmbeddedResource Include="Images\Items\c412.png" />
+    <EmbeddedResource Include="Images\Items\c413.png" />
+    <EmbeddedResource Include="Images\Items\c414.png" />
+    <EmbeddedResource Include="Images\Items\c415.png" />
+    <EmbeddedResource Include="Images\Items\c416.png" />
+    <EmbeddedResource Include="Images\Items\c417.png" />
+    <EmbeddedResource Include="Images\Items\c418.png" />
+    <EmbeddedResource Include="Images\Items\c419.png" />
+    <EmbeddedResource Include="Images\Items\c42.png" />
+    <EmbeddedResource Include="Images\Items\c420.png" />
+    <EmbeddedResource Include="Images\Items\c421.png" />
+    <EmbeddedResource Include="Images\Items\c422.png" />
+    <EmbeddedResource Include="Images\Items\c423.png" />
+    <EmbeddedResource Include="Images\Items\c424.png" />
+    <EmbeddedResource Include="Images\Items\c425.png" />
+    <EmbeddedResource Include="Images\Items\c426.png" />
+    <EmbeddedResource Include="Images\Items\c427.png" />
+    <EmbeddedResource Include="Images\Items\c428.png" />
+    <EmbeddedResource Include="Images\Items\c429.png" />
+    <EmbeddedResource Include="Images\Items\c430.png" />
+    <EmbeddedResource Include="Images\Items\c431.png" />
+    <EmbeddedResource Include="Images\Items\c432.png" />
+    <EmbeddedResource Include="Images\Items\c433.png" />
+    <EmbeddedResource Include="Images\Items\c434.png" />
+    <EmbeddedResource Include="Images\Items\c435.png" />
+    <EmbeddedResource Include="Images\Items\c436.png" />
+    <EmbeddedResource Include="Images\Items\c437.png" />
+    <EmbeddedResource Include="Images\Items\c438.png" />
+    <EmbeddedResource Include="Images\Items\c439.png" />
+    <EmbeddedResource Include="Images\Items\c44.png" />
+    <EmbeddedResource Include="Images\Items\c440.png" />
+    <EmbeddedResource Include="Images\Items\c441.png" />
+    <EmbeddedResource Include="Images\Items\c442.png" />
+    <EmbeddedResource Include="Images\Items\c443.png" />
+    <EmbeddedResource Include="Images\Items\c444.png" />
+    <EmbeddedResource Include="Images\Items\c445.png" />
+    <EmbeddedResource Include="Images\Items\c446.png" />
+    <EmbeddedResource Include="Images\Items\c447.png" />
+    <EmbeddedResource Include="Images\Items\c448.png" />
+    <EmbeddedResource Include="Images\Items\c449.png" />
+    <EmbeddedResource Include="Images\Items\c45.png" />
+    <EmbeddedResource Include="Images\Items\c450.png" />
+    <EmbeddedResource Include="Images\Items\c451.png" />
+    <EmbeddedResource Include="Images\Items\c452.png" />
+    <EmbeddedResource Include="Images\Items\c453.png" />
+    <EmbeddedResource Include="Images\Items\c454.png" />
+    <EmbeddedResource Include="Images\Items\c455.png" />
+    <EmbeddedResource Include="Images\Items\c456.png" />
+    <EmbeddedResource Include="Images\Items\c457.png" />
+    <EmbeddedResource Include="Images\Items\c458.png" />
+    <EmbeddedResource Include="Images\Items\c459.png" />
+    <EmbeddedResource Include="Images\Items\c46.png" />
+    <EmbeddedResource Include="Images\Items\c460.png" />
+    <EmbeddedResource Include="Images\Items\c461.png" />
+    <EmbeddedResource Include="Images\Items\c462.png" />
+    <EmbeddedResource Include="Images\Items\c463.png" />
+    <EmbeddedResource Include="Images\Items\c464.png" />
+    <EmbeddedResource Include="Images\Items\c465.png" />
+    <EmbeddedResource Include="Images\Items\c466.png" />
+    <EmbeddedResource Include="Images\Items\c467.png" />
+    <EmbeddedResource Include="Images\Items\c468.png" />
+    <EmbeddedResource Include="Images\Items\c469.png" />
+    <EmbeddedResource Include="Images\Items\c47.png" />
+    <EmbeddedResource Include="Images\Items\c470.png" />
+    <EmbeddedResource Include="Images\Items\c471.png" />
+    <EmbeddedResource Include="Images\Items\c472.png" />
+    <EmbeddedResource Include="Images\Items\c473.png" />
+    <EmbeddedResource Include="Images\Items\c474.png" />
+    <EmbeddedResource Include="Images\Items\c475.png" />
+    <EmbeddedResource Include="Images\Items\c476.png" />
+    <EmbeddedResource Include="Images\Items\c477.png" />
+    <EmbeddedResource Include="Images\Items\c478.png" />
+    <EmbeddedResource Include="Images\Items\c479.png" />
+    <EmbeddedResource Include="Images\Items\c48.png" />
+    <EmbeddedResource Include="Images\Items\c480.png" />
+    <EmbeddedResource Include="Images\Items\c481.png" />
+    <EmbeddedResource Include="Images\Items\c482.png" />
+    <EmbeddedResource Include="Images\Items\c483.png" />
+    <EmbeddedResource Include="Images\Items\c484.png" />
+    <EmbeddedResource Include="Images\Items\c485.png" />
+    <EmbeddedResource Include="Images\Items\c486.png" />
+    <EmbeddedResource Include="Images\Items\c487.png" />
+    <EmbeddedResource Include="Images\Items\c488.png" />
+    <EmbeddedResource Include="Images\Items\c489.png" />
+    <EmbeddedResource Include="Images\Items\c49.png" />
+    <EmbeddedResource Include="Images\Items\c490.png" />
+    <EmbeddedResource Include="Images\Items\c491.png" />
+    <EmbeddedResource Include="Images\Items\c492.png" />
+    <EmbeddedResource Include="Images\Items\c493.png" />
+    <EmbeddedResource Include="Images\Items\c494.png" />
+    <EmbeddedResource Include="Images\Items\c495.png" />
+    <EmbeddedResource Include="Images\Items\c496.png" />
+    <EmbeddedResource Include="Images\Items\c497.png" />
+    <EmbeddedResource Include="Images\Items\c498.png" />
+    <EmbeddedResource Include="Images\Items\c499.png" />
+    <EmbeddedResource Include="Images\Items\c5.png" />
+    <EmbeddedResource Include="Images\Items\c50.png" />
+    <EmbeddedResource Include="Images\Items\c500.png" />
+    <EmbeddedResource Include="Images\Items\c501.png" />
+    <EmbeddedResource Include="Images\Items\c502.png" />
+    <EmbeddedResource Include="Images\Items\c503.png" />
+    <EmbeddedResource Include="Images\Items\c504.png" />
+    <EmbeddedResource Include="Images\Items\c505.png" />
+    <EmbeddedResource Include="Images\Items\c506.png" />
+    <EmbeddedResource Include="Images\Items\c507.png" />
+    <EmbeddedResource Include="Images\Items\c508.png" />
+    <EmbeddedResource Include="Images\Items\c509.png" />
+    <EmbeddedResource Include="Images\Items\c51.png" />
+    <EmbeddedResource Include="Images\Items\c510.png" />
+    <EmbeddedResource Include="Images\Items\c52.png" />
+    <EmbeddedResource Include="Images\Items\c53.png" />
+    <EmbeddedResource Include="Images\Items\c54.png" />
+    <EmbeddedResource Include="Images\Items\c55.png" />
+    <EmbeddedResource Include="Images\Items\c56.png" />
+    <EmbeddedResource Include="Images\Items\c57.png" />
+    <EmbeddedResource Include="Images\Items\c58.png" />
+    <EmbeddedResource Include="Images\Items\c6.png" />
+    <EmbeddedResource Include="Images\Items\c60.png" />
+    <EmbeddedResource Include="Images\Items\c62.png" />
+    <EmbeddedResource Include="Images\Items\c63.png" />
+    <EmbeddedResource Include="Images\Items\c64.png" />
+    <EmbeddedResource Include="Images\Items\c65.png" />
+    <EmbeddedResource Include="Images\Items\c66.png" />
+    <EmbeddedResource Include="Images\Items\c67.png" />
+    <EmbeddedResource Include="Images\Items\c68.png" />
+    <EmbeddedResource Include="Images\Items\c69.png" />
+    <EmbeddedResource Include="Images\Items\c7.png" />
+    <EmbeddedResource Include="Images\Items\c70.png" />
+    <EmbeddedResource Include="Images\Items\c71.png" />
+    <EmbeddedResource Include="Images\Items\c72.png" />
+    <EmbeddedResource Include="Images\Items\c73.png" />
+    <EmbeddedResource Include="Images\Items\c74.png" />
+    <EmbeddedResource Include="Images\Items\c75.png" />
+    <EmbeddedResource Include="Images\Items\c76.png" />
+    <EmbeddedResource Include="Images\Items\c77.png" />
+    <EmbeddedResource Include="Images\Items\c78.png" />
+    <EmbeddedResource Include="Images\Items\c79.png" />
+    <EmbeddedResource Include="Images\Items\c8.png" />
+    <EmbeddedResource Include="Images\Items\c80.png" />
+    <EmbeddedResource Include="Images\Items\c81.png" />
+    <EmbeddedResource Include="Images\Items\c82.png" />
+    <EmbeddedResource Include="Images\Items\c83.png" />
+    <EmbeddedResource Include="Images\Items\c84.png" />
+    <EmbeddedResource Include="Images\Items\c85.png" />
+    <EmbeddedResource Include="Images\Items\c86.png" />
+    <EmbeddedResource Include="Images\Items\c87.png" />
+    <EmbeddedResource Include="Images\Items\c88.png" />
+    <EmbeddedResource Include="Images\Items\c89.png" />
+    <EmbeddedResource Include="Images\Items\c9.png" />
+    <EmbeddedResource Include="Images\Items\c90.png" />
+    <EmbeddedResource Include="Images\Items\c91.png" />
+    <EmbeddedResource Include="Images\Items\c92.png" />
+    <EmbeddedResource Include="Images\Items\c93.png" />
+    <EmbeddedResource Include="Images\Items\c94.png" />
+    <EmbeddedResource Include="Images\Items\c95.png" />
+    <EmbeddedResource Include="Images\Items\c96.png" />
+    <EmbeddedResource Include="Images\Items\c97.png" />
+    <EmbeddedResource Include="Images\Items\c98.png" />
+    <EmbeddedResource Include="Images\Items\c99.png" />
+    <EmbeddedResource Include="Images\Items\questionmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SoundFun\delete16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SoundFun\edit16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SoundFun\new24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SoundFun\play16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\SoundFun\pause24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\SoundFun\play24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ring.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\adult.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\bob.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\conjoined.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\funguy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\guppy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\leviathan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\mom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\ohcrap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\seraphim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\spiderbabytrans.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\spun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\superbum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\beelzebub.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Transformations\bookworm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\main.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\transformations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\smeltedtrinkets.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\soundfun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\external.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\external32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\external3.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

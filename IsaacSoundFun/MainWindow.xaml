@@ -27,9 +27,6 @@
             <Label Grid.Column="3" x:Name="nowPlayingLabel" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Margin="0,3,3,3"/>
         </Grid>
         <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,40,0,35">
-            <!--<WrapPanel  x:Name="mainPanel" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical"/>-->
-            <!--<Grid x:Name="mainGrid"/>-->
-            <!--<UniformGrid x:Name="mainGrid" Columns="1"/>-->
             <StackPanel  x:Name="mainPanel" Orientation="Vertical"/>
         </ScrollViewer>
     </Grid>

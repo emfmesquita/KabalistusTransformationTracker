@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using KabalistusCommons.Isaac;
+using KabalistusCommons.Model;
 
 namespace IsaacSoundFun.Model {
     public class SoundDialogModel : BaseModel {

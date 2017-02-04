@@ -6,6 +6,8 @@ namespace KabalistusCommons.Isaac {
 
         List<int> GetItemsTouchedList();
 
+        List<Trinket> GetSmeltedTrinkets(); 
+
         bool IsItemBlacklisted(Item item);
 
         int GetFloorCurses();

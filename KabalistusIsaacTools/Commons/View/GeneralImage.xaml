@@ -1,0 +1,12 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             x:Class="KabalistusIsaacTools.Commons.View.GeneralImage"
+             mc:Ignorable="d" 
+             d:DesignHeight="64" d:DesignWidth="64">
+    <Grid Width="64" Height="64" x:Name="ImageGrid">
+        <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="Image"/>
+    </Grid>
+</UserControl>

@@ -27,6 +27,10 @@ namespace KabalistusCommons.Isaac {
             return TouchedItems;
         }
 
+        public List<Trinket> GetSmeltedTrinkets() {
+            return new List<Trinket>();
+        }
+
         public bool IsItemBlacklisted(Item item) {
             return GetPlayerManagerInfo(ItemBlacklistOffset + item.Id, 1) > 0;
         }

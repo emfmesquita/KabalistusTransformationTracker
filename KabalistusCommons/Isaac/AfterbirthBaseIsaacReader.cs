@@ -32,6 +32,7 @@ namespace KabalistusCommons.Isaac {
         public abstract int GetFloorCurses();
         public abstract int GetTimeCounter();
         public abstract bool IsGamePaused();
+        public abstract List<Trinket> GetSmeltedTrinkets();
         protected abstract int GetTouchedItensListInitOffset();
     }
 }
