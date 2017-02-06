@@ -54,7 +54,7 @@ namespace KabalistusIsaacTools.SmeltedTrinkets {
 
                 toAdd.ToList().ForEach(pair => {
                     var trinket = pair.Value;
-                    var resource = $"KabalistusIsaacTools.Images.Trinkets.t{trinket.Id}.png";
+                    var resource = ResourcesUtil.TrinketResource(trinket.Id);
                     var imageModel = new GeneralImageModel(resource, trinket.I18N, 0, 0, 2, Visibility.Visible, Cursors.Hand, 64, 64);
                     var trinketImage = new GeneralImage(imageModel, BitmapScalingMode.NearestNeighbor, MouseLeftButtonDownOnTrinketImage);
                     MainPanel.Children.Insert(pair.Key, trinketImage);

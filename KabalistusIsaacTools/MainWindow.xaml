@@ -1,11 +1,8 @@
-﻿<Window xmlns:TransformationTracker="clr-namespace:KabalistusIsaacTools.TransformationTracker" 
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KabalistusIsaacTools"
-        xmlns:SmeltedTrinkets="clr-namespace:KabalistusIsaacTools.SmeltedTrinkets" 
-        xmlns:SoundFun="clr-namespace:KabalistusIsaacTools.SoundFun" 
         x:Class="KabalistusIsaacTools.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" WindowStartupLocation="CenterScreen" MinHeight="0" MinWidth="200" Icon="Images/Icons/main.png" KeyDown="OnKeyDown">
@@ -17,38 +14,6 @@
             <Label x:Name="StatusLabel" Content="Isaac proccess not found. Still searching..."/>
         </StatusBar>
         <TabControl x:Name="Tabs" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,35">
-            <TabItem x:Name="TransformationTrackerTab">
-                <TabItem.Header>
-                    <Grid>
-                        <Image Width="16" Source="Images/Icons/transformations.png" HorizontalAlignment="Left"/>
-                        <Label Content="Transformations" Margin="16,0,12,0"/>
-                        <Button Width="12" Height="12" HorizontalAlignment="Right" ToolTip="To External Window" Click="ExternalTransformationTracker">
-                            <Image Width="8" Source="Images/Icons/external3.png"/>
-                        </Button>
-                    </Grid>
-                </TabItem.Header>
-                <Grid x:Name="TransformationTrackerTabGrid">
-                    <TransformationTracker:TransformationTracker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="TransformationTracker"/>
-                </Grid>
-            </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <Grid>
-                        <Image Width="16" Source="Images/Icons/smeltedtrinkets.png" HorizontalAlignment="Left"/>
-                        <Label Content="Smelted Trinkets" Margin="16,0,0,0"/>
-                    </Grid>
-                </TabItem.Header>
-                <SmeltedTrinkets:SmeltedTrinkets HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SmeltedTrinkets"/>
-            </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <Grid>
-                        <Image Width="16" Source="Images/Icons/soundfun.png" HorizontalAlignment="Left"/>
-                        <Label Content="Sound Fun" Margin="16,0,0,0"/>
-                    </Grid>
-                </TabItem.Header>
-                <SoundFun:SoundFun HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="SoundFun"/>
-            </TabItem>
         </TabControl>
     </Grid>
 </Window>

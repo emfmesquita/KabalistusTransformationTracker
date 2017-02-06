@@ -35,7 +35,11 @@ namespace KabalistusCommons.Utils {
         };
 
         public static MemoryQuery PlayerManagerPlayerListOffsetQuery = new MemoryQuery() {
-            SearchInt = new[] { 0x8B, 0x35, 0x00, 0x00, 0x00, 0x00, 0x8B, 0x86, 0x00, 0x00, 0x00, 0x00, 0x2B, 0x86, 0x00, 0x00, 0x00, 0x00 },
+            SearchInt =
+                new[] {
+                    0x8B, 0x35, 0x00, 0x00, 0x00, 0x00, 0x8B, 0x86, 0x00, 0x00, 0x00, 0x00, 0x2B, 0x86, 0x00, 0x00, 0x00,
+                    0x00
+                },
             SearchPattern = "bb????bb????bbvv??"
         };
 
@@ -88,23 +92,30 @@ namespace KabalistusCommons.Utils {
                 versionChar = InnerReadInt(versionAddress + 28, 1, true);
                 _version = versionChar == '+' ? IsaacVersion.AfterbirthPlus : IsaacVersion.Afterbirth;
             } else {
-                var isAntibirth = process.Modules.Cast<ProcessModule>().Any(module => "zhlRemix2.dll".Equals(module.ModuleName));
+                var isAntibirth =
+                    process.Modules.Cast<ProcessModule>().Any(module => "zhlRemix2.dll".Equals(module.ModuleName));
                 _version = isAntibirth ? IsaacVersion.Antibirth : IsaacVersion.Rebirth;
             }
 
             var instructSearchOffset = isAfterbirth ? 1500000 : 1100000;
-            _playerManagerInstructPointer = Search(PlayerManagerInstructPointerQuery, false, instructSearchOffset).QueryResult;
+            _playerManagerInstructPointer =
+                Search(PlayerManagerInstructPointerQuery, false, instructSearchOffset).QueryResult;
 
             var playerListSearchOffset = isAfterbirth ? 50000 : 120000;
-            _playerManagerPlayerListOffset = Search(PlayerManagerPlayerListOffsetQuery, false, playerListSearchOffset).QueryResult;
+            _playerManagerPlayerListOffset =
+                Search(PlayerManagerPlayerListOffsetQuery, false, playerListSearchOffset).QueryResult;
             _loadingMemory = false;
 
             CallbackAsync(callback, Status.ReadyStatus);
         }
 
+        public static int GetPlayerManagetInstruct() {
+            return ReadInt(_playerManagerInstructPointer, 4);
+        }
+
         public static int GetNumberOfPlayers(int playerManagetInstruct = -1) {
             if (playerManagetInstruct == -1) {
-                playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
+                playerManagetInstruct = GetPlayerManagetInstruct();
                 if (playerManagetInstruct == 0) {
                     return 0;
                 }
@@ -128,7 +139,7 @@ namespace KabalistusCommons.Utils {
         }
 
         public static int GetPlayerManagerInfo(int offset, int size) {
-            var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
+            var playerManagetInstruct = GetPlayerManagetInstruct();
             if (playerManagetInstruct == 0) {
                 return 0;
             }
@@ -148,7 +159,7 @@ namespace KabalistusCommons.Utils {
         }
 
         private static int GetPlayer(int playerOffset) {
-            var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
+            var playerManagetInstruct = GetPlayerManagetInstruct();
             if (playerManagetInstruct == 0) {
                 return 0;
             }

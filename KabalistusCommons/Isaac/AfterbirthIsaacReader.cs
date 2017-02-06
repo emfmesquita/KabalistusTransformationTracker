@@ -34,6 +34,21 @@ namespace KabalistusCommons.Isaac {
             return false;
         }
 
+        public override List<Pill> GetPillPool() {
+            // TODO
+            return new List<Pill>();
+        }
+
+        public override Dictionary<int, int> GetPillCount() {
+            // TODO
+            return new Dictionary<int, int>();
+        }
+
+        public override int IndexOfLastPillTaken() {
+            // TODO
+            return 0;
+        }
+
         protected override int GetTouchedItensListInitOffset() {
             return TouchedItensListInitOffset;
         }

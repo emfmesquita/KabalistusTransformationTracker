@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using KabalistusIsaacTools.Commons.View;
 using KabalistusIsaacTools.Utils;
+using static KabalistusIsaacTools.Utils.ResourcesUtil;
 
 namespace KabalistusIsaacTools.TransformationTracker.Model {
     public class TransformationItem : GeneralImageModel {
@@ -27,7 +28,7 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
             Scale = scale;
         }
 
-        public TransformationItem(string i18N, int id, int x = 0, int y = 0, float scale = 1, float blockScale = 1) : this(i18N, ToResource(id), x, y, scale) {
+        public TransformationItem(string i18N, int id, int x = 0, int y = 0, float scale = 1, float blockScale = 1) : this(i18N, ItemResource(id), x, y, scale) {
             BlockImageModel = new GeneralImageModel(BlockImageResource) {
                 Visibility = Visibility.Hidden
             };
@@ -99,10 +100,6 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
                 if (BlockImageModel == null) return;
                 BlockImageModel.Image = BlockImage(_blockColor);
             }
-        }
-
-        private static string ToResource(int id) {
-            return $"KabalistusIsaacTools.Images.Items.c{id}.png";
         }
 
         private static BitmapImage UnlitImage(string resource) {

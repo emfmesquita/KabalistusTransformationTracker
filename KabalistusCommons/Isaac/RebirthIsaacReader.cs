@@ -49,6 +49,21 @@ namespace KabalistusCommons.Isaac {
             return false;
         }
 
+        public List<Pill> GetPillPool() {
+            // TODO
+            return new List<Pill>();
+        }
+
+        public Dictionary<int, int> GetPillCount() {
+            // TODO
+            return new Dictionary<int, int>();
+        }
+
+        public int IndexOfLastPillTaken() {
+            // TODO
+            return 0;
+        }
+
         private void ReadNode(int nodePointer) {
             if (nodePointer == 0 || !IsFilled(nodePointer)) {
                 return;

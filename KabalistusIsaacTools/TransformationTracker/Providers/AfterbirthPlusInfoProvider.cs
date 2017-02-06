@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using KabalistusCommons.Isaac;
 using KabalistusIsaacTools.TransformationTracker.Model;
 using static KabalistusIsaacTools.TransformationTracker.Model.AfterbirthPlusTransformations;
@@ -32,6 +33,12 @@ namespace KabalistusIsaacTools.TransformationTracker.Providers {
         }
 
         private void UpdateAdultTransformation(Transformation adultTransformation) {
+            var pool = _reader.GetPillPool();
+            var lastIndex = _reader.IndexOfLastPillTaken();
+            if (lastIndex != 0) {
+                Console.WriteLine(pool[lastIndex-1]);
+            }
+
             var counter = GetPlayerInfo(Adult.MemoryOffset);
             counter = counter > 3 ? 3 : counter;
 

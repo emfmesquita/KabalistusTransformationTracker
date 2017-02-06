@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using KabalistusCommons.Utils;
 using static KabalistusCommons.Utils.MemoryReader;
 
@@ -14,17 +12,16 @@ namespace KabalistusCommons.Isaac {
         private const int TimeCounterOffset = 2178748;
         private const int GamePausedOffset = 1245636;
         private const int SmeltedTrinketsPointerOffset = 7588;
+        private const int PillsOffset = 33028;
+        private const int PillCountPointerOffset = 7624;
+        private const int LastPillTakenOffset = 7680;
 
         public override bool HasItem(Item item) {
             var hasItemPointer = GetPlayerInfo(HasItemOffset);
             if (hasItemPointer == 0) {
                 return false;
             }
-
             var hasItem = ReadInt(hasItemPointer + 4 * item.Id, 4);
-
-            var smelted = GetSmeltedTrinkets();
-            Console.WriteLine(string.Join(", ", smelted));
             return hasItem > 0;
         }
 
@@ -60,6 +57,37 @@ namespace KabalistusCommons.Isaac {
 
         public override bool IsGamePaused() {
             return GetPlayerManagerInfo(GamePausedOffset, 4) > 0;
+        }
+
+        public override List<Pill> GetPillPool() {
+            var pillPool = new List<Pill>();
+            var playermanagetInstruct = GetPlayerManagetInstruct();
+            if (playermanagetInstruct == 0) {
+                return pillPool;
+            }
+            var pillPoolArray = Read(playermanagetInstruct + PillsOffset, 13 * 4);
+            for (var i = 0; i < 13; i++) {
+                var pillId = MemoryReaderUtils.ConvertLittleEndian(pillPoolArray, i*4, 4);
+                pillPool.Add(Pills.AllPills[pillId]);
+            }
+            return pillPool;
+        }
+
+        public override Dictionary<int, int> GetPillCount() {
+            var pillCount = new Dictionary<int, int>();
+            var pillCountOffset = GetPlayerInfo(PillCountPointerOffset);
+            if (pillCountOffset == 0) {
+                return pillCount;
+            }
+            var pillCountArray = Read(pillCountOffset, 47 * 4);
+            for (var i = 0; i < 47; i++) {
+                pillCount.Add(i, MemoryReaderUtils.ConvertLittleEndian(pillCountArray, i * 4, 4));
+            }
+            return pillCount;
+        }
+
+        public override int IndexOfLastPillTaken() {
+            return GetPlayerInfo(LastPillTakenOffset);
         }
 
         protected override int GetTouchedItensListInitOffset() {

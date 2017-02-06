@@ -149,7 +149,6 @@ namespace KabalistusIsaacTools.SoundFun {
                         row?.UpdateSoundLabelColor();
                     }
                 });
-
             };
             filePooling.AutoReset = true;
             filePooling.Enabled = true;

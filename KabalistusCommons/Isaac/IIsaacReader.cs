@@ -15,5 +15,11 @@ namespace KabalistusCommons.Isaac {
         int GetTimeCounter();
 
         bool IsGamePaused();
+
+        List<Pill> GetPillPool();
+
+        Dictionary<int, int> GetPillCount();
+
+        int IndexOfLastPillTaken();
     }
 }

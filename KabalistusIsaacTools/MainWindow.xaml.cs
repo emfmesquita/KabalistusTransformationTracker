@@ -1,15 +1,12 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using KabalistusCommons.Isaac;
 using KabalistusCommons.Utils;
 using KabalistusCommons.View;
 using KabalistusIsaacTools.Commons.View;
-using KabalistusIsaacTools.TransformationTracker.Model;
 using KabalistusIsaacTools.Utils;
+using static KabalistusIsaacTools.Utils.ResourcesUtil;
 
 namespace KabalistusIsaacTools {
     /// <summary>
@@ -33,16 +30,29 @@ namespace KabalistusIsaacTools {
 
             Title = FormUtils.BuiltTitle("Kabalistus Isaac Tools", this);
 
+            TransformationTrackerElement = new TransformationTracker.TransformationTracker();
+            CreateTab(ItemResource(145), "Transformation Tracker", TransformationTrackerElement);
+
+            SmeltedTrinketsElement = new SmeltedTrinkets.SmeltedTrinkets();
+            CreateTab(ItemResource(479), "Smelted Trinkets", SmeltedTrinketsElement);
+
+            SoundFunElement = new SoundFun.SoundFun();
+            CreateTab(ItemResource(4), "Sound Fun", SoundFunElement);
+
             CreateBindings();
 
             var reader = new AfterbirthPlusIsaacReader();
             MemoryReader.Init((status) => {
                 _statusBarModel.Status = status.Message;
-                SmeltedTrinkets.UpdateTrinkets(reader.GetSmeltedTrinkets());
-                SoundFun.Update(status, reader);
-                TransformationTracker.Update(status);
+                SmeltedTrinketsElement.UpdateTrinkets(reader.GetSmeltedTrinkets());
+                SoundFunElement.Update(status, reader);
+                TransformationTrackerElement.Update(status);
             }, 1000);
         }
+
+        public TransformationTracker.TransformationTracker TransformationTrackerElement { get; }
+        public SmeltedTrinkets.SmeltedTrinkets SmeltedTrinketsElement { get; }
+        public SoundFun.SoundFun SoundFunElement { get; }
 
         private void CreateBindings() {
             // status Bar
@@ -56,17 +66,10 @@ namespace KabalistusIsaacTools {
             CreationMode.KeyPressed(e.Key);
         }
 
-        private void ExternalTransformationTracker(object sender, RoutedEventArgs e) {
-            Tabs.Items.Remove(TransformationTrackerTab);
-            TransformationTrackerTabGrid.Children.Remove(TransformationTracker);
-
-            var transformationTrackerExtraWindowModel = new ExtraWindowModel("KabalistusIsaacTools.Images.Items.c145.png", "Transformation Tracker");
-            var transformationTrackerExtraWindow = new ExtraWindow(transformationTrackerExtraWindowModel, () => {
-                TransformationTrackerTabGrid.Children.Add(TransformationTracker);
-                Tabs.Items.Insert(0, TransformationTrackerTab);
-            });
-            transformationTrackerExtraWindow.Show(TransformationTracker);
-            TransformationTrackerTab.Focus();
+        private void CreateTab(string iconREsource, string label, UIElement content) {
+            var tabModel = new ToolTabModel(iconREsource, label);
+            var tab = new ToolTab(tabModel, content, Tabs);
+            Tabs.Items.Add(tab);
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System.Globalization;
+using static KabalistusIsaacTools.Utils.ResourcesUtil;
 
 namespace KabalistusIsaacTools.TransformationTracker.Model {
     public class TransformationPill : TransformationItem {
 
         private int _pillId;
 
-        public TransformationPill(string i18N, int pillId, int x = 0, int y = 0, float scale = 1) : base(i18N, ToResource(pillId), x, y, scale) {
+        public TransformationPill(string i18N, int pillId, int x = 0, int y = 0, float scale = 1) : base(i18N, PillResource(pillId), x, y, scale) {
             PillId = pillId;
         }
 
@@ -17,12 +18,8 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
             set {
                 if (value == _pillId) return;
                 _pillId = value;
-                Resource = ToResource(_pillId);
+                Resource = PillResource(_pillId);
             }
-        }
-
-        private static string ToResource(int pillNumber) {
-            return $"KabalistusIsaacTools.Images.Pills.pill{pillNumber}.png";
         }
 
         public override string ToString() {
