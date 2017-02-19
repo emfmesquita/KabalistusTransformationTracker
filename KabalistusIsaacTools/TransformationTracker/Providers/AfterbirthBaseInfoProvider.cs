@@ -13,7 +13,7 @@ namespace KabalistusIsaacTools.TransformationTracker.Providers {
                 }
                 UpdateTransformationItem(item, hasBumItem, IsItemBlacklisted(item));
             });
-            superBumTransformation.ShowTransformationImage(counter == 3);
+            superBumTransformation.ShowTransformationImage = counter == 3;
             superBumTransformation.Count = counter.ToString();
         }
 

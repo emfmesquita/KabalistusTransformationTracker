@@ -6,8 +6,6 @@ namespace KabalistusCommons.Isaac {
 
         List<int> GetItemsTouchedList();
 
-        List<Trinket> GetSmeltedTrinkets(); 
-
         bool IsItemBlacklisted(Item item);
 
         int GetFloorCurses();
@@ -16,9 +14,9 @@ namespace KabalistusCommons.Isaac {
 
         bool IsGamePaused();
 
-        List<Pill> GetPillPool();
+        List<Item> GetPillPool();
 
-        Dictionary<int, int> GetPillCount();
+        List<bool> GetPillKnowledge();
 
         int IndexOfLastPillTaken();
     }

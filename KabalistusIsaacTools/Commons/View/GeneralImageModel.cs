@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Windows;
@@ -21,6 +20,7 @@ namespace KabalistusIsaacTools.Commons.View {
         private string _formattedMargin = "0,0,0,0";
         private Cursor _cursor = Cursors.Arrow;
         private Visibility _visibility = Visibility.Visible;
+        private Visibility _tooltipVisibility = Visibility.Hidden;
         private Transform _translate;
 
         private int _x;
@@ -67,7 +67,7 @@ namespace KabalistusIsaacTools.Commons.View {
                 return _image;
             }
             set {
-                if (value.Equals(_image)) return;
+                if (Equals(value, _image)) return;
                 _image = value;
                 NotifyPropertyChanged();
             }
@@ -92,6 +92,7 @@ namespace KabalistusIsaacTools.Commons.View {
             set {
                 if (value == _tooltip) return;
                 _tooltip = value;
+                TooltipVisibility = _tooltip != null ? Visibility.Visible : Visibility.Hidden;
                 NotifyPropertyChanged();
             }
         }
@@ -164,6 +165,18 @@ namespace KabalistusIsaacTools.Commons.View {
             set {
                 if (value == _visibility) return;
                 _visibility = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public Visibility TooltipVisibility {
+            get {
+                return _tooltipVisibility;
+            }
+
+            set {
+                if (value == _tooltipVisibility) return;
+                _tooltipVisibility = value;
                 NotifyPropertyChanged();
             }
         }

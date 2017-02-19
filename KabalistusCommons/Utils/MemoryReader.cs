@@ -19,6 +19,7 @@ namespace KabalistusCommons.Utils {
 
         private static int _playerManagerInstructPointer;
         private static int _playerManagerPlayerListOffset;
+        private static int _modsOffset;
 
         private static IsaacVersion? _version;
 
@@ -41,6 +42,11 @@ namespace KabalistusCommons.Utils {
                     0x00
                 },
             SearchPattern = "bb????bb????bbvv??"
+        };
+
+        public static MemoryQuery ItemsManagerOffsetQuery = new MemoryQuery() {
+            SearchInt = new[] { 0x64, 0xA3, 0x00, 0x00, 0x00, 0x00, 0x8B, 0x5D, 0x08, 0x8B, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x53 },
+            SearchPattern = "bbbbbbbbbbbvvvvb"
         };
 
         public static void Init(Action<Status> callback, double interval = 1000) {
@@ -92,19 +98,20 @@ namespace KabalistusCommons.Utils {
                 versionChar = InnerReadInt(versionAddress + 28, 1, true);
                 _version = versionChar == '+' ? IsaacVersion.AfterbirthPlus : IsaacVersion.Afterbirth;
             } else {
-                var isAntibirth =
-                    process.Modules.Cast<ProcessModule>().Any(module => "zhlRemix2.dll".Equals(module.ModuleName));
+                var isAntibirth = process.Modules.Cast<ProcessModule>().Any(module => "zhlRemix2.dll".Equals(module.ModuleName));
                 _version = isAntibirth ? IsaacVersion.Antibirth : IsaacVersion.Rebirth;
             }
 
             var instructSearchOffset = isAfterbirth ? 1500000 : 1100000;
-            _playerManagerInstructPointer =
-                Search(PlayerManagerInstructPointerQuery, false, instructSearchOffset).QueryResult;
+            _playerManagerInstructPointer = Search(PlayerManagerInstructPointerQuery, false, instructSearchOffset).QueryResult;
 
             var playerListSearchOffset = isAfterbirth ? 50000 : 120000;
-            _playerManagerPlayerListOffset =
-                Search(PlayerManagerPlayerListOffsetQuery, false, playerListSearchOffset).QueryResult;
+            _playerManagerPlayerListOffset = Search(PlayerManagerPlayerListOffsetQuery, false, playerListSearchOffset).QueryResult;
             _loadingMemory = false;
+
+            if (IsaacVersion.AfterbirthPlus == _version) {
+                _modsOffset = Search(ItemsManagerOffsetQuery, false, 40000).QueryResult;
+            }
 
             CallbackAsync(callback, Status.ReadyStatus);
         }
@@ -150,12 +157,25 @@ namespace KabalistusCommons.Utils {
         public static int ReadInt(int addr, int size) {
             return InnerReadInt(addr, size);
         }
+
+        public static string ReadString(int addr, int size) {
+            return InnerReadString(addr, size);
+        }
+
         public static byte[] Read(int addr, int size) {
             return InnerRead(addr, size);
         }
 
+        public static int GetModsOffset() {
+            return _modsOffset;
+        }
+
         private static int InnerReadInt(int addr, int size, bool forceRead = false) {
             return MemoryReaderUtils.ConvertLittleEndian(InnerRead(addr, size, forceRead));
+        }
+
+        private static string InnerReadString(int addr, int size, bool forceRead = false) {
+            return MemoryReaderUtils.ConvertToString(InnerRead(addr, size, forceRead));
         }
 
         private static int GetPlayer(int playerOffset) {

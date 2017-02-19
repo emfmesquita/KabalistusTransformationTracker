@@ -6,6 +6,10 @@ namespace KabalistusCommons.Isaac {
             // empty
         }
 
+        public Item(int id) {
+            Id = id;
+        }
+
         public Item(string i18N, int id) {
             I18N = i18N;
             Id = id;

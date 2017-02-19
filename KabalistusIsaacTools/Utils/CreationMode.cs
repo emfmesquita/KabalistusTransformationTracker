@@ -25,7 +25,7 @@ namespace KabalistusIsaacTools.Utils {
 
             if (key == Key.Space) {
                 _showTransformation = !_showTransformation;
-                Transformations.ForEach(transformation => transformation.ShowTransformationImage(_showTransformation));
+                Transformations.ForEach(transformation => transformation.ShowTransformationImage = _showTransformation);
                 return;
             }
             if (key == Key.P) {

@@ -35,7 +35,7 @@ namespace IsaacSoundFun.Model {
             }
 
             private set {
-                if (value.Equals(_playButtonImage)) return;
+                if (Equals(value, _playButtonImage)) return;
                 _playButtonImage = value;
                 NotifyPropertyChanged();
             }

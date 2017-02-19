@@ -8,6 +8,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using KabalistusCommons.Isaac;
 using KabalistusCommons.Utils;
+using KabalistusIsaacTools.SoundFun.Model;
 using KabalistusIsaacTools.SoundFun.Player;
 using Microsoft.Win32;
 
@@ -120,10 +121,10 @@ namespace KabalistusIsaacTools.SoundFun {
 
         private static List<Item> BuildAllSortedItems() {
             var sortedItems = new List<Item>();
-            Items.RebirthItems.ForEach(sortedItems.Add);
-            Items.AfterbirthItems.ForEach(sortedItems.Add);
-            Items.AfterbirthPlusItems.ForEach(sortedItems.Add);
-            Items.AntibirthItems.ForEach(item => {
+            Items.RebirthItems.ToList().Select(pair => pair.Value).ToList().ForEach(sortedItems.Add);
+            Items.AfterbirthItems.ToList().Select(pair => pair.Value).ToList().ForEach(sortedItems.Add);
+            Items.AfterbirthPlusItems.ToList().Select(pair => pair.Value).ToList().ForEach(sortedItems.Add);
+            Items.AntibirthItems.ToList().Select(pair => pair.Value).ToList().ForEach(item => {
                 var editedItem = new Item {
                     Id = item.Id,
                     I18N = item.I18N + " (Antibirth)"

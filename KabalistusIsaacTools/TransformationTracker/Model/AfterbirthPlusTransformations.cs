@@ -141,24 +141,25 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
 
         public static readonly Transformation Bookworm = new Transformation("bookworm", "Bookworm", 7808, 0, 7, 0.90F) {
             Items = new List<TransformationItem>() {
-                new TransformationItem("The Bible", 33, 35, 13, 1.00F, 0.75F),
-                new TransformationItem("The Book Of Belial", 34, 35, -15, 1.00F, 0.75F),
-                new TransformationItem("The Necronomicon", 35, -12, -32, 1.00F, 0.75F),
-                new TransformationItem("Book Of Shadows", 58, 12, 30, 1.00F, 0.75F),
-                new TransformationItem("Anarchist Cookbook", 65, -12, 30, 1.00F, 0.75F),
-                new TransformationItem("Book Of Revelations", 78, -12, -1, 1.00F, 0.75F),
-                new TransformationItem("The Book Of Sin", 97, 11, -32, 1.00F, 0.70F),
-                new TransformationItem("Telepathy For Dummies", 192, -35, 15, 1.00F, 0.75F),
-                new TransformationItem("How To Jump", 282, 12, 2, 1.00F, 0.75F),
-                new TransformationItem("Book Of Secrets", 287, -34, -12, 1.00F, 0.75F)
+                new TransformationItem("The Bible", 33, 11, -3, 1.00F, 0.65F),
+                new TransformationItem("The Book Of Belial", 34, 34, -23, 1.00F, 0.65F),
+                new TransformationItem("The Necronomicon", 35, -11, -38, 1.00F, 0.65F),
+                new TransformationItem("Book Of Shadows", 58, 22, 26, 1.00F, 0.65F),
+                new TransformationItem("Anarchist Cookbook", 65, -25, 26, 1.00F, 0.65F),
+                new TransformationItem("Book Of Revelations", 78, -11, -3, 1.00F, 0.65F),
+                new TransformationItem("The Book Of Sin", 97, 12, -38, 1.00F, 0.65F),
+                new TransformationItem("Telepathy For Dummies", 192, -39, 1, 1.00F, 0.65F),
+                new TransformationItem("How To Jump", 282, 38, 6, 1.00F, 0.65F),
+                new TransformationItem("Book Of Secrets", 287, -32, -23, 1.00F, 0.65F),
+                new TransformationItem("Satanic Bible", 292, 0, 35, 1.00F, 0.65F)
             }
         };
 
         public static readonly Transformation Adult = new Transformation("adult", "Adult", 7812, -5, 5, 0.75F) {
             Items = new List<TransformationItem>() {
-                new TransformationPill("Puberty", 0, -1, -29, 0.50F),
-                new TransformationPill("Puberty", 0, -28, 15, 0.50F),
-                new TransformationPill("Puberty", 0, 21, 19, 0.50F)
+                new TransformationPill("Puberty", 0, -3, -26, 2.40F),
+                new TransformationPill("Puberty", 0, -26, 17, 2.40F),
+                new TransformationPill("Puberty", 0, 24, 18, 2.40F)
             }
         };
 

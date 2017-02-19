@@ -2,7 +2,7 @@
 using KabalistusCommons.Isaac;
 using KabalistusCommons.Model;
 
-namespace KabalistusIsaacTools.SoundFun {
+namespace KabalistusIsaacTools.SoundFun.Model {
     public class SoundRowModel : BaseModel {
 
         private Item _item;

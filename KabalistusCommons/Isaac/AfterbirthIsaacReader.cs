@@ -13,10 +13,6 @@ namespace KabalistusCommons.Isaac {
             return GetPlayerInfo(offset) > 0;
         }
 
-        public override List<Trinket> GetSmeltedTrinkets() {
-            return new List<Trinket>();
-        }
-
         public override bool IsItemBlacklisted(Item item) {
             return GetPlayerManagerInfo(ItemBlacklistOffset + item.Id, 1) > 0;
         }
@@ -34,14 +30,14 @@ namespace KabalistusCommons.Isaac {
             return false;
         }
 
-        public override List<Pill> GetPillPool() {
+        public override List<Item> GetPillPool() {
             // TODO
-            return new List<Pill>();
+            return new List<Item>();
         }
 
-        public override Dictionary<int, int> GetPillCount() {
+        public override List<bool> GetPillKnowledge() {
             // TODO
-            return new Dictionary<int, int>();
+            return new List<bool>();
         }
 
         public override int IndexOfLastPillTaken() {

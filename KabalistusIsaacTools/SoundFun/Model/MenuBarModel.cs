@@ -3,7 +3,7 @@ using System.Windows.Media.Imaging;
 using KabalistusCommons.Model;
 using static KabalistusIsaacTools.Utils.ImageUtils;
 
-namespace KabalistusIsaacTools.SoundFun {
+namespace KabalistusIsaacTools.SoundFun.Model {
     public class MenuBarModel : BaseModel {
         private readonly BitmapImage _playImage = ToBitmapImage(new Bitmap(GetImageFromResource("KabalistusIsaacTools.Images.SoundFun.play24.png")));
         private readonly BitmapImage _pauseImage = ToBitmapImage(new Bitmap(GetImageFromResource("KabalistusIsaacTools.Images.SoundFun.pause24.png")));
@@ -36,7 +36,7 @@ namespace KabalistusIsaacTools.SoundFun {
             }
 
             private set {
-                if (value.Equals(_playButtonImage)) return;
+                if (Equals(value, _playButtonImage)) return;
                 _playButtonImage = value;
                 NotifyPropertyChanged();
             }

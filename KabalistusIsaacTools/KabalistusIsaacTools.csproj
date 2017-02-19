@@ -69,24 +69,32 @@
       <DependentUpon>ToolTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commons\View\ToolTabModel.cs" />
+    <Compile Include="PillPool\Model\PillPollModel.cs" />
+    <Compile Include="PillPool\Model\PillRowModel.cs" />
+    <Compile Include="PillPool\PillPool.xaml.cs">
+      <DependentUpon>PillPool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PillPool\PillRow.xaml.cs">
+      <DependentUpon>PillRow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SmeltedTrinkets\SmeltedTrinkets.xaml.cs">
       <DependentUpon>SmeltedTrinkets.xaml</DependentUpon>
     </Compile>
     <Compile Include="SoundFun\AddEditSoundDialog.xaml.cs">
       <DependentUpon>AddEditSoundDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SoundFun\MenuBarModel.cs" />
+    <Compile Include="SoundFun\Model\MenuBarModel.cs" />
     <Compile Include="SoundFun\Player\SoundFunEntity.cs" />
     <Compile Include="SoundFun\Player\SoundFunPlayer.cs" />
     <Compile Include="SoundFun\Player\SoundFunSerializer.cs" />
-    <Compile Include="SoundFun\SoundDialogModel.cs" />
+    <Compile Include="SoundFun\Model\SoundDialogModel.cs" />
     <Compile Include="SoundFun\SoundFun.xaml.cs">
       <DependentUpon>SoundFun.xaml</DependentUpon>
     </Compile>
     <Compile Include="SoundFun\SoundRow.xaml.cs">
       <DependentUpon>SoundRow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SoundFun\SoundRowModel.cs" />
+    <Compile Include="SoundFun\Model\SoundRowModel.cs" />
     <Compile Include="TransformationTracker\Model\AfterbirthPlusTransformations.cs" />
     <Compile Include="TransformationTracker\Model\Transformation.cs" />
     <Compile Include="TransformationTracker\Model\TransformationItem.cs" />
@@ -107,6 +115,9 @@
     <Compile Include="Utils\CreationMode.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\ResourcesUtil.cs" />
+    <Compile Include="VoidedItems\VoidedItems.xaml.cs">
+      <DependentUpon>VoidedItems.xaml</DependentUpon>
+    </Compile>
     <Page Include="Commons\View\ExtraWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,6 +142,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PillPool\PillPool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PillPool\PillRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SmeltedTrinkets\SmeltedTrinkets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TransformationTracker\TransformationTracker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VoidedItems\VoidedItems.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -898,64 +921,30 @@
     <EmbeddedResource Include="Images\Transformations\bookworm.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill0.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill10.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill11.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill12.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill13.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill5.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill6.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill7.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill8.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Images\Pills\pill9.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Images\block.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Icons\main.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icons\transformations.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Icons\smeltedtrinkets.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Icons\soundfun.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Icons\external.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Pills\pill0.png" />
+    <EmbeddedResource Include="Images\Pills\pill1.png" />
+    <EmbeddedResource Include="Images\Pills\pill10.png" />
+    <EmbeddedResource Include="Images\Pills\pill11.png" />
+    <EmbeddedResource Include="Images\Pills\pill12.png" />
+    <EmbeddedResource Include="Images\Pills\pill13.png" />
+    <EmbeddedResource Include="Images\Pills\pill2.png" />
+    <EmbeddedResource Include="Images\Pills\pill3.png" />
+    <EmbeddedResource Include="Images\Pills\pill4.png" />
+    <EmbeddedResource Include="Images\Pills\pill5.png" />
+    <EmbeddedResource Include="Images\Pills\pill6.png" />
+    <EmbeddedResource Include="Images\Pills\pill7.png" />
+    <EmbeddedResource Include="Images\Pills\pill8.png" />
+    <EmbeddedResource Include="Images\Pills\pill9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

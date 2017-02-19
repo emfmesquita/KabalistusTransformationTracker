@@ -10,6 +10,8 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
         private Visibility _visibility = Visibility.Visible;
         private Visibility _ringVisibility = CreationMode.On ? Visibility.Visible : Visibility.Hidden;
         private string _count;
+        private bool _showTransformationImage;
+        private string _itemTooltip;
 
         public Transformation(string name, string i18N, int memoryOffset, int x = 0, int y = 0, float scale = 1.0F) {
             Name = name;
@@ -30,11 +32,19 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
         public GeneralImageModel TransformationImageModel { get; }
         public string I18N { get; }
 
-        public void ShowTransformationImage(bool show) {
-            TransformationImageModel.Visibility = show ? Visibility.Visible : Visibility.Hidden;
-            Items.ForEach(item => {
-                item.Visibility = show ? Visibility.Hidden : Visibility.Visible;
-            });
+        public bool ShowTransformationImage {
+            get {
+                return _showTransformationImage;
+            }
+
+            set {
+                if (value == _showTransformationImage) return;
+                _showTransformationImage = value;
+                TransformationImageModel.Visibility = _showTransformationImage ? Visibility.Visible : Visibility.Hidden;
+                Items.ForEach(item => {
+                    item.Visibility = _showTransformationImage ? Visibility.Hidden : Visibility.Visible;
+                });
+            }
         }
 
         public string Count {
@@ -81,6 +91,18 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
             set {
                 if (value == _ringVisibility) return;
                 _ringVisibility = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string ItemTooltip {
+            get {
+                return _itemTooltip;
+            }
+
+            set {
+                if (value == _itemTooltip) return;
+                _itemTooltip = value;
                 NotifyPropertyChanged();
             }
         }

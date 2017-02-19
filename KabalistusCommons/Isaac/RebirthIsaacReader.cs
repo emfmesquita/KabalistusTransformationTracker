@@ -27,10 +27,6 @@ namespace KabalistusCommons.Isaac {
             return TouchedItems;
         }
 
-        public List<Trinket> GetSmeltedTrinkets() {
-            return new List<Trinket>();
-        }
-
         public bool IsItemBlacklisted(Item item) {
             return GetPlayerManagerInfo(ItemBlacklistOffset + item.Id, 1) > 0;
         }
@@ -49,14 +45,14 @@ namespace KabalistusCommons.Isaac {
             return false;
         }
 
-        public List<Pill> GetPillPool() {
+        public List<Item> GetPillPool() {
             // TODO
-            return new List<Pill>();
+            return new List<Item>();
         }
 
-        public Dictionary<int, int> GetPillCount() {
+        public List<bool> GetPillKnowledge() {
             // TODO
-            return new Dictionary<int, int>();
+            return new List<bool>();
         }
 
         public int IndexOfLastPillTaken() {

@@ -18,7 +18,7 @@ namespace KabalistusIsaacTools.Commons.View {
                 return _icon;
             }
             set {
-                if (value.Equals(_icon)) return;
+                if (Equals(value, _icon)) return;
                 _icon = value;
                 NotifyPropertyChanged();
             }

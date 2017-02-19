@@ -31,28 +31,39 @@ namespace KabalistusIsaacTools {
             Title = FormUtils.BuiltTitle("Kabalistus Isaac Tools", this);
 
             TransformationTrackerElement = new TransformationTracker.TransformationTracker();
-            CreateTab(ItemResource(145), "Transformation Tracker", TransformationTrackerElement);
+            CreateTab(UnmoddedItemResource(145), "Transformation Tracker", TransformationTrackerElement);
+
+            PillPoolElement = new PillPool.PillPool();
+            CreateTab(PillResource(1), "Pills", PillPoolElement);
+
+            VoidedItemsElement = new VoidedItems.VoidedItems();
+            CreateTab(UnmoddedItemResource(477), "Voided Items", VoidedItemsElement);
 
             SmeltedTrinketsElement = new SmeltedTrinkets.SmeltedTrinkets();
-            CreateTab(ItemResource(479), "Smelted Trinkets", SmeltedTrinketsElement);
+            CreateTab(UnmoddedItemResource(479), "Smelted Trinkets", SmeltedTrinketsElement);
 
             SoundFunElement = new SoundFun.SoundFun();
-            CreateTab(ItemResource(4), "Sound Fun", SoundFunElement);
+            CreateTab(UnmoddedItemResource(4), "Sound Fun", SoundFunElement);
 
             CreateBindings();
 
             var reader = new AfterbirthPlusIsaacReader();
             MemoryReader.Init((status) => {
                 _statusBarModel.Status = status.Message;
-                SmeltedTrinketsElement.UpdateTrinkets(reader.GetSmeltedTrinkets());
+                ModdedHelper.Update(status, reader);
+                SmeltedTrinketsElement.Update(status, reader);
                 SoundFunElement.Update(status, reader);
                 TransformationTrackerElement.Update(status);
+                PillPoolElement.Update(status, reader);
+                VoidedItemsElement.Update(status, reader);
             }, 1000);
         }
 
         public TransformationTracker.TransformationTracker TransformationTrackerElement { get; }
         public SmeltedTrinkets.SmeltedTrinkets SmeltedTrinketsElement { get; }
         public SoundFun.SoundFun SoundFunElement { get; }
+        public PillPool.PillPool PillPoolElement { get; }
+        public VoidedItems.VoidedItems VoidedItemsElement { get; }
 
         private void CreateBindings() {
             // status Bar
@@ -70,6 +81,10 @@ namespace KabalistusIsaacTools {
             var tabModel = new ToolTabModel(iconREsource, label);
             var tab = new ToolTab(tabModel, content, Tabs);
             Tabs.Items.Add(tab);
+        }
+
+        private void MainWindowClosed(object sender, System.EventArgs e) {
+            Application.Current.Shutdown();
         }
     }
 }

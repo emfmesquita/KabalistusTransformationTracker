@@ -56,7 +56,7 @@ namespace KabalistusIsaacTools.TransformationTracker.Providers {
         protected virtual void UpdateTransformation(Transformation transformation) {
             var counter = MemoryReader.GetPlayerInfo(transformation.MemoryOffset);
             transformation.Count = counter.ToString();
-            transformation.ShowTransformationImage(counter >= 3);
+            transformation.ShowTransformationImage = counter >= 3;
             transformation.Items.ForEach(item => UpdateTransformationItem(item, IsItemTouched(item), IsItemBlacklisted(item)));
         }
 

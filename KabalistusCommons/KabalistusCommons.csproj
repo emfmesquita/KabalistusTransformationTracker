@@ -44,15 +44,16 @@
   <ItemGroup>
     <Compile Include="Isaac\AfterbirthBaseIsaacReader.cs" />
     <Compile Include="Isaac\Items.cs" />
+    <Compile Include="Isaac\ModdedHelper.cs" />
+    <Compile Include="Isaac\ModdedItem.cs" />
     <Compile Include="Isaac\Pills.cs" />
     <Compile Include="Isaac\RebirthIsaacReader.cs" />
     <Compile Include="Isaac\AfterbirthIsaacReader.cs" />
     <Compile Include="Isaac\AfterbirthPlusIsaacReader.cs" />
     <Compile Include="Isaac\IIsaacReader.cs" />
     <Compile Include="Isaac\Item.cs" />
-    <Compile Include="Isaac\Pill.cs" />
-    <Compile Include="Isaac\Trinket.cs" />
     <Compile Include="Isaac\Trinkets.cs" />
+    <Compile Include="Isaac\VoidedItemEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ArrayUtils.cs" />
     <Compile Include="Model\BaseModel.cs" />

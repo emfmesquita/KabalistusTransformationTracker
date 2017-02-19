@@ -18,29 +18,33 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
         private bool _blocked;
         private Color _blockColor;
         private float _blockScale = 1;
+        private bool _showTooltip;
 
         private static readonly Dictionary<string, BitmapImage> UnlitImageCache = new Dictionary<string, BitmapImage>();
 
         public TransformationItem(string i18N, string resource, int x = 0, int y = 0, float scale = 1) : base(resource, i18N, x, y) {
             ItemImageModel = new GeneralImageModel(resource);
-            Blocked = CreationMode.BlockModeOn;
             Touched = CreationMode.On;
             Scale = scale;
         }
 
-        public TransformationItem(string i18N, int id, int x = 0, int y = 0, float scale = 1, float blockScale = 1) : this(i18N, ItemResource(id), x, y, scale) {
+        public TransformationItem(string i18N, int id, int x = 0, int y = 0, float scale = 1, float blockScale = 1) : this(i18N, UnmoddedItemResource(id), x, y, scale) {
             BlockImageModel = new GeneralImageModel(BlockImageResource) {
                 Visibility = Visibility.Hidden
             };
             Id = id;
             BlockScale = blockScale;
             BlockColor = Color.FromArgb(143, 25, 139);
+            Blocked = CreationMode.BlockModeOn;
         }
 
         public GeneralImageModel ItemImageModel { get; }
         public GeneralImageModel BlockImageModel { get; }
-
         public int Id { get; }
+
+        public int AbsoluteX => 50 + X - Width / 2;
+        public int AbsoluteY => 50 + Y - Height / 2;
+        public System.Windows.Point Center => new System.Windows.Point(50 + X, 50 + Y);
 
         public bool Touched {
             get {
@@ -99,6 +103,17 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
                 _blockColor = value;
                 if (BlockImageModel == null) return;
                 BlockImageModel.Image = BlockImage(_blockColor);
+            }
+        }
+        public bool ShowTooltip {
+            get {
+                return _showTooltip;
+            }
+
+            set {
+                if (value == _showTooltip) return;
+                _showTooltip = value;
+                ItemImageModel.Tooltip = _showTooltip ? Tooltip : null;
             }
         }
 

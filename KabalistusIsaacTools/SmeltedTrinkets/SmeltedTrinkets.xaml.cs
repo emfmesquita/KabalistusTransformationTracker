@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using KabalistusCommons.Isaac;
+using KabalistusCommons.Utils;
 using KabalistusIsaacTools.Commons.View;
 using KabalistusIsaacTools.Utils;
 
@@ -14,7 +15,7 @@ namespace KabalistusIsaacTools.SmeltedTrinkets {
     /// Interaction logic for SmeltedTrinkets.xaml
     /// </summary>
     public partial class SmeltedTrinkets : UserControl {
-        private readonly List<Trinket> _addedTrinkets = new List<Trinket>();
+        private readonly List<Item> _addedTrinkets = new List<Item>();
 
         private static readonly Dictionary<string, string> WikiDictionary = new Dictionary<string, string>(){
             { "Cancer", "Cancer_(Trinket)"},
@@ -32,19 +33,33 @@ namespace KabalistusIsaacTools.SmeltedTrinkets {
             InitializeComponent();
         }
 
-        public void UpdateTrinkets(List<Trinket> trinkets) {
-            if (CreationMode.On) {
-                trinkets = Trinkets.AllTrinkets.Select(pair => pair.Value).ToList();
-                trinkets.Sort((a, b) => string.CompareOrdinal(a.I18N, b.I18N));
-            }
-
+        public void Update(Status status, IIsaacReader reader) {
             Dispatcher.Invoke(() => {
-                if (_addedTrinkets.Count > trinkets.Count) {
-                    _addedTrinkets.Clear();
-                    MainPanel.Children.Clear();
+                if (!status.Ready) {
+                    Clear();
+                    return;
                 }
 
-                var toAdd = new Dictionary<int, Trinket>();
+                var abpReader = reader as AfterbirthPlusIsaacReader;
+                if (abpReader == null) {
+                    Clear();
+                    return;
+
+                }
+
+                List<Item> trinkets;
+                if (CreationMode.On) {
+                    trinkets = Trinkets.AllTrinkets.Select(pair => pair.Value).ToList();
+                    trinkets.Sort((a, b) => string.CompareOrdinal(a.I18N, b.I18N));
+                } else {
+                    trinkets = abpReader.GetSmeltedTrinkets();
+                }
+
+                if (_addedTrinkets.Count > trinkets.Count) {
+                    Clear();
+                }
+
+                var toAdd = new Dictionary<int, Item>();
                 for (var i = 0; i < trinkets.Count; i++) {
                     var trinket = trinkets[i];
                     if (!_addedTrinkets.Contains(trinket)) {
@@ -54,7 +69,7 @@ namespace KabalistusIsaacTools.SmeltedTrinkets {
 
                 toAdd.ToList().ForEach(pair => {
                     var trinket = pair.Value;
-                    var resource = ResourcesUtil.TrinketResource(trinket.Id);
+                    var resource = ResourcesUtil.TrinketResource(trinket);
                     var imageModel = new GeneralImageModel(resource, trinket.I18N, 0, 0, 2, Visibility.Visible, Cursors.Hand, 64, 64);
                     var trinketImage = new GeneralImage(imageModel, BitmapScalingMode.NearestNeighbor, MouseLeftButtonDownOnTrinketImage);
                     MainPanel.Children.Insert(pair.Key, trinketImage);
@@ -72,7 +87,8 @@ namespace KabalistusIsaacTools.SmeltedTrinkets {
 
         private static void MouseLeftButtonDownOnTrinketImage(object sender, MouseButtonEventArgs e) {
             var image = sender as Image;
-            var i18N = image?.ToolTip as string;
+            var tooltip = image?.ToolTip as ToolTip;
+            var i18N = tooltip?.Content as string;
             if (string.IsNullOrEmpty(i18N)) {
                 return;
             }
@@ -81,6 +97,11 @@ namespace KabalistusIsaacTools.SmeltedTrinkets {
             }
             var url = $"https://bindingofisaacrebirth.gamepedia.com/{i18N.Replace(" ", "_")}";
             System.Diagnostics.Process.Start(url);
+        }
+
+        private void Clear() {
+            _addedTrinkets.Clear();
+            MainPanel.Children.Clear();
         }
     }
 }

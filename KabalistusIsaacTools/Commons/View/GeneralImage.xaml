@@ -7,6 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="64" d:DesignWidth="64">
     <Grid Width="64" Height="64" x:Name="ImageGrid">
-        <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="Image"/>
+        <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="Image">
+            <Image.ToolTip>
+                <ToolTip x:Name="TooltipControl"/>
+            </Image.ToolTip>
+        </Image>
     </Grid>
 </UserControl>

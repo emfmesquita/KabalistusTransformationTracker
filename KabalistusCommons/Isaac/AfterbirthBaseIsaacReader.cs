@@ -32,10 +32,9 @@ namespace KabalistusCommons.Isaac {
         public abstract int GetFloorCurses();
         public abstract int GetTimeCounter();
         public abstract bool IsGamePaused();
-        public abstract List<Pill> GetPillPool();
-        public abstract Dictionary<int, int> GetPillCount();
+        public abstract List<Item> GetPillPool();
+        public abstract List<bool> GetPillKnowledge();
         public abstract int IndexOfLastPillTaken();
-        public abstract List<Trinket> GetSmeltedTrinkets();
         protected abstract int GetTouchedItensListInitOffset();
     }
 }

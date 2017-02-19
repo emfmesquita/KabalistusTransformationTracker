@@ -36,6 +36,7 @@ namespace KabalistusIsaacTools.Utils {
         }
 
         public static Image GetImageFromResource(string resource) {
+            if (!resource.StartsWith("KabalistusIsaacTools")) return !File.Exists(resource) ? null : Image.FromFile(resource);
             var assembly = Assembly.GetExecutingAssembly();
             var stream = assembly.GetManifestResourceStream(resource);
             return stream == null ? null : Image.FromStream(stream);
@@ -83,34 +84,6 @@ namespace KabalistusIsaacTools.Utils {
 
             return ApplyColorMatrix(image, cm);
         }
-
-        //public static ItemImage ClosestImage(Point mouse, List<ItemImage> imagesOver) {
-        //    var closestImage = (ItemImage)null;
-        //    var currentDistance = double.MaxValue;
-        //    imagesOver.ForEach(image => {
-        //        if (closestImage == null) {
-        //            closestImage = image;
-        //            return;
-        //        }
-        //        var distance = GetDistanceBetweenPoints(mouse, image.Center);
-        //        if (!(distance < currentDistance)) return;
-        //        closestImage = image;
-        //        currentDistance = distance;
-        //    });
-        //    return closestImage;
-        //}
-
-        public static double GetDistanceBetweenPoints(Point p, Point q) {
-            double a = p.X - q.X;
-            double b = p.Y - q.Y;
-            return Math.Sqrt(a * a + b * b);
-        }
-
-        //public static bool IsOverImage(Point mouse, BaseImage image) {
-        //    var withinWidth = mouse.X >= image.X && (mouse.X - image.X) <= image.ScaledWidth;
-        //    var withinHeight = mouse.Y >= image.Y && (mouse.Y - image.Y) <= image.ScaledHeight;
-        //    return withinWidth && withinHeight;
-        //}
 
         private static Bitmap ApplyColorMatrix(Bitmap image, ColorMatrix cm) {
             var attributes = new ImageAttributes();

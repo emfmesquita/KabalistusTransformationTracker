@@ -5,7 +5,15 @@
         xmlns:local="clr-namespace:KabalistusIsaacTools"
         x:Class="KabalistusIsaacTools.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" WindowStartupLocation="CenterScreen" MinHeight="0" MinWidth="200" Icon="Images/Icons/main.png" KeyDown="OnKeyDown">
+        Title="MainWindow" 
+        Height="600" 
+        Width="800" 
+        WindowStartupLocation="CenterScreen" 
+        MinHeight="0" 
+        MinWidth="200" 
+        Icon="Images/Icons/main.png" 
+        KeyDown="OnKeyDown" 
+        Closed="MainWindowClosed">
     <Grid>
         <Menu x:Name="Menu" HorizontalAlignment="Stretch" Height="20" VerticalAlignment="Top" Background="#FFF0F0F0">
             <MenuItem Header="Settings"></MenuItem>

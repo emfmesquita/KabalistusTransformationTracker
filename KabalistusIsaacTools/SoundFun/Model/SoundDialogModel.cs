@@ -3,7 +3,7 @@ using System.ComponentModel;
 using KabalistusCommons.Isaac;
 using KabalistusCommons.Model;
 
-namespace KabalistusIsaacTools.SoundFun {
+namespace KabalistusIsaacTools.SoundFun.Model {
     public class SoundDialogModel : BaseModel {
         public event PropertyChangedEventHandler ItemChanged;
 

@@ -8,6 +8,7 @@ namespace KabalistusIsaacTools.Commons.View {
     /// Interaction logic for GeneralImage.xaml
     /// </summary>
     public partial class GeneralImage : UserControl {
+
         public GeneralImage(GeneralImageModel model, BitmapScalingMode scaling = BitmapScalingMode.NearestNeighbor, MouseButtonEventHandler clickHandler = null) {
             InitializeComponent();
             RenderOptions.SetBitmapScalingMode(Image, scaling);
@@ -17,6 +18,7 @@ namespace KabalistusIsaacTools.Commons.View {
             }
             CreateBindings();
         }
+
         public void SetImageSize(int height, int width) {
             Model.Height = height;
             Model.Width = width;
@@ -50,11 +52,16 @@ namespace KabalistusIsaacTools.Commons.View {
                 Source = Model,
                 Mode = BindingMode.OneWay
             });
-            ImageGrid.SetBinding(ToolTipProperty, new Binding("Tooltip") {
+            ImageGrid.SetBinding(CursorProperty, new Binding("Cursor") {
                 Source = Model,
                 Mode = BindingMode.OneWay
             });
-            ImageGrid.SetBinding(CursorProperty, new Binding("Cursor") {
+
+            TooltipControl.SetBinding(ContentProperty, new Binding("Tooltip") {
+                Source = Model,
+                Mode = BindingMode.OneWay
+            });
+            TooltipControl.SetBinding(VisibilityProperty, new Binding("TooltipVisibility") {
                 Source = Model,
                 Mode = BindingMode.OneWay
             });

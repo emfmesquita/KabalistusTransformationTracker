@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using KabalistusCommons.Isaac;
 using KabalistusCommons.Utils;
+using KabalistusIsaacTools.SoundFun.Model;
 using KabalistusIsaacTools.SoundFun.Player;
 
 namespace KabalistusIsaacTools.SoundFun {
