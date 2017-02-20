@@ -97,13 +97,18 @@ namespace KabalistusCommons.Isaac {
                 return moddedItems;
             }
             for (var i = 0; i < moddedItemsSize; i++) {
-                moddedItems.Add(LoadModdedItem(unmoddedSize + firstIndex + i, moddedItemsInit, loadLocation));
+                var moddedItem = LoadModdedItem(unmoddedSize + firstIndex + i, moddedItemsInit, loadLocation);
+                if (moddedItem != null) moddedItems.Add(moddedItem);
             }
             return moddedItems;
         }
 
         private static ModdedItem LoadModdedItem(int id, int moddedItemsInit, bool loadLocation = true) {
             var moddedItemPointer = ReadInt(moddedItemsInit + id * 4, 4);
+            if (moddedItemPointer == 0) {
+                return null;
+            }
+
             var item = new ModdedItem() {
                 Id = id,
                 I18N = ReadModdedString(moddedItemPointer + 8)
