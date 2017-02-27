@@ -11,9 +11,9 @@ namespace KabalistusCommons.Isaac {
         public const int UnmoddedTrinketsCount = 119;
         public const int UnmoddedPillsCount = 47;
 
-        private const int ModdedItemsInitOffset = 198496;
-        private const int ModdedTrinketsInitOffset = 198508;
-        private const int ModdedPillsInitOffset = 198556;
+        private const int ModdedItemsInitOffset = 56968;
+        private const int ModdedTrinketsInitOffset = 56980;
+        private const int ModdedPillsInitOffset = 57028;
         private const string ModsDirRelPath = "My Games\\Binding of Isaac Afterbirth+ Mods";
 
         private static bool _loaded;
