@@ -929,7 +929,9 @@
   <ItemGroup>
     <Resource Include="Images\Icons\external.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Icons\soundfun.png" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Pills\pill0.png" />
     <EmbeddedResource Include="Images\Pills\pill1.png" />
