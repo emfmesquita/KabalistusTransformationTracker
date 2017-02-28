@@ -60,6 +60,21 @@ namespace KabalistusCommons.Isaac {
             return 0;
         }
 
+        public int GetSeed() {
+            // TODO
+            return 0;
+        }
+
+        public int GetPillCardId() {
+            // TODO
+            return 0;
+        }
+
+        public Consumable IsPillOrCard() {
+            // TODO
+            return Consumable.Card;
+        }
+
         private void ReadNode(int nodePointer) {
             if (nodePointer == 0 || !IsFilled(nodePointer)) {
                 return;

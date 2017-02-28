@@ -19,6 +19,9 @@ namespace KabalistusCommons.Isaac {
         private const int PillKnownOffset = 33081;
         private const int LastPillTakenOffset = 7680;
         private const int VoidedItemsInitOffset = 7612;
+        private const int SeedOffset = 451880;
+        private const int PillCardIdOffset = 7732;
+        private const int IsPillOrCardOffset = 7736;
 
         public override bool HasItem(Item item) {
             var hasItemPointer = GetPlayerInfo(HasItemOffset);
@@ -133,6 +136,18 @@ namespace KabalistusCommons.Isaac {
 
         public override int IndexOfLastPillTaken() {
             return GetPlayerInfo(LastPillTakenOffset);
+        }
+
+        public override int GetSeed() {
+            return GetGameManagerInfo(SeedOffset, 4);
+        }
+
+        public override int GetPillCardId() {
+            return GetPlayerInfo(PillCardIdOffset);
+        }
+
+        public override Consumable IsPillOrCard() {
+            return GetPlayerInfo(IsPillOrCardOffset, 1) == 0 ? Consumable.Pill : Consumable.Card;
         }
 
         protected override int GetTouchedItensListInitOffset() {

@@ -15,6 +15,8 @@ namespace KabalistusIsaacTools.PillPool {
     /// </summary>
     public partial class PillPool : UserControl {
 
+        private readonly Dictionary<int, List<bool>> _pillKnowledgeCache = new Dictionary<int, List<bool>>();
+
         public PillPool() {
             InitializeComponent();
             Model = new PillPollModel();
@@ -36,8 +38,39 @@ namespace KabalistusIsaacTools.PillPool {
                     return;
                 }
 
+                var seed = reader.GetSeed();
+                if (seed == 0) {
+                    Reset();
+                    return;
+                }
+
                 var pillKnowledge = reader.GetPillKnowledge();
-                var toGoodPills = reader.HasItem(new Item(75)) || reader.HasItem(new Item(303));
+                var hasPhd = reader.HasItem(new Item(75));
+
+                var considerCache = pillKnowledge.Any(known => known); // any pill known
+                if (considerCache) {
+                    if (!_pillKnowledgeCache.ContainsKey(seed)) {
+                        _pillKnowledgeCache[seed] = new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false, false };
+                    }
+                    var cache = _pillKnowledgeCache[seed];
+
+                    if (hasPhd) {
+                        var isPill = reader.IsPillOrCard() == Consumable.Pill;
+                        var pillIndex = reader.GetPillCardId();
+                        if (isPill && pillIndex > 0 && pillIndex <= 13) {
+                            cache[pillIndex - 1] = true;
+                        }
+                        pillKnowledge = cache;
+                    }
+                    else {
+                        for (var i = 0; i < 13; i++) {
+                            cache[i] = pillKnowledge[i];
+                        }
+                    }
+                }
+
+
+                var toGoodPills = hasPhd || reader.HasItem(new Item(303));
                 if (PillPanel.Children.Count != pool.Count) {
                     InitPills(pool, pillKnowledge, toGoodPills);
                 } else {

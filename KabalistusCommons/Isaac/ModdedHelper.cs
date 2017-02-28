@@ -87,10 +87,8 @@ namespace KabalistusCommons.Isaac {
 
         private static IEnumerable<ModdedItem> GetModded(int initOffset, int unmoddedSize, bool zeroBased = false, bool loadLocation = true) {
             var moddedItems = new List<ModdedItem>();
-            var modsOffset = GetModsOffset();
-            var modsPointer = ReadInt(modsOffset, 4);
-            var moddedItemsInit = ReadInt(modsPointer + initOffset, 4);
-            var moddedItemsEnd = ReadInt(modsPointer + initOffset + 4, 4);
+            var moddedItemsInit = GetGameManagerInfo(initOffset, 4);
+            var moddedItemsEnd = GetGameManagerInfo(initOffset + 4, 4);
             var firstIndex = zeroBased ? 0 : 1;
             var moddedItemsSize = (moddedItemsEnd - moddedItemsInit) / 4 - firstIndex - unmoddedSize;
             if (moddedItemsSize <= 0) {

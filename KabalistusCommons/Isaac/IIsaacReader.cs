@@ -19,5 +19,11 @@ namespace KabalistusCommons.Isaac {
         List<bool> GetPillKnowledge();
 
         int IndexOfLastPillTaken();
+
+        int GetSeed();
+
+        int GetPillCardId();
+
+        Consumable IsPillOrCard();
     }
 }

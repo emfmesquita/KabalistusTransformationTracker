@@ -45,6 +45,21 @@ namespace KabalistusCommons.Isaac {
             return 0;
         }
 
+        public override int GetSeed() {
+            // TODO
+            return 0;
+        }
+
+        public override int GetPillCardId() {
+            // TODO
+            return 0;
+        }
+
+        public override Consumable IsPillOrCard() {
+            // TODO
+            return Consumable.Card;
+        }
+
         protected override int GetTouchedItensListInitOffset() {
             return TouchedItensListInitOffset;
         }

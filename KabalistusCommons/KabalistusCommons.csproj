@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Isaac\AfterbirthBaseIsaacReader.cs" />
+    <Compile Include="Isaac\Consumable.cs" />
     <Compile Include="Isaac\Items.cs" />
     <Compile Include="Isaac\ModdedHelper.cs" />
     <Compile Include="Isaac\ModdedItem.cs" />

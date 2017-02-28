@@ -35,6 +35,10 @@ namespace KabalistusCommons.Isaac {
         public abstract List<Item> GetPillPool();
         public abstract List<bool> GetPillKnowledge();
         public abstract int IndexOfLastPillTaken();
+        public abstract int GetSeed();
+        public abstract int GetPillCardId();
+        public abstract Consumable IsPillOrCard();
+
         protected abstract int GetTouchedItensListInitOffset();
     }
 }

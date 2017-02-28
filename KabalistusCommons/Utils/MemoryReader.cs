@@ -19,7 +19,7 @@ namespace KabalistusCommons.Utils {
 
         private static int _playerManagerInstructPointer;
         private static int _playerManagerPlayerListOffset;
-        private static int _modsOffset;
+        private static int _gameManagerOffset;
 
         private static IsaacVersion? _version;
 
@@ -44,7 +44,7 @@ namespace KabalistusCommons.Utils {
             SearchPattern = "bb????bb????bbvv??"
         };
 
-        public static MemoryQuery ItemsManagerOffsetQuery = new MemoryQuery() {
+        public static MemoryQuery GameManagerOffsetQuery = new MemoryQuery() {
             SearchInt = new[] { 0x64, 0xA3, 0x00, 0x00, 0x00, 0x00, 0x8B, 0x5D, 0x08, 0x8B, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x53 },
             SearchPattern = "bbbbbbbbbbbvvvvb"
         };
@@ -110,7 +110,7 @@ namespace KabalistusCommons.Utils {
             _loadingMemory = false;
 
             if (IsaacVersion.AfterbirthPlus == _version) {
-                _modsOffset = Search(ItemsManagerOffsetQuery, false, 40000).QueryResult;
+                _gameManagerOffset = Search(GameManagerOffsetQuery, false, 40000).QueryResult;
             }
 
             CallbackAsync(callback, Status.ReadyStatus);
@@ -137,12 +137,12 @@ namespace KabalistusCommons.Utils {
             return _version;
         }
 
-        public static int GetPlayerInfo(int offset) {
-            return GetPlayerInfo(offset, 0);
+        public static int GetPlayerInfo(int offset, int size = 4) {
+            return GetPlayerInfo(offset, 0, size);
         }
 
-        public static int GetPlayer2Info(int offset) {
-            return GetPlayerInfo(offset, 4);
+        public static int GetPlayer2Info(int offset, int size = 4) {
+            return GetPlayerInfo(offset, 4, size);
         }
 
         public static int GetPlayerManagerInfo(int offset, int size) {
@@ -152,6 +152,11 @@ namespace KabalistusCommons.Utils {
             }
             var numberOfPlayers = GetNumberOfPlayers(playerManagetInstruct);
             return numberOfPlayers == 0 ? 0 : ReadInt(playerManagetInstruct + offset, size);
+        }
+
+        public static int GetGameManagerInfo(int offset, int size) {
+            var gameManagerPointer = ReadInt(_gameManagerOffset, 4);
+            return gameManagerPointer == 0 ? 0 : ReadInt(gameManagerPointer + offset, size);
         }
 
         public static int ReadInt(int addr, int size) {
@@ -164,10 +169,6 @@ namespace KabalistusCommons.Utils {
 
         public static byte[] Read(int addr, int size) {
             return InnerRead(addr, size);
-        }
-
-        public static int GetModsOffset() {
-            return _modsOffset;
         }
 
         private static int InnerReadInt(int addr, int size, bool forceRead = false) {
@@ -193,9 +194,9 @@ namespace KabalistusCommons.Utils {
             return playerPointer == 0 ? 0 : ReadInt(playerPointer + playerOffset, 4);
         }
 
-        private static int GetPlayerInfo(int offset, int playerOffset) {
+        private static int GetPlayerInfo(int offset, int playerOffset, int size = 4) {
             var player = GetPlayer(playerOffset);
-            return player == 0 ? 0 : ReadInt(player + offset, 4);
+            return player == 0 ? 0 : ReadInt(player + offset, size);
         }
 
         private static byte[] InnerRead(int addr, int size, bool forceRead = false) {
