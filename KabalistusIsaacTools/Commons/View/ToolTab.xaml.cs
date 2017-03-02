@@ -47,6 +47,7 @@ namespace KabalistusIsaacTools.Commons.View {
                 Focus();
             });
             extraWindow.Show(TabContent);
+            extraWindow.Focus();
         }
     }
 }

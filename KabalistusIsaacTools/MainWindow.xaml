@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:local="clr-namespace:KabalistusIsaacTools"
         x:Class="KabalistusIsaacTools.MainWindow"
         mc:Ignorable="d"
@@ -16,7 +17,72 @@
         Closed="MainWindowClosed">
     <Grid>
         <Menu x:Name="Menu" HorizontalAlignment="Stretch" Height="20" VerticalAlignment="Top" Background="#FFF0F0F0">
-            <MenuItem Header="Settings"></MenuItem>
+            <MenuItem Header="Settings">
+                <MenuItem Header="General">
+                    <MenuItem StaysOpenOnClick="True">
+                        <MenuItem.Header>
+                            <Grid>
+                                <Label Content="Text Color" Margin="-5,0,0,0"></Label>
+                                <wpfTool:ColorPicker ColorMode="ColorCanvas" ShowStandardColors="False" UsingAlphaChannel="False" Width="60" HorizontalAlignment="Left" Margin="104,2,0,2"></wpfTool:ColorPicker>
+                            </Grid>
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <MenuItem StaysOpenOnClick="True">
+                        <MenuItem.Header>
+                            <Grid>
+                                <Label Content="Background Color" Margin="-5,0,0,0"></Label>
+                                <wpfTool:ColorPicker ColorMode="ColorCanvas" ShowStandardColors="False" UsingAlphaChannel="False" Width="60" HorizontalAlignment="Left" Margin="104,2,0,2"></wpfTool:ColorPicker>
+                            </Grid>
+                        </MenuItem.Header>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Transformation Tracker">
+                    <MenuItem Header="Show Transformation Image" IsCheckable="True" IsChecked="True" StaysOpenOnClick="True">
+                        <MenuItem.ToolTip>
+                            <TextBlock>
+                                Controls if the image of the transformation should
+                                <LineBreak /> 
+                                be displayed when you have the transformation.
+                                <LineBreak /> 
+                                Or only the items continue to be displayed.
+                            </TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                    <MenuItem Header="Coop Transformation Image Mode" IsCheckable="True" StaysOpenOnClick="True">
+                        <MenuItem.ToolTip>
+                            <TextBlock>
+                                Controls if the image of the transformation should be displayed
+                                <LineBreak /> 
+                                only if both players have the transformation on coop (same for jacob).
+                                <LineBreak /> 
+                                If not the transformation image is displayed if any player has it.
+                            </TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                    <MenuItem Header="Show Transformations">
+
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Show Blacklisted Items Icon" IsCheckable="True" StaysOpenOnClick="True">
+
+                        <MenuItem.ToolTip>
+                            <TextBlock>
+                                Controls the indication if an item has no chance to be generated again.
+                                <LineBreak /> 
+                                So it will not appear again on the current run.
+                            </TextBlock>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                    <MenuItem StaysOpenOnClick="True">
+                        <MenuItem.Header>
+                            <Grid>
+                                <Label Content="Blacklisted Items Icon Color" Margin="-5,0,0,0"></Label>
+                                <wpfTool:ColorPicker ColorMode="ColorCanvas" ShowStandardColors="False" UsingAlphaChannel="False" Width="60" HorizontalAlignment="Left" Margin="154,2,0,2"></wpfTool:ColorPicker>
+                            </Grid>
+                        </MenuItem.Header>
+                    </MenuItem>
+                </MenuItem>
+            </MenuItem>
         </Menu>
         <StatusBar HorizontalAlignment="Stretch" Height="35" VerticalAlignment="Bottom" BorderBrush="Black" Margin="0" BorderThickness="0,1,0,0">
             <Label x:Name="StatusLabel" Content="Isaac proccess not found. Still searching..."/>
