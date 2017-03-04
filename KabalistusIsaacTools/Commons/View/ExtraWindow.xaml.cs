@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Data;
+using KabalistusIsaacTools.Serializer;
 
 namespace KabalistusIsaacTools.Commons.View {
     /// <summary>
     /// Interaction logic for ExtraWindow.xaml
     /// </summary>
-    public partial class ExtraWindow : Window {
+    public partial class ExtraWindow : StatefulWindow {
 
         private readonly Action _closeAction;
 
-        public ExtraWindow(ExtraWindowModel model, Action closeAction) {
+        public ExtraWindow(ExtraWindowModel model, WindowSettings settings, Action closeAction) {
+            Settings = settings;
             InitializeComponent();
             Model = model;
+            LoadSettings();
             CreateBindings();
             _closeAction = closeAction;
         }

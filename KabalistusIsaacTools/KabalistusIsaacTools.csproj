@@ -89,6 +89,7 @@
       <DependentUpon>GeneralImage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commons\View\GeneralImageModel.cs" />
+    <Compile Include="Commons\View\StatefulWindow.cs" />
     <Compile Include="Commons\View\ToolTab.xaml.cs">
       <DependentUpon>ToolTab.xaml</DependentUpon>
     </Compile>
@@ -102,9 +103,11 @@
       <DependentUpon>PillRow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Serializer\GeneralSettings.cs" />
-    <Compile Include="Serializer\KabalistusToolsSave.cs" />
+    <Compile Include="Serializer\KabalistusToolsSettings.cs" />
     <Compile Include="Serializer\KabalistusToolsSerializer.cs" />
     <Compile Include="Serializer\SoundFunSave.cs" />
+    <Compile Include="Serializer\TabSettings.cs" />
+    <Compile Include="Serializer\WindowSettings.cs" />
     <Compile Include="SmeltedTrinkets\SmeltedTrinkets.xaml.cs">
       <DependentUpon>SmeltedTrinkets.xaml</DependentUpon>
     </Compile>

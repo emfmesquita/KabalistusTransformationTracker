@@ -1,10 +1,12 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using KabalistusCommons.Isaac;
 using KabalistusCommons.Utils;
 using KabalistusCommons.View;
 using KabalistusIsaacTools.Commons.View;
+using KabalistusIsaacTools.Serializer;
 using KabalistusIsaacTools.Utils;
 using static KabalistusIsaacTools.Utils.ResourcesUtil;
 
@@ -12,7 +14,9 @@ namespace KabalistusIsaacTools {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window {
+    public partial class MainWindow : StatefulWindow {
+        public static bool IsShuttingDown = false;
+
         private readonly StatusBarModel _statusBarModel = new StatusBarModel();
 
         public MainWindow() {
@@ -26,24 +30,34 @@ namespace KabalistusIsaacTools {
             //    });
             //});
 
+            var generalSettings = KabalistusToolsSerializer.Settings.GeneralSettings;
+            Settings = generalSettings.MainWindow;
+
             InitializeComponent();
 
             Title = FormUtils.BuiltTitle("Kabalistus Isaac Tools", this);
 
+            LoadSettings();
+
             TransformationTrackerElement = new TransformationTracker.TransformationTracker();
-            CreateTab(UnmoddedItemResource(145), "Transformation Tracker", TransformationTrackerElement);
+            generalSettings.TransformationTracker = generalSettings.TransformationTracker ?? TabSettings.Default();
+            CreateTab(UnmoddedItemResource(145), "Transformation Tracker", TransformationTrackerElement, generalSettings.TransformationTracker);
 
             PillPoolElement = new PillPool.PillPool();
-            CreateTab(PillResource(1), "Pills", PillPoolElement);
+            generalSettings.Pills = generalSettings.Pills ?? TabSettings.Default();
+            CreateTab(PillResource(1), "Pills", PillPoolElement, generalSettings.Pills);
 
             VoidedItemsElement = new VoidedItems.VoidedItems();
-            CreateTab(UnmoddedItemResource(477), "Voided Items", VoidedItemsElement);
+            generalSettings.VoidedItems = generalSettings.VoidedItems ?? TabSettings.Default();
+            CreateTab(UnmoddedItemResource(477), "Voided Items", VoidedItemsElement, generalSettings.VoidedItems);
 
             SmeltedTrinketsElement = new SmeltedTrinkets.SmeltedTrinkets();
-            CreateTab(UnmoddedItemResource(479), "Smelted Trinkets", SmeltedTrinketsElement);
+            generalSettings.SmeltedTrinkets = generalSettings.SmeltedTrinkets ?? TabSettings.Default();
+            CreateTab(UnmoddedItemResource(479), "Smelted Trinkets", SmeltedTrinketsElement, generalSettings.SmeltedTrinkets);
 
             SoundFunElement = new SoundFun.SoundFun();
-            CreateTab(UnmoddedItemResource(4), "Sound Fun", SoundFunElement);
+            generalSettings.SoundFun = generalSettings.SoundFun ?? TabSettings.Default();
+            CreateTab(UnmoddedItemResource(4), "Sound Fun", SoundFunElement, generalSettings.SoundFun);
 
             CreateBindings();
 
@@ -77,13 +91,17 @@ namespace KabalistusIsaacTools {
             CreationMode.KeyPressed(e.Key);
         }
 
-        private void CreateTab(string iconREsource, string label, UIElement content) {
+        private void CreateTab(string iconREsource, string label, UIElement content, TabSettings settings) {
             var tabModel = new ToolTabModel(iconREsource, label);
-            var tab = new ToolTab(tabModel, content, Tabs);
+            var tab = new ToolTab(tabModel, content, Tabs, settings);
             Tabs.Items.Add(tab);
+            if (settings.IsWindowed) {
+                tab.ToExtraWindow();
+            }
         }
 
         private void MainWindowClosed(object sender, System.EventArgs e) {
+            IsShuttingDown = true;
             Application.Current.Shutdown();
         }
     }

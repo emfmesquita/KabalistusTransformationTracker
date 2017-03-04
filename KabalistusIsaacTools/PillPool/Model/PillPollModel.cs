@@ -3,7 +3,7 @@ using KabalistusCommons.Model;
 
 namespace KabalistusIsaacTools.PillPool.Model {
     public class PillPollModel : BaseModel {
-        private Visibility _lastPillVisibility;
+        private Visibility _lastPillVisibility = Visibility.Hidden;
 
         public Visibility LastPillVisibility {
             get {
