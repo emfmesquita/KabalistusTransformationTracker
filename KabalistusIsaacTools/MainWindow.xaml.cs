@@ -2,12 +2,14 @@
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using KabalistusCommons.Isaac;
 using KabalistusCommons.Utils;
 using KabalistusCommons.View;
 using KabalistusIsaacTools.Commons.View;
 using KabalistusIsaacTools.Serializer;
 using KabalistusIsaacTools.Utils;
+using Xceed.Wpf.Toolkit;
 using static KabalistusIsaacTools.Utils.ResourcesUtil;
 
 namespace KabalistusIsaacTools {
@@ -18,6 +20,7 @@ namespace KabalistusIsaacTools {
         public static bool IsShuttingDown = false;
 
         private readonly StatusBarModel _statusBarModel = new StatusBarModel();
+        private readonly SettingsModel _settingsModel = new SettingsModel();
 
         public MainWindow() {
             //AfterbirthPlusTransformations.AllTransformations.ToList().ForEach(pair => {
@@ -41,23 +44,23 @@ namespace KabalistusIsaacTools {
 
             TransformationTrackerElement = new TransformationTracker.TransformationTracker();
             generalSettings.TransformationTracker = generalSettings.TransformationTracker ?? TabSettings.Default();
-            CreateTab(UnmoddedItemResource(145), "Transformation Tracker", TransformationTrackerElement, generalSettings.TransformationTracker);
+            CreateTab("tt", UnmoddedItemResource(145), "Transformation Tracker", TransformationTrackerElement, generalSettings.TransformationTracker);
 
             PillPoolElement = new PillPool.PillPool();
             generalSettings.Pills = generalSettings.Pills ?? TabSettings.Default();
-            CreateTab(PillResource(1), "Pills", PillPoolElement, generalSettings.Pills);
+            CreateTab("pill", PillResource(1), "Pills", PillPoolElement, generalSettings.Pills);
 
             VoidedItemsElement = new VoidedItems.VoidedItems();
             generalSettings.VoidedItems = generalSettings.VoidedItems ?? TabSettings.Default();
-            CreateTab(UnmoddedItemResource(477), "Voided Items", VoidedItemsElement, generalSettings.VoidedItems);
+            CreateTab("void", UnmoddedItemResource(477), "Voided Items", VoidedItemsElement, generalSettings.VoidedItems);
 
             SmeltedTrinketsElement = new SmeltedTrinkets.SmeltedTrinkets();
             generalSettings.SmeltedTrinkets = generalSettings.SmeltedTrinkets ?? TabSettings.Default();
-            CreateTab(UnmoddedItemResource(479), "Smelted Trinkets", SmeltedTrinketsElement, generalSettings.SmeltedTrinkets);
+            CreateTab("smelt", UnmoddedItemResource(479), "Smelted Trinkets", SmeltedTrinketsElement, generalSettings.SmeltedTrinkets);
 
             SoundFunElement = new SoundFun.SoundFun();
             generalSettings.SoundFun = generalSettings.SoundFun ?? TabSettings.Default();
-            CreateTab(UnmoddedItemResource(4), "Sound Fun", SoundFunElement, generalSettings.SoundFun);
+            CreateTab("sound", UnmoddedItemResource(4), "Sound Fun", SoundFunElement, generalSettings.SoundFun);
 
             CreateBindings();
 
@@ -85,18 +88,33 @@ namespace KabalistusIsaacTools {
                 Source = _statusBarModel,
                 Mode = BindingMode.OneWay
             });
+
+            // settings
+            BackgroundColorPicker.SetBinding(ColorPicker.SelectedColorProperty, new Binding("BackgroundColor") {
+                Source = _settingsModel,
+                Mode = BindingMode.TwoWay
+            });
+            ForegroundColorPicker.SetBinding(ColorPicker.SelectedColorProperty, new Binding("ForegroundColor") {
+                Source = _settingsModel,
+                Mode = BindingMode.TwoWay
+            });
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e) {
             CreationMode.KeyPressed(e.Key);
         }
 
-        private void CreateTab(string iconREsource, string label, UIElement content, TabSettings settings) {
+        private void CreateTab(string id, string iconREsource, string label, UIElement content, TabSettings settings) {
             var tabModel = new ToolTabModel(iconREsource, label);
-            var tab = new ToolTab(tabModel, content, Tabs, settings);
+            var tab = new ToolTab(id, tabModel, content, Tabs, settings);
             Tabs.Items.Add(tab);
             if (settings.IsWindowed) {
                 tab.ToExtraWindow();
+            } else {
+                var focusedTab = KabalistusToolsSerializer.Settings.GeneralSettings.TabWithFocus;
+                if (!string.IsNullOrEmpty(focusedTab) && label.Equals(focusedTab)) {
+                    tab.Focus();
+                }
             }
         }
 

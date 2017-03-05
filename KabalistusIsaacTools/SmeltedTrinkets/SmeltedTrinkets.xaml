@@ -6,7 +6,7 @@
              x:Class="KabalistusIsaacTools.SmeltedTrinkets.SmeltedTrinkets"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid Style="{StaticResource CustomPanelBackground}">
         <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <WrapPanel x:Name="MainPanel"/>
         </ScrollViewer>

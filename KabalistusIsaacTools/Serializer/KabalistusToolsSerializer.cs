@@ -45,9 +45,5 @@ namespace KabalistusIsaacTools.Serializer {
                 }
             };
         }
-
-        private static TabSettings DefaultTabSettings() {
-            return new TabSettings() { IsWindowed = false, WindowSettings = new WindowSettings() };
-        }
     }
 }

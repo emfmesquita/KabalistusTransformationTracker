@@ -108,6 +108,7 @@
     <Compile Include="Serializer\SoundFunSave.cs" />
     <Compile Include="Serializer\TabSettings.cs" />
     <Compile Include="Serializer\WindowSettings.cs" />
+    <Compile Include="SettingsModel.cs" />
     <Compile Include="SmeltedTrinkets\SmeltedTrinkets.xaml.cs">
       <DependentUpon>SmeltedTrinkets.xaml</DependentUpon>
     </Compile>

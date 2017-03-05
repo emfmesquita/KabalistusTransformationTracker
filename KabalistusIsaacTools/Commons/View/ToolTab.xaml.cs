@@ -12,20 +12,26 @@ namespace KabalistusIsaacTools.Commons.View {
         public TabControl Container { get; }
         public UIElement TabContent { get; }
         public TabSettings Settings { get; }
+        public string Id { get; }
 
         public ToolTab() {
             InitializeComponent();
             ToExternalButton.Click += ToExtraWindow;
-            //RenderOptions.SetBitmapScalingMode(Icon, BitmapScalingMode.NearestNeighbor);
         }
 
-        public ToolTab(ToolTabModel model, UIElement tabContent, TabControl container, TabSettings settings) : this() {
+        public ToolTab(string id, ToolTabModel model, UIElement tabContent, TabControl container, TabSettings settings) : this() {
+            Id = id;
             Model = model;
             TabContent = tabContent;
             Container = container;
             CreateBindings();
             MainGrid.Children.Add(tabContent);
             Settings = settings;
+
+            GotFocus += (sender, args) => {
+                KabalistusToolsSerializer.Settings.GeneralSettings.TabWithFocus = Id;
+                KabalistusToolsSerializer.Save();
+            };
         }
 
         private void CreateBindings() {

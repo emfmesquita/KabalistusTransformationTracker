@@ -10,6 +10,6 @@
         <Grid x:Name="ImageGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="14,4,14,34" MouseMove="OnMouseMove">
             <Image x:Name="Ring" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../Images/ring.png" Visibility="Hidden"/>
         </Grid>
-        <Label x:Name="Label" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Transformation: 0" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center"  Margin="4,104,4,4" FontWeight="Bold"/>
+        <Label x:Name="Label" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Transformation: 0" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center"  Margin="4,104,4,4" FontWeight="Bold" Style="{StaticResource CustomControlForeground}"/>
     </Grid>
 </UserControl>

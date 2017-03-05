@@ -14,7 +14,10 @@
         MinWidth="200" 
         Icon="Images/Icons/main.png" 
         KeyDown="OnKeyDown" 
-        Closed="MainWindowClosed" SizeChanged="WindowSizeChanged" LocationChanged="WindowLocationChanged">
+        Closed="MainWindowClosed" 
+        SizeChanged="WindowSizeChanged"
+        LocationChanged="WindowLocationChanged"
+        Activated="WindowActivated">
     <Grid>
         <Menu x:Name="Menu" HorizontalAlignment="Stretch" Height="20" VerticalAlignment="Top" Background="#FFF0F0F0">
             <MenuItem Header="Settings">
@@ -23,7 +26,7 @@
                         <MenuItem.Header>
                             <Grid>
                                 <Label Content="Text Color" Margin="-5,0,0,0"></Label>
-                                <wpfTool:ColorPicker ColorMode="ColorCanvas" ShowStandardColors="False" UsingAlphaChannel="False" Width="60" HorizontalAlignment="Left" Margin="104,2,0,2"></wpfTool:ColorPicker>
+                                <wpfTool:ColorPicker x:Name="ForegroundColorPicker" ColorMode="ColorCanvas" ShowStandardColors="False" UsingAlphaChannel="False" Width="60" HorizontalAlignment="Left" Margin="104,2,0,2"></wpfTool:ColorPicker>
                             </Grid>
                         </MenuItem.Header>
                     </MenuItem>
@@ -31,7 +34,7 @@
                         <MenuItem.Header>
                             <Grid>
                                 <Label Content="Background Color" Margin="-5,0,0,0"></Label>
-                                <wpfTool:ColorPicker ColorMode="ColorCanvas" ShowStandardColors="False" UsingAlphaChannel="False" Width="60" HorizontalAlignment="Left" Margin="104,2,0,2"></wpfTool:ColorPicker>
+                                <wpfTool:ColorPicker x:Name="BackgroundColorPicker" ColorMode="ColorCanvas" ShowStandardColors="False" UsingAlphaChannel="False" Width="60" HorizontalAlignment="Left" Margin="104,2,0,2" ></wpfTool:ColorPicker>
                             </Grid>
                         </MenuItem.Header>
                     </MenuItem>
