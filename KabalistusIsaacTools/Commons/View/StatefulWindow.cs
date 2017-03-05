@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Drawing;
+using System.Linq;
 using System.Windows;
+using System.Windows.Forms;
 using KabalistusCommons.Utils;
 using KabalistusIsaacTools.Serializer;
+using Application = System.Windows.Application;
+using Point = System.Windows.Point;
+using Size = System.Windows.Size;
 
 namespace KabalistusIsaacTools.Commons.View {
     public class StatefulWindow : Window {
@@ -23,6 +29,17 @@ namespace KabalistusIsaacTools.Commons.View {
             if (Settings.Y != null) {
                 Top = (double)Settings.Y;
             }
+
+            if (IsOnScreen()) {
+                return;
+            }
+
+            Left = 100;
+            Top = 100;
+            _windowsLocationDebouncer.Tick(new StatefulWindowEvent() {
+                Settings = Settings,
+                Location = new Point(Left, Top)
+            });
         }
 
         protected void WindowSizeChanged(object sender, SizeChangedEventArgs e) {
@@ -53,29 +70,27 @@ namespace KabalistusIsaacTools.Commons.View {
 
         private readonly Debouncer<StatefulWindowEvent> _windowsLocationDebouncer = new Debouncer<StatefulWindowEvent>(300,
             e => {
-                if (e.Settings == null) {
-                    return;
-                }
                 e.Settings.X = (int)e.Location.X;
                 e.Settings.Y = (int)e.Location.Y;
-                KabalistusToolsSerializer.Save();
+                KabalistusToolsSerializer.MarkToSave();
             });
 
         private readonly Debouncer<StatefulWindowEvent> _windowsSizeDebouncer = new Debouncer<StatefulWindowEvent>(300,
             e => {
-                if (e.Settings == null) {
-                    return;
-                }
-
                 e.Settings.Width = (int)e.Size.Width;
                 e.Settings.Height = (int)e.Size.Height;
-                KabalistusToolsSerializer.Save();
+                KabalistusToolsSerializer.MarkToSave();
             });
 
         private class StatefulWindowEvent {
             public WindowSettings Settings { get; set; }
             public Point Location { get; set; }
             public Size Size { get; set; }
+        }
+
+        private bool IsOnScreen() {
+            var windowArea = new Rectangle((int)Left, (int)Top, (int)Width, (int)Height);
+            return Screen.AllScreens.ToList().Any(screen => screen.WorkingArea.Contains(windowArea));
         }
     }
 }

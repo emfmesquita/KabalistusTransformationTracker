@@ -9,9 +9,8 @@ namespace KabalistusCommons.Utils {
         private T _currentData;
 
 
-        public Debouncer(double interval, Action<T> action)
-        {
-            _timer = new Timer(interval) {AutoReset = false};
+        public Debouncer(double interval, Action<T> action) {
+            _timer = new Timer(interval) { AutoReset = false };
             _timer.Elapsed += (sender, args) => {
                 action(_currentData);
                 _currentData = default(T);

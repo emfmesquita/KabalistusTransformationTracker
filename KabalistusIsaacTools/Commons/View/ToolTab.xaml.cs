@@ -30,7 +30,7 @@ namespace KabalistusIsaacTools.Commons.View {
 
             GotFocus += (sender, args) => {
                 KabalistusToolsSerializer.Settings.GeneralSettings.TabWithFocus = Id;
-                KabalistusToolsSerializer.Save();
+                KabalistusToolsSerializer.MarkToSave();
             };
         }
 
@@ -47,7 +47,7 @@ namespace KabalistusIsaacTools.Commons.View {
 
         private void ToExtraWindow(object sender, RoutedEventArgs e) {
             Settings.IsWindowed = true;
-            KabalistusToolsSerializer.Save();
+            KabalistusToolsSerializer.MarkToSave();
             ToExtraWindow();
         }
 
@@ -56,7 +56,6 @@ namespace KabalistusIsaacTools.Commons.View {
             MainGrid.Children.Remove(TabContent);
 
             var extraWindowModel = new ExtraWindowModel(Model.IconResource, Model.Label);
-            Settings.WindowSettings = Settings.WindowSettings ?? new WindowSettings();
             var extraWindow = new ExtraWindow(extraWindowModel, Settings.WindowSettings, () => {
                 if (MainWindow.IsShuttingDown) {
                     return;
@@ -65,7 +64,7 @@ namespace KabalistusIsaacTools.Commons.View {
                 Container.Items.Add(this);
                 Focus();
                 Settings.IsWindowed = false;
-                KabalistusToolsSerializer.Save();
+                KabalistusToolsSerializer.MarkToSave();
             });
             extraWindow.Show(TabContent);
             extraWindow.Focus();

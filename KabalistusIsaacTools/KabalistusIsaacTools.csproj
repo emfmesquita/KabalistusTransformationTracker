@@ -105,8 +105,9 @@
     <Compile Include="Serializer\GeneralSettings.cs" />
     <Compile Include="Serializer\KabalistusToolsSettings.cs" />
     <Compile Include="Serializer\KabalistusToolsSerializer.cs" />
-    <Compile Include="Serializer\SoundFunSave.cs" />
+    <Compile Include="Serializer\SoundFunSettings.cs" />
     <Compile Include="Serializer\TabSettings.cs" />
+    <Compile Include="Serializer\TransformationTrackerSettings.cs" />
     <Compile Include="Serializer\WindowSettings.cs" />
     <Compile Include="SettingsModel.cs" />
     <Compile Include="SmeltedTrinkets\SmeltedTrinkets.xaml.cs">

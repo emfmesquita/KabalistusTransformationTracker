@@ -1,31 +1,34 @@
 ﻿using System.IO;
+using System.Timers;
 using System.Xml.Serialization;
 
 namespace KabalistusIsaacTools.Serializer {
     public class KabalistusToolsSerializer {
-        private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(KabalistusToolsSettings));
         private const string SaveFileName = "Settings.xml";
+        private const double Interval = 100;
+
+        private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(KabalistusToolsSettings));
+        private static readonly Timer Timer = new Timer(Interval) { AutoReset = false };
 
         public static KabalistusToolsSettings Settings;
 
         static KabalistusToolsSerializer() {
-            Load();
+            Timer.Elapsed += (sender, args) => {
+                Save();
+            };
         }
 
-        public static void Save() {
-            if (!File.Exists(SaveFileName)) {
-                var fs = File.Create(SaveFileName);
-                fs.Close();
+        public static void MarkToSave() {
+            if (Timer.Enabled) {
+                Timer.Stop();
             }
-
-            var writer = new StreamWriter(SaveFileName);
-            Serializer.Serialize(writer, Settings);
-            writer.Close();
+            Timer.Start();
         }
 
         public static void Load() {
             if (!File.Exists(SaveFileName)) {
-                Settings = DefaultSettings();
+                Settings = new KabalistusToolsSettings();
+                Save();
                 return;
             }
 
@@ -34,16 +37,15 @@ namespace KabalistusIsaacTools.Serializer {
             reader.Close();
         }
 
+        private static void Save() {
+            if (!File.Exists(SaveFileName)) {
+                var fs = File.Create(SaveFileName);
+                fs.Close();
+            }
 
-        private static KabalistusToolsSettings DefaultSettings() {
-            return new KabalistusToolsSettings {
-                GeneralSettings = new GeneralSettings() {
-                    MainWindow = new WindowSettings() {
-                        Width = 800,
-                        Height = 600
-                    }
-                }
-            };
+            var writer = new StreamWriter(SaveFileName);
+            Serializer.Serialize(writer, Settings);
+            writer.Close();
         }
     }
 }

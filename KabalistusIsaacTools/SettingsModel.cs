@@ -45,13 +45,13 @@ namespace KabalistusIsaacTools {
         private readonly Debouncer<Color> _backgroundColorDebouncer = new Debouncer<Color>(300,
             color => {
                 KabalistusToolsSerializer.Settings.GeneralSettings.BackgroundColor = color;
-                KabalistusToolsSerializer.Save();
+                KabalistusToolsSerializer.MarkToSave();
             });
 
         private readonly Debouncer<Color> _foregroundColorDebouncer = new Debouncer<Color>(300,
             color => {
                 KabalistusToolsSerializer.Settings.GeneralSettings.TextColor = color;
-                KabalistusToolsSerializer.Save();
+                KabalistusToolsSerializer.MarkToSave();
             });
     }
 }

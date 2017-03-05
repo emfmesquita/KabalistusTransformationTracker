@@ -1,8 +1,6 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media;
 using KabalistusCommons.Isaac;
 using KabalistusCommons.Utils;
 using KabalistusCommons.View;
@@ -17,7 +15,7 @@ namespace KabalistusIsaacTools {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : StatefulWindow {
-        public static bool IsShuttingDown = false;
+        public static bool IsShuttingDown;
 
         private readonly StatusBarModel _statusBarModel = new StatusBarModel();
         private readonly SettingsModel _settingsModel = new SettingsModel();
@@ -43,23 +41,18 @@ namespace KabalistusIsaacTools {
             LoadSettings();
 
             TransformationTrackerElement = new TransformationTracker.TransformationTracker();
-            generalSettings.TransformationTracker = generalSettings.TransformationTracker ?? TabSettings.Default();
             CreateTab("tt", UnmoddedItemResource(145), "Transformation Tracker", TransformationTrackerElement, generalSettings.TransformationTracker);
 
             PillPoolElement = new PillPool.PillPool();
-            generalSettings.Pills = generalSettings.Pills ?? TabSettings.Default();
             CreateTab("pill", PillResource(1), "Pills", PillPoolElement, generalSettings.Pills);
 
             VoidedItemsElement = new VoidedItems.VoidedItems();
-            generalSettings.VoidedItems = generalSettings.VoidedItems ?? TabSettings.Default();
             CreateTab("void", UnmoddedItemResource(477), "Voided Items", VoidedItemsElement, generalSettings.VoidedItems);
 
             SmeltedTrinketsElement = new SmeltedTrinkets.SmeltedTrinkets();
-            generalSettings.SmeltedTrinkets = generalSettings.SmeltedTrinkets ?? TabSettings.Default();
             CreateTab("smelt", UnmoddedItemResource(479), "Smelted Trinkets", SmeltedTrinketsElement, generalSettings.SmeltedTrinkets);
 
             SoundFunElement = new SoundFun.SoundFun();
-            generalSettings.SoundFun = generalSettings.SoundFun ?? TabSettings.Default();
             CreateTab("sound", UnmoddedItemResource(4), "Sound Fun", SoundFunElement, generalSettings.SoundFun);
 
             CreateBindings();
@@ -108,11 +101,11 @@ namespace KabalistusIsaacTools {
             var tabModel = new ToolTabModel(iconREsource, label);
             var tab = new ToolTab(id, tabModel, content, Tabs, settings);
             Tabs.Items.Add(tab);
-            if (settings.IsWindowed) {
+            if (settings.IsWindowed == true) {
                 tab.ToExtraWindow();
             } else {
                 var focusedTab = KabalistusToolsSerializer.Settings.GeneralSettings.TabWithFocus;
-                if (!string.IsNullOrEmpty(focusedTab) && label.Equals(focusedTab)) {
+                if (!string.IsNullOrEmpty(focusedTab) && id.Equals(focusedTab)) {
                     tab.Focus();
                 }
             }

@@ -2,12 +2,9 @@
 
 namespace KabalistusIsaacTools.Serializer {
 
-    [XmlRoot("KabalistusToolsSettings")]
     public class KabalistusToolsSettings {
-
-        public GeneralSettings GeneralSettings { get; set; }
-
-        [XmlElement("SoundFunSettings")]
-        public SoundFunSave SoundFunSave { get; set; }
+        public GeneralSettings GeneralSettings { get; set; } = new GeneralSettings();
+        public TransformationTrackerSettings TransformationTrackerSettings { get; set; } = new TransformationTrackerSettings();
+        public SoundFunSettings SoundFunSettings { get; set; } = new SoundFunSettings();
     }
 }
