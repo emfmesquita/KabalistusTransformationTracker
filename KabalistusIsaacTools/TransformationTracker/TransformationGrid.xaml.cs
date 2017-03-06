@@ -37,6 +37,7 @@ namespace KabalistusIsaacTools.TransformationTracker {
 
             _tooltipTimer.AutoReset = false;
             _tooltipTimer.Elapsed += (source, e) => {
+                if (MainWindow.IsShuttingDown) return;
                 Dispatcher.Invoke(UpdateItemToolTip);
             };
 

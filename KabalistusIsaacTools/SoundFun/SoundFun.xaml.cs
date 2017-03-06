@@ -144,6 +144,7 @@ namespace KabalistusIsaacTools.SoundFun {
 
             var filePooling = new System.Timers.Timer(2000);
             filePooling.Elapsed += (source, e) => {
+                if (MainWindow.IsShuttingDown) return;
                 Dispatcher.Invoke(() => {
                     foreach (Control control in MainPanel.Children) {
                         var row = control as SoundRow;

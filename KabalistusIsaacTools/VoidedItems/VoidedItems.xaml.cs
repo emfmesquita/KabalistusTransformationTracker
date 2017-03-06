@@ -16,6 +16,7 @@ namespace KabalistusIsaacTools.VoidedItems {
         }
 
         public void Update(Status status, IIsaacReader reader) {
+            if (MainWindow.IsShuttingDown) return;
             Dispatcher.Invoke(() => {
                 if (!status.Ready) {
                     MainPanel.Children.Clear();

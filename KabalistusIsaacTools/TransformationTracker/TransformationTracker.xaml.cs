@@ -16,6 +16,7 @@ namespace KabalistusIsaacTools.TransformationTracker {
         }
 
         public void Update(Status status) {
+            if (MainWindow.IsShuttingDown) return;
             Dispatcher.Invoke(() => {
                 if (!status.Ready) {
                     _started = false;

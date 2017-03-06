@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using KabalistusCommons.Isaac;
@@ -66,7 +67,7 @@ namespace KabalistusIsaacTools {
                 TransformationTrackerElement.Update(status);
                 PillPoolElement.Update(status, reader);
                 VoidedItemsElement.Update(status, reader);
-            }, 1000);
+            });
         }
 
         public TransformationTracker.TransformationTracker TransformationTrackerElement { get; }
@@ -88,6 +89,18 @@ namespace KabalistusIsaacTools {
                 Mode = BindingMode.TwoWay
             });
             ForegroundColorPicker.SetBinding(ColorPicker.SelectedColorProperty, new Binding("ForegroundColor") {
+                Source = _settingsModel,
+                Mode = BindingMode.TwoWay
+            });
+            ShowTransformationImageMenu.SetBinding(MenuItem.IsCheckedProperty, new Binding("ShowTransformationImage") {
+                Source = _settingsModel,
+                Mode = BindingMode.TwoWay
+            });
+            ShowBlacklistedIconMenu.SetBinding(MenuItem.IsCheckedProperty, new Binding("ShowBlacklistedIcon") {
+                Source = _settingsModel,
+                Mode = BindingMode.TwoWay
+            });
+            BlacklistedIconColorPicker.SetBinding(ColorPicker.SelectedColorProperty, new Binding("BlacklistedIconColor") {
                 Source = _settingsModel,
                 Mode = BindingMode.TwoWay
             });

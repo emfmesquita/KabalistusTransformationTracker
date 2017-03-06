@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using KabalistusCommons.Isaac;
 using KabalistusCommons.Utils;
+using KabalistusIsaacTools.Serializer;
 using KabalistusIsaacTools.TransformationTracker.Model;
 
 namespace KabalistusIsaacTools.TransformationTracker.Providers {
@@ -43,7 +44,8 @@ namespace KabalistusIsaacTools.TransformationTracker.Providers {
                 return;
             }
 
-            if (!IsInBlindFloor() && isItemBlacklisted) {
+            var showBlaclisted = KabalistusToolsSerializer.Settings.TransformationTrackerSettings.ShowBlacklistedIcon == true;
+            if (!IsInBlindFloor() && isItemBlacklisted && showBlaclisted) {
                 item.Touched = true;
                 item.Blocked = true;
                 return;
@@ -56,7 +58,7 @@ namespace KabalistusIsaacTools.TransformationTracker.Providers {
         protected virtual void UpdateTransformation(Transformation transformation) {
             var counter = MemoryReader.GetPlayerInfo(transformation.MemoryOffset);
             transformation.Count = counter.ToString();
-            transformation.ShowTransformationImage = counter >= 3;
+            transformation.ShowTransformationImage = counter >= 3 && KabalistusToolsSerializer.Settings.TransformationTrackerSettings.ShowTransformationImage == true;
             transformation.Items.ForEach(item => UpdateTransformationItem(item, IsItemTouched(item), IsItemBlacklisted(item)));
         }
 

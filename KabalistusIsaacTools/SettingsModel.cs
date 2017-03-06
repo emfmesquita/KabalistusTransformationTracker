@@ -2,16 +2,22 @@
 using System.Windows.Media;
 using KabalistusCommons.Model;
 using KabalistusCommons.Utils;
-using KabalistusIsaacTools.Serializer;
+using static KabalistusIsaacTools.Serializer.KabalistusToolsSerializer;
 
 namespace KabalistusIsaacTools {
     public class SettingsModel : BaseModel {
         private Color _backgroundColor;
         private Color _foregroundColor;
+        private bool _showTransformationImage;
+        private bool _showBlacklistedIcon;
+        private Color _blacklistedIconColor;
 
         public SettingsModel() {
-            BackgroundColor = KabalistusToolsSerializer.Settings.GeneralSettings.BackgroundColor;
-            ForegroundColor = KabalistusToolsSerializer.Settings.GeneralSettings.TextColor;
+            BackgroundColor = Settings.GeneralSettings.BackgroundColor;
+            ForegroundColor = Settings.GeneralSettings.TextColor;
+            ShowTransformationImage = Settings.TransformationTrackerSettings.ShowTransformationImage ?? true;
+            ShowBlacklistedIcon = Settings.TransformationTrackerSettings.ShowBlacklistedIcon ?? true;
+            BlacklistedIconColor = Settings.TransformationTrackerSettings.BlacklistedIconColor;
         }
 
         public Color BackgroundColor {
@@ -42,16 +48,63 @@ namespace KabalistusIsaacTools {
             }
         }
 
+        public bool ShowTransformationImage {
+            get {
+                return _showTransformationImage;
+            }
+
+            set {
+                if (value == _showTransformationImage) return;
+                _showTransformationImage = value;
+                Settings.TransformationTrackerSettings.ShowTransformationImage = value;
+                MarkToSave();
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool ShowBlacklistedIcon {
+            get {
+                return _showBlacklistedIcon;
+            }
+
+            set {
+                if (value == _showBlacklistedIcon) return;
+                _showBlacklistedIcon = value;
+                Settings.TransformationTrackerSettings.ShowBlacklistedIcon = value;
+                MarkToSave();
+                NotifyPropertyChanged();
+            }
+        }
+
+        public Color BlacklistedIconColor {
+            get {
+                return _blacklistedIconColor;
+            }
+
+            set {
+                if (value == _blacklistedIconColor) return;
+                _blacklistedIconColor = value;
+                _blacklistedIconColorDebouncer.Tick(value);
+                NotifyPropertyChanged();
+            }
+        }
+
         private readonly Debouncer<Color> _backgroundColorDebouncer = new Debouncer<Color>(300,
             color => {
-                KabalistusToolsSerializer.Settings.GeneralSettings.BackgroundColor = color;
-                KabalistusToolsSerializer.MarkToSave();
+                Settings.GeneralSettings.BackgroundColor = color;
+                MarkToSave();
             });
 
         private readonly Debouncer<Color> _foregroundColorDebouncer = new Debouncer<Color>(300,
             color => {
-                KabalistusToolsSerializer.Settings.GeneralSettings.TextColor = color;
-                KabalistusToolsSerializer.MarkToSave();
+                Settings.GeneralSettings.TextColor = color;
+                MarkToSave();
+            });
+
+        private readonly Debouncer<Color> _blacklistedIconColorDebouncer = new Debouncer<Color>(500,
+            color => {
+                Settings.TransformationTrackerSettings.BlacklistedIconColor = color;
+                MarkToSave();
             });
     }
 }

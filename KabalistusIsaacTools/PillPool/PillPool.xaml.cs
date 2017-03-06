@@ -26,6 +26,7 @@ namespace KabalistusIsaacTools.PillPool {
         public PillPollModel Model { get; }
 
         public void Update(Status status, IIsaacReader reader) {
+            if (MainWindow.IsShuttingDown) return;
             Dispatcher.Invoke(() => {
                 if (!status.Ready) {
                     Reset();

@@ -40,7 +40,7 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Transformation Tracker">
-                    <MenuItem Header="Show Transformation Image" IsCheckable="True" IsChecked="True" StaysOpenOnClick="True">
+                    <MenuItem x:Name="ShowTransformationImageMenu" Header="Show Transformation Image" IsCheckable="True" IsChecked="True" StaysOpenOnClick="True">
                         <MenuItem.ToolTip>
                             <TextBlock>
                                 Controls if the image of the transformation should
@@ -66,8 +66,7 @@
 
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="Show Blacklisted Items Icon" IsCheckable="True" StaysOpenOnClick="True">
-
+                    <MenuItem x:Name="ShowBlacklistedIconMenu" Header="Show Blacklisted Items Icon" IsCheckable="True" StaysOpenOnClick="True">
                         <MenuItem.ToolTip>
                             <TextBlock>
                                 Controls the indication if an item has no chance to be generated again.
@@ -80,7 +79,7 @@
                         <MenuItem.Header>
                             <Grid>
                                 <Label Content="Blacklisted Items Icon Color" Margin="-5,0,0,0"></Label>
-                                <wpfTool:ColorPicker ColorMode="ColorCanvas" ShowStandardColors="False" UsingAlphaChannel="False" Width="60" HorizontalAlignment="Left" Margin="154,2,0,2"></wpfTool:ColorPicker>
+                                <wpfTool:ColorPicker x:Name="BlacklistedIconColorPicker" ColorMode="ColorCanvas" ShowStandardColors="False" UsingAlphaChannel="False" Width="60" HorizontalAlignment="Left" Margin="154,2,0,2"></wpfTool:ColorPicker>
                             </Grid>
                         </MenuItem.Header>
                     </MenuItem>

@@ -4,8 +4,10 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using KabalistusIsaacTools.Commons.View;
+using KabalistusIsaacTools.Serializer;
 using KabalistusIsaacTools.Utils;
 using static KabalistusIsaacTools.Utils.ResourcesUtil;
+using Color = System.Windows.Media.Color;
 
 namespace KabalistusIsaacTools.TransformationTracker.Model {
     public class TransformationItem : GeneralImageModel {
@@ -34,7 +36,7 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
             };
             Id = id;
             BlockScale = blockScale;
-            BlockColor = Color.FromArgb(143, 25, 139);
+            BlockColor = KabalistusToolsSerializer.Settings.TransformationTrackerSettings.BlacklistedIconColor;
             Blocked = CreationMode.BlockModeOn;
         }
 
@@ -102,7 +104,7 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
             set {
                 _blockColor = value;
                 if (BlockImageModel == null) return;
-                BlockImageModel.Image = BlockImage(_blockColor);
+                BlockImageModel.Image = BlockImage(_blockColor.R, _blockColor.G, _blockColor.B);
             }
         }
         public bool ShowTooltip {
@@ -129,10 +131,10 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
             return UnlitImageCache[resource];
         }
 
-        private static BitmapImage BlockImage(Color color) {
+        private static BitmapImage BlockImage(byte r, byte g, byte b) {
             var bitmapImage = ImageUtils.GetImage(BlockImageResource);
             var image = ImageUtils.ToBitmap(bitmapImage);
-            image = ImageUtils.WhiteToColor(image, color);
+            image = ImageUtils.WhiteToColor(image, System.Drawing.Color.FromArgb(r, g, b));
             return ImageUtils.ToBitmapImage(new Bitmap(image));
         }
 

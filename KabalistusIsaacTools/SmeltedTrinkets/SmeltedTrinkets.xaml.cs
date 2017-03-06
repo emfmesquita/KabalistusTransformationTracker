@@ -34,6 +34,7 @@ namespace KabalistusIsaacTools.SmeltedTrinkets {
         }
 
         public void Update(Status status, IIsaacReader reader) {
+            if (MainWindow.IsShuttingDown) return;
             Dispatcher.Invoke(() => {
                 if (!status.Ready) {
                     Clear();
