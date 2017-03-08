@@ -4,10 +4,8 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using KabalistusIsaacTools.Commons.View;
-using KabalistusIsaacTools.Serializer;
 using KabalistusIsaacTools.Utils;
 using static KabalistusIsaacTools.Utils.ResourcesUtil;
-using Color = System.Windows.Media.Color;
 
 namespace KabalistusIsaacTools.TransformationTracker.Model {
     public class TransformationItem : GeneralImageModel {
@@ -18,7 +16,6 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
 
         private bool _touched;
         private bool _blocked;
-        private Color _blockColor;
         private float _blockScale = 1;
         private bool _showTooltip;
 
@@ -36,7 +33,6 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
             };
             Id = id;
             BlockScale = blockScale;
-            BlockColor = KabalistusToolsSerializer.Settings.TransformationTrackerSettings.BlacklistedIconColor;
             Blocked = CreationMode.BlockModeOn;
         }
 
@@ -97,16 +93,6 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
             }
         }
 
-        public Color BlockColor {
-            get {
-                return _blockColor;
-            }
-            set {
-                _blockColor = value;
-                if (BlockImageModel == null) return;
-                BlockImageModel.Image = BlockImage(_blockColor.R, _blockColor.G, _blockColor.B);
-            }
-        }
         public bool ShowTooltip {
             get {
                 return _showTooltip;
@@ -129,13 +115,6 @@ namespace KabalistusIsaacTools.TransformationTracker.Model {
             image = ImageUtils.AdjustBrightnessContrast(image, UnlitImageBrightness, UnlitImageContrast);
             UnlitImageCache.Add(resource, ImageUtils.ToBitmapImage(new Bitmap(image)));
             return UnlitImageCache[resource];
-        }
-
-        private static BitmapImage BlockImage(byte r, byte g, byte b) {
-            var bitmapImage = ImageUtils.GetImage(BlockImageResource);
-            var image = ImageUtils.ToBitmap(bitmapImage);
-            image = ImageUtils.WhiteToColor(image, System.Drawing.Color.FromArgb(r, g, b));
-            return ImageUtils.ToBitmapImage(new Bitmap(image));
         }
 
         public override string ToString() {

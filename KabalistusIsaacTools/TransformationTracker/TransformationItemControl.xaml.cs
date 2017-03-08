@@ -16,7 +16,7 @@ namespace KabalistusIsaacTools.TransformationTracker {
             ImageGrid.Children.Add(ItemImage);
 
             if (Model.BlockImageModel != null) {
-                BlockImage = new GeneralImage(Model.BlockImageModel, BitmapScalingMode.Fant);
+                BlockImage = new GeneralImage(Model.BlockImageModel, TransformationTracker.BlockIconImageModel, BitmapScalingMode.Fant);
                 ImageGrid.Children.Add(BlockImage);
             }
             CreateBindings();

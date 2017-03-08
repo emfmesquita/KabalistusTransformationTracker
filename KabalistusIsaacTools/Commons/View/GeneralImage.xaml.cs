@@ -2,6 +2,7 @@
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using KabalistusCommons.Model;
 
 namespace KabalistusIsaacTools.Commons.View {
     /// <summary>
@@ -9,10 +10,14 @@ namespace KabalistusIsaacTools.Commons.View {
     /// </summary>
     public partial class GeneralImage : UserControl {
 
-        public GeneralImage(GeneralImageModel model, BitmapScalingMode scaling = BitmapScalingMode.NearestNeighbor, MouseButtonEventHandler clickHandler = null) {
+        public GeneralImage(GeneralImageModel model, BitmapScalingMode scaling = BitmapScalingMode.NearestNeighbor, MouseButtonEventHandler clickHandler = null) : this(model, null, scaling, clickHandler) {
+        }
+
+        public GeneralImage(GeneralImageModel model, CenteredImageModel centeredImageModel, BitmapScalingMode scaling = BitmapScalingMode.NearestNeighbor, MouseButtonEventHandler clickHandler = null) {
             InitializeComponent();
             RenderOptions.SetBitmapScalingMode(Image, scaling);
             Model = model;
+            CenteredImageModel = centeredImageModel;
             if (clickHandler != null) {
                 Image.MouseLeftButtonDown += clickHandler;
             }
@@ -25,10 +30,11 @@ namespace KabalistusIsaacTools.Commons.View {
         }
 
         public GeneralImageModel Model { get; }
+        public CenteredImageModel CenteredImageModel { get; }
 
         private void CreateBindings() {
             Image.SetBinding(Image.SourceProperty, new Binding("Image") {
-                Source = Model,
+                Source = (BaseModel) CenteredImageModel ?? Model,
                 Mode = BindingMode.OneWay
             });
             Image.SetBinding(MarginProperty, new Binding("FormattedMargin") {

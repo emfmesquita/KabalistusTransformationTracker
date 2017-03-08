@@ -81,6 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commons\View\CenteredImageModel.cs" />
     <Compile Include="Commons\View\ExtraWindow.xaml.cs">
       <DependentUpon>ExtraWindow.xaml</DependentUpon>
     </Compile>

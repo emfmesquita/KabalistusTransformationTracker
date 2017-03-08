@@ -105,6 +105,11 @@ namespace KabalistusIsaacTools {
             color => {
                 Settings.TransformationTrackerSettings.BlacklistedIconColor = color;
                 MarkToSave();
+                         if (TransformationTracker.TransformationTracker.BlockIconImageModel != null)
+                         {
+                    TransformationTracker.TransformationTracker.UpdateBlockImageColor(color);
+                }
+                //TransformationTracker.TransformationTracker.UpdateBlockImageColor(color);
             });
     }
 }
