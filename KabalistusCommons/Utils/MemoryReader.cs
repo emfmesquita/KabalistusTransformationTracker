@@ -17,8 +17,6 @@ namespace KabalistusCommons.Utils {
         private static int _moduleMemSize;
         private static IntPtr _processHandle;
 
-        private const int AfterbirthPlusWorkAround = 15691744;
-
         private static int _playerManagerInstructPointer;
         private static int _playerManagerPlayerListOffset;
 
@@ -34,6 +32,11 @@ namespace KabalistusCommons.Utils {
         public static MemoryQuery PlayerManagerInstructPointerQuery = new MemoryQuery() {
             SearchInt = new[] { 0x33, 0xC0, 0xC7, 0x45, 0xFC, 0xFF, 0xFF, 0xFF, 0xFF, 0xA3, 0x00, 0x00, 0x00, 0x00, 0xE8 },
             SearchPattern = "bbbbbbbbbbvvvvb"
+        };
+
+        public static MemoryQuery AbPlusPlayerManagerInstructPointerQuery = new MemoryQuery() {
+            SearchInt = new[] { 0x89, 0x44, 0x24, 0x34, 0xA1, 0x00, 0x00, 0x00, 0x00, 0x85, 0xC0 },
+            SearchPattern = "bbbbbvvvvbb"
         };
 
         public static MemoryQuery PlayerManagerPlayerListOffsetQuery = new MemoryQuery() {
@@ -94,8 +97,13 @@ namespace KabalistusCommons.Utils {
                 _version = isAntibirth ? IsaacVersion.Antibirth : IsaacVersion.Rebirth;
             }
 
-            var instructSearchOffset = isAfterbirth ? 1500000 : 1100000;
-            _playerManagerInstructPointer = _version == IsaacVersion.AfterbirthPlus ? AfterbirthPlusWorkAround : Search(PlayerManagerInstructPointerQuery, false, instructSearchOffset).QueryResult;
+            if (_version == IsaacVersion.AfterbirthPlus) {
+                _playerManagerInstructPointer = Search(AbPlusPlayerManagerInstructPointerQuery).QueryResult;
+            } else {
+                var instructSearchOffset = isAfterbirth ? 1500000 : 1100000;
+                _playerManagerInstructPointer = Search(PlayerManagerInstructPointerQuery, false, instructSearchOffset).QueryResult;
+            }
+
 
             var playerListSearchOffset = isAfterbirth ? 50000 : 120000;
             _playerManagerPlayerListOffset = Search(PlayerManagerPlayerListOffsetQuery, false, playerListSearchOffset).QueryResult;
