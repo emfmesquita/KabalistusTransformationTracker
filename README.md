@@ -31,7 +31,7 @@ Too see the name of any item just place the mouse cursor over it.
 ### Config File
 If for any reason you need to access the config file (it holds you settings info) it will probably be on:
 
-__C:\Users\<your user>\AppData\Local\KabalistusTransformationT__
+__C:\Users\\\<your user>\AppData\Local\KabalistusTransformationT__
 
 Ps.: The AppData folder is hidden by default, you have to change the Control Panel -> Folder Options / File Explorer Options to see hidden folders and files.
 
