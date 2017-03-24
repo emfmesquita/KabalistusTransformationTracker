@@ -5,7 +5,7 @@ using static KabalistusCommons.Utils.MemoryReader;
 namespace KabalistusCommons.Isaac {
     public class AfterbirthPlusIsaacReader : AfterbirthBaseIsaacReader {
         private const int ItemBlacklistOffset = 31836;
-        private const int HasItemOffset = 7600;
+        private const int HasItemOffset = 10072;
         private const int CursesOffset = 12;
         private const int TouchedItensListInitOffset = 30428;
         private const int TimeCounterOffset = 2178748;

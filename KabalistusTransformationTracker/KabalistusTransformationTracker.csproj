@@ -453,6 +453,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="guppy.ico" />
+    <None Include="Resources\satanicbible.png" />
     <None Include="Resources\euthanasia.png" />
     <None Include="Resources\adrenaline.png" />
     <None Include="Resources\necronomicon.png" />

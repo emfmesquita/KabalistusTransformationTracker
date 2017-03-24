@@ -3,7 +3,7 @@
 namespace KabalistusTransformationTracker.Trans {
     public class AfterbirthPlusTransformations {
 
-        public static readonly Transformation Guppy = new Transformation("guppy", "Guppy", 7768, 6, -2, 0.85F) {
+        public static readonly Transformation Guppy = new Transformation("guppy", "Guppy", 10240, 6, -2, 0.85F) {
             Items = new List<TransformationItem>() {
                 new TransformationItem("deadcat", "Dead Cat", 81, 26, 32, 0.55F),
                 new TransformationItem("guppyspaw", "Guppy's Paw", 133, 3, 52, 0.7F, 11),
@@ -14,7 +14,7 @@ namespace KabalistusTransformationTracker.Trans {
             }
         };
 
-        public static readonly Transformation Beelzebub = new Transformation("beelzebub", "Beelzebub", 7772, 7, -5, 0.9F) {
+        public static readonly Transformation Beelzebub = new Transformation("beelzebub", "Beelzebub", 10244, 7, -5, 0.9F) {
             Items = new List<TransformationItem>() {
                 new TransformationItem("skatole", "Skatole", 9, 72, 62, 0.4F, 5),
                 new TransformationItem("haloofflies", "Halo Of Flies", 10, 6, 62, 0.4F, 5),
@@ -36,7 +36,7 @@ namespace KabalistusTransformationTracker.Trans {
             }
         };
 
-        public static readonly Transformation FunGuy = new Transformation("funguy", "Fun Guy", 7776, 1, -1, 0.75F) {
+        public static readonly Transformation FunGuy = new Transformation("funguy", "Fun Guy", 10248, 1, -1, 0.75F) {
             Items = new List<TransformationItem>() {
                 new TransformationItem("oneup", "1up!", 11, -4, 31, 0.65F, 12),
                 new TransformationItem("magicmush", "Magic Mushroom", 12, 48, 0, 0.7F, 13),
@@ -48,7 +48,7 @@ namespace KabalistusTransformationTracker.Trans {
             }
         };
 
-        public static readonly Transformation Seraphim = new Transformation("seraphim", "Seraphim", 7780, -6, 6, 0.8F) {
+        public static readonly Transformation Seraphim = new Transformation("seraphim", "Seraphim", 10252, -6, 6, 0.8F) {
             Items = new List<TransformationItem>() {
                 new TransformationItem("bible", "The Bible", 33, 30, 69, 0.5F, 4),
                 new TransformationItem("rosary", "Rosary", 72, 23, 0, 0.5F, 9),
@@ -62,7 +62,7 @@ namespace KabalistusTransformationTracker.Trans {
             }
         };
 
-        public static readonly Transformation Bob = new Transformation("bob", "Bob", 7784, 4, -1, 0.95F) {
+        public static readonly Transformation Bob = new Transformation("bob", "Bob", 10256, 4, -1, 0.95F) {
             Items = new List<TransformationItem>() {
                 new TransformationItem("bobshead", "Bob's Rotten Head", 42, 4, 4, 0.75F),
                 new TransformationItem("bobscurse", "Bob's Curse", 140, 39, 46, 0.95F),
@@ -71,7 +71,7 @@ namespace KabalistusTransformationTracker.Trans {
             }
         };
 
-        public static readonly Transformation Spun = new Transformation("spun", "Spun", 7788, 4, 0, 0.9F) {
+        public static readonly Transformation Spun = new Transformation("spun", "Spun", 10260, 4, 0, 0.9F) {
             Items = new List<TransformationItem>() {
                 new TransformationItem("virus", "The Virus", 13, 77, 36, 0.7F, 1),
                 new TransformationItem("roidrage", "Roid Rage", 14, 59, 6, 0.7F, 11),
@@ -84,7 +84,7 @@ namespace KabalistusTransformationTracker.Trans {
             }
         };
 
-        public static readonly Transformation Mom = new Transformation("mom", "Mom", 7792, 8, -1, 0.9F) {
+        public static readonly Transformation Mom = new Transformation("mom", "Mom", 10264, 8, -1, 0.9F) {
             Items = new List<TransformationItem>() {
                 new TransformationItem("momsunderwear", "Mom's Underwear", 29, 41, 59, 0.3F, 1),
                 new TransformationItem("momsheels", "Mom's Heels", 30, 34, 76, 0.35F, 4),
@@ -106,7 +106,7 @@ namespace KabalistusTransformationTracker.Trans {
             }
         };
 
-        public static readonly Transformation Conjoined = new Transformation("conjoined", "Conjoined", 7796, -5, 6, 0.85F) {
+        public static readonly Transformation Conjoined = new Transformation("conjoined", "Conjoined", 10268, -5, 6, 0.85F) {
             Items = new List<TransformationItem>() {
                 new TransformationItem("brotherbobby", "Brother Bobby", 8, 2, 11, 0.7F),
                 new TransformationItem("sistermaggy", "Sister Maggy", 67, 61, 7, 0.7F),
@@ -118,7 +118,7 @@ namespace KabalistusTransformationTracker.Trans {
             }
         };
 
-        public static readonly Transformation Leviathan = new Transformation("leviathan", "Leviathan", 7800, 2, 1, 0.7F) {
+        public static readonly Transformation Leviathan = new Transformation("leviathan", "Leviathan", 10272, 2, 1, 0.7F) {
             Items = new List<TransformationItem>() {
                 new TransformationItem("pentagram", "Pentagram", 51, 25, 59, 0.7F, 12),
                 new TransformationItem("mark", "The Mark", 79, 63, 27, 0.65F, 14),
@@ -131,7 +131,7 @@ namespace KabalistusTransformationTracker.Trans {
             }
         };
 
-        public static readonly Transformation OhCrap = new Transformation("ohcrap", "Oh Crap", 7804, 4, -3, 0.85F) {
+        public static readonly Transformation OhCrap = new Transformation("ohcrap", "Oh Crap", 10276, 4, -3, 0.85F) {
             Items = new List<TransformationItem>() {
                 new TransformationItem("poop", "The Poop", 36, -2, 9),
                 new TransformationItem("ecoli", "E Coli", 236, 40, 4),
@@ -139,22 +139,23 @@ namespace KabalistusTransformationTracker.Trans {
             }
         };
 
-        public static readonly Transformation Bookworm = new Transformation("bookworm", "Bookworm", 7808, 5, 3, 0.95f) {
+        public static readonly Transformation Bookworm = new Transformation("bookworm", "Bookworm", 10280, 5, 3, 0.95f) {
             Items = new List<TransformationItem>() {
-                new TransformationItem("bible", "The Bible", 33, 72, 50, 0.5f, 2),
-                new TransformationItem("bookofbelial", "The Book Of Belial", 34, 72, 15, 0.5f, 4),
-                new TransformationItem("necronomicon", "The Necronomicon", 35, 22, 2, 0.5f, 2),
-                new TransformationItem("bookofshadows", "Book Of Shadows", 58, 48, 64, 0.5f, 4),
-                new TransformationItem("anarchistcookbook", "Anarchist Cookbook", 65, 23, 64, 0.5f, 3),
-                new TransformationItem("bookofrevelations", "Book Of Revelations", 78, 22, 33, 0.5f, 1),
-                new TransformationItem("bookofsin", "The Book Of Sin", 97, 48, 1, 0.5f, 2),
-                new TransformationItem("telepathyfordummies", "Telepathy For Dummies", 192, 0, 49, 0.5f, 1),
-                new TransformationItem("howtojump", "How To Jump", 282, 46, 33, 0.5f, 4),
-                new TransformationItem("bookofsecrets", "Book Of Secrets", 287, -2, 16, 0.5f, 4)
+                new TransformationItem("bible", "The Bible", 33, 48, 34, 0.45f, 2),
+                new TransformationItem("bookofbelial", "The Book Of Belial", 34, 71, 13, 0.45f, 4),
+                new TransformationItem("necronomicon", "The Necronomicon", 35, 22, 0, 0.45f, 2),
+                new TransformationItem("bookofshadows", "Book Of Shadows", 58, 58, 65, 0.45f, 4),
+                new TransformationItem("anarchistcookbook", "Anarchist Cookbook", 65, 13, 64, 0.45f, 3),
+                new TransformationItem("bookofrevelations", "Book Of Revelations", 78, 23, 33, 0.45f, 1),
+                new TransformationItem("bookofsin", "The Book Of Sin", 97, 49, 0, 0.45f, 2),
+                new TransformationItem("telepathyfordummies", "Telepathy For Dummies", 192, -1, 42, 0.45f, 1),
+                new TransformationItem("howtojump", "How To Jump", 282, 74, 43, 0.45f, 4),
+                new TransformationItem("bookofsecrets", "Book Of Secrets", 287, -1, 14, 0.45f, 4),
+                new TransformationItem("satanicbible", "The Satanic Bible", 292, 37, 74, 0.45f, 1)
             }
         };
 
-        public static readonly Transformation Adult = new Transformation("adult", "Adult", 7812, -6, 0, 0.75f) {
+        public static readonly Transformation Adult = new Transformation("adult", "Adult", 10284, -6, 0, 0.75f) {
             Items = new List<TransformationItem>() {
                 new TransformationItem("pill1", "Puberty", 0, 28, 1, 0.55f),
                 new TransformationItem("pill2", "Puberty", 0, 1, 43, 0.55f),
@@ -162,7 +163,7 @@ namespace KabalistusTransformationTracker.Trans {
             }
         };
 
-        public static readonly Transformation SpiderBaby = new Transformation("spiderbabytrans", "Spider Baby", 7816, 7, 0, 0.85f) {
+        public static readonly Transformation SpiderBaby = new Transformation("spiderbabytrans", "Spider Baby", 10288, 7, 0, 0.85f) {
             Items = new List<TransformationItem>() {
                 new TransformationItem("spiderbite", "Spider Bite", 89, 7, 64, 0.45f, 0),
                 new TransformationItem("mutantspider", "Mutant Spider", 153, 50, 61, 0.55f, 4),

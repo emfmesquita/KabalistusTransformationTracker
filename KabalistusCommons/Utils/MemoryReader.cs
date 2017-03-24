@@ -17,6 +17,8 @@ namespace KabalistusCommons.Utils {
         private static int _moduleMemSize;
         private static IntPtr _processHandle;
 
+        private const int AfterbirthPlusWorkAround = 15691744;
+
         private static int _playerManagerInstructPointer;
         private static int _playerManagerPlayerListOffset;
 
@@ -93,7 +95,7 @@ namespace KabalistusCommons.Utils {
             }
 
             var instructSearchOffset = isAfterbirth ? 1500000 : 1100000;
-            _playerManagerInstructPointer = Search(PlayerManagerInstructPointerQuery, false, instructSearchOffset).QueryResult;
+            _playerManagerInstructPointer = _version == IsaacVersion.AfterbirthPlus ? AfterbirthPlusWorkAround : Search(PlayerManagerInstructPointerQuery, false, instructSearchOffset).QueryResult;
 
             var playerListSearchOffset = isAfterbirth ? 50000 : 120000;
             _playerManagerPlayerListOffset = Search(PlayerManagerPlayerListOffsetQuery, false, playerListSearchOffset).QueryResult;
