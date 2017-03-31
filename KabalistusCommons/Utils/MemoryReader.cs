@@ -45,7 +45,7 @@ namespace KabalistusCommons.Utils {
         };
 
         public static void Init(Action<Status> callback, double interval = 1000) {
-            var checkIsaacRunningTimer = new Timer(1000);
+            var checkIsaacRunningTimer = new Timer(interval);
             checkIsaacRunningTimer.Elapsed += (source, e) => {
                 Update(callback);
             };
@@ -112,9 +112,13 @@ namespace KabalistusCommons.Utils {
             CallbackAsync(callback, Status.ReadyStatus);
         }
 
+        public static int GetPlayerManagetInstruct() {
+            return ReadInt(_playerManagerInstructPointer, 4);
+        }
+
         public static int GetNumberOfPlayers(int playerManagetInstruct = -1) {
             if (playerManagetInstruct == -1) {
-                playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
+                playerManagetInstruct = GetPlayerManagetInstruct();
                 if (playerManagetInstruct == 0) {
                     return 0;
                 }
@@ -129,16 +133,16 @@ namespace KabalistusCommons.Utils {
             return _version;
         }
 
-        public static int GetPlayerInfo(int offset) {
-            return GetPlayerInfo(offset, 0);
+        public static int GetPlayerInfo(int offset, int size = 4) {
+            return GetPlayerInfo(offset, 0, size);
         }
 
-        public static int GetPlayer2Info(int offset) {
-            return GetPlayerInfo(offset, 4);
+        public static int GetPlayer2Info(int offset, int size = 4) {
+            return GetPlayerInfo(offset, 4, size);
         }
 
         public static int GetPlayerManagerInfo(int offset, int size) {
-            var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
+            var playerManagetInstruct = GetPlayerManagetInstruct();
             if (playerManagetInstruct == 0) {
                 return 0;
             }
@@ -150,12 +154,24 @@ namespace KabalistusCommons.Utils {
             return InnerReadInt(addr, size);
         }
 
-        private static int InnerReadInt(int addr, int size, bool forceRead = false) {
-            return MemoryReaderUtils.ConvertLittleEndian(Read(addr, size, forceRead));
+        public static string ReadString(int addr, int size) {
+            return InnerReadString(addr, size);
         }
 
-        private static int GetPlayerInfo(int offset, int playerOffset) {
-            var playerManagetInstruct = ReadInt(_playerManagerInstructPointer, 4);
+        public static byte[] Read(int addr, int size) {
+            return InnerRead(addr, size);
+        }
+
+        private static int InnerReadInt(int addr, int size, bool forceRead = false) {
+            return MemoryReaderUtils.ConvertLittleEndian(InnerRead(addr, size, forceRead));
+        }
+
+        private static string InnerReadString(int addr, int size, bool forceRead = false) {
+            return MemoryReaderUtils.ConvertToString(InnerRead(addr, size, forceRead));
+        }
+
+        private static int GetPlayer(int playerOffset) {
+            var playerManagetInstruct = GetPlayerManagetInstruct();
             if (playerManagetInstruct == 0) {
                 return 0;
             }
@@ -166,15 +182,15 @@ namespace KabalistusCommons.Utils {
             }
 
             var playerPointer = ReadInt(playerManagetInstruct + _playerManagerPlayerListOffset, 4);
-            if (playerPointer == 0) {
-                return 0;
-            }
-
-            var player = ReadInt(playerPointer + playerOffset, 4);
-            return player == 0 ? 0 : ReadInt(player + offset, 4);
+            return playerPointer == 0 ? 0 : ReadInt(playerPointer + playerOffset, 4);
         }
 
-        private static byte[] Read(int addr, int size, bool forceRead = false) {
+        private static int GetPlayerInfo(int offset, int playerOffset, int size = 4) {
+            var player = GetPlayer(playerOffset);
+            return player == 0 ? 0 : ReadInt(player + offset, size);
+        }
+
+        private static byte[] InnerRead(int addr, int size, bool forceRead = false) {
             if (_isaacPid == 0) {
                 return new byte[0];
             }
@@ -209,7 +225,7 @@ namespace KabalistusCommons.Utils {
                 i = !fromEndToStart ? i + 1 : i - 1) {
 
                 var addr = _baseAddr + i;
-                var read = Read(addr, searchSize, true);
+                var read = InnerRead(addr, searchSize, true);
                 var result = new List<byte>();
 
                 if (!MemoryReaderUtils.Match(pattern, read, query.Search, result)) continue;

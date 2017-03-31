@@ -26,6 +26,20 @@ namespace KabalistusCommons.Utils {
             return result;
         }
 
+        public static string ConvertToString(byte[] array, int start = 0, int size = 0) {
+            if (!array.Any()) {
+                return "";
+            }
+
+            if (array.Count() < start + size) {
+                throw new Exception("Impossible to convert to string.");
+            }
+
+            var realSize = size == 0 ? array.Count() - start : size;
+
+            return System.Text.Encoding.Default.GetString(array, start, realSize);
+        }
+
         public static int Pow(int bas, int exp) {
             return Enumerable.Repeat(bas, exp).Aggregate(1, (a, b) => a * b);
         }
