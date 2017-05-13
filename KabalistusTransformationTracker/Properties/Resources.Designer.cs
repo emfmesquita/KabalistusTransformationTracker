@@ -103,6 +103,16 @@ namespace KabalistusTransformationTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap angryfly {
+            get {
+                object obj = ResourceManager.GetObject("angryfly", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bbf {
             get {
                 object obj = ResourceManager.GetObject("bbf", resourceCulture);
@@ -1366,6 +1376,16 @@ namespace KabalistusTransformationTracker.Properties {
         internal static System.Drawing.Bitmap spun {
             get {
                 object obj = ResourceManager.GetObject("spun", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stompy {
+            get {
+                object obj = ResourceManager.GetObject("stompy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

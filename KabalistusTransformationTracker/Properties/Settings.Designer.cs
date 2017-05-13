@@ -193,7 +193,7 @@ namespace KabalistusTransformationTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("700")]
         public int AppWidth {
             get {
                 return ((int)(this["AppWidth"]));
@@ -205,7 +205,7 @@ namespace KabalistusTransformationTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("400")]
+        [global::System.Configuration.DefaultSettingValueAttribute("540")]
         public int AppHeight {
             get {
                 return ((int)(this["AppHeight"]));
@@ -284,6 +284,18 @@ namespace KabalistusTransformationTracker.Properties {
             }
             set {
                 this["showspiderbabytrans"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool showstompy {
+            get {
+                return ((bool)(this["showstompy"]));
+            }
+            set {
+                this["showstompy"] = value;
             }
         }
     }

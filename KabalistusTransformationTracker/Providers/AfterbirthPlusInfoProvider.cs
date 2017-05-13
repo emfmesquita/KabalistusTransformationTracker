@@ -29,7 +29,10 @@ namespace KabalistusTransformationTracker.Providers {
             if (SuperBum.Equals(transformation)) {
                 return GetSuperBumInfo();
             }
-            return Adult.Equals(transformation) ? GetAdultInfo() : base.GetTransformationInfo(transformation);
+            if (Adult.Equals(transformation)) {
+                return GetAdultInfo();
+            }
+            return Stompy.Equals(transformation) ? GetStompyInfo() : base.GetTransformationInfo(transformation);
         }
 
         protected override IIsaacReader GetReader() {
@@ -45,6 +48,17 @@ namespace KabalistusTransformationTracker.Providers {
             var itemsGot = new List<string>();
             for (var i = 0; i < counter; i++) {
                 itemsGot.Add(Adult.Items[i].Name);
+            }
+            var transformed = counter >= 3;
+            return new TransformationInfo(counter.ToString(), transformed, itemsGot, new List<string>());
+        }
+
+        private TransformationInfo GetStompyInfo() {
+            var counter = GetPlayerInfo(Stompy.MemoryOffset);
+            counter = counter > 3 ? 3 : counter;
+            var itemsGot = new List<string>();
+            for (var i = 0; i < counter; i++) {
+                itemsGot.Add(Stompy.Items[i].Name);
             }
             var transformed = counter >= 3;
             return new TransformationInfo(counter.ToString(), transformed, itemsGot, new List<string>());

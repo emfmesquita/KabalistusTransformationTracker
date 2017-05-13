@@ -45,10 +45,10 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="AppWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1000</Value>
+      <Value Profile="(Default)">700</Value>
     </Setting>
     <Setting Name="AppHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">400</Value>
+      <Value Profile="(Default)">540</Value>
     </Setting>
     <Setting Name="ShowBlacklistedItems" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -66,6 +66,9 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="showspiderbabytrans" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="showstompy" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>

@@ -12,7 +12,7 @@ namespace KabalistusTransformationTracker.Images {
             Y = y;
             Scale = scale;
 
-            var fileName = name.StartsWith("pill") ? BaseInfoProvider.UnknowPubertyPill : name;
+            var fileName = name.StartsWith("pill") ? BaseInfoProvider.UnknowPubertyPill : (name.StartsWith("imgstompy") ? "magicmush" : name);
             InnerImage = (Bitmap)Properties.Resources.ResourceManager.GetObject(fileName);
 
             Tooltip = new ToolTip();
