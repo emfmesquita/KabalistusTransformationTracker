@@ -142,17 +142,18 @@ namespace KabalistusTransformationTracker.Trans {
 
         public static readonly Transformation Bookworm = new Transformation("bookworm", "Bookworm", 10292, 5, 3, 0.95f) {
             Items = new List<TransformationItem>() {
-                new TransformationItem("bible", "The Bible", 33, 48, 34, 0.45f, 2),
+                new TransformationItem("bible", "The Bible", 33, 51, 27, 0.45f, 2),
                 new TransformationItem("bookofbelial", "The Book Of Belial", 34, 71, 13, 0.45f, 4),
                 new TransformationItem("necronomicon", "The Necronomicon", 35, 22, 0, 0.45f, 2),
                 new TransformationItem("bookofshadows", "Book Of Shadows", 58, 58, 65, 0.45f, 4),
                 new TransformationItem("anarchistcookbook", "Anarchist Cookbook", 65, 13, 64, 0.45f, 3),
-                new TransformationItem("bookofrevelations", "Book Of Revelations", 78, 23, 33, 0.45f, 1),
+                new TransformationItem("bookofrevelations", "Book Of Revelations", 78, 21, 26, 0.45f, 1),
                 new TransformationItem("bookofsin", "The Book Of Sin", 97, 49, 0, 0.45f, 2),
+                new TransformationItem("monstermanual", "Monster Manual", 123, 37, 74, 0.45f, 1),
                 new TransformationItem("telepathyfordummies", "Telepathy For Dummies", 192, -1, 42, 0.45f, 1),
                 new TransformationItem("howtojump", "How To Jump", 282, 74, 43, 0.45f, 4),
                 new TransformationItem("bookofsecrets", "Book Of Secrets", 287, -1, 14, 0.45f, 4),
-                new TransformationItem("satanicbible", "The Satanic Bible", 292, 37, 74, 0.45f, 1)
+                new TransformationItem("satanicbible", "The Satanic Bible", 292, 37, 50, 0.45f, 1)
             }
         };
 
