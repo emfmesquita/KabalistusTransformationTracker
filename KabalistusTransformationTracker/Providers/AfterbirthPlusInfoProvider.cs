@@ -7,7 +7,7 @@ using static KabalistusCommons.Utils.MemoryReader;
 namespace KabalistusTransformationTracker.Providers {
     public class AfterbirthPlusInfoProvider : AfterbirthBaseInfoProvider {
 
-        private const int PillsOffset = 32076;
+        private const int PillsOffset = 32628;
         private const int PubertyId = 9;
         private string _pubertyPill = UnknowPubertyPill;
         private bool _pubertyPillSet;
